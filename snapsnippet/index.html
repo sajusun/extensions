@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapSnippet — Developer Command Clipboard & Spotlight Command Bar</title>
+  <meta name="description" content="Raycast-style spotlight command bar & developer cloud clipboard for Artisan, Docker, Git, SQL, and Regex snippets. 100% offline-first and private.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b16;
+      --card-bg: #121326;
+      --card-border: #212344;
+      --card-border-hover: #6366f1;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-glow: rgba(99, 102, 241, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 11, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: #a5b4fc; }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #6366f1;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .btn-cta:hover {
+      background: #818cf8;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1b38;
+      color: var(--text-main);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #6366f1;
+      background: #252652;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #a5b4fc, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Mockup */
+    .mockup-container {
+      max-width: 740px;
+      margin: 0 auto 80px;
+      background: rgba(18, 19, 38, 0.95);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .spotlight-input-box {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .spotlight-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 1.15rem;
+      font-family: var(--font-mono);
+      width: 100%;
+    }
+
+    .spotlight-results {
+      padding: 12px;
+    }
+
+    .spotlight-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      transition: background 0.15s;
+    }
+
+    .spotlight-item.active {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #fff;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Shortcuts */
+    .shortcuts-banner {
+      background: linear-gradient(135deg, #121326, #1c1d3c);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+
+    .shortcut-pill {
+      font-family: var(--font-mono);
+      background: #0a0b16;
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #a5b4fc;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .privacy-box {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .privacy-box h3 {
+      font-size: 1.35rem;
+      color: #c7d2fe;
+      margin-bottom: 10px;
+    }
+
+    .privacy-box p {
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    footer a { color: #a5b4fc; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </div>
+        <span>SnapSnippet</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#shortcuts" class="nav-link">Shortcuts</a>
+        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
+        <a href="https://github.com/sajusun/snapsnippet" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+        <a href="https://github.com/sajusun/snapsnippet/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge-pill">⚡ Raycast-Style Spotlight &bull; Artisan &bull; Docker &bull; Git &bull; SQL</div>
+      <h1>Developer Command Clipboard &amp;<br><span>Spotlight Command Bar</span></h1>
+      <p>Execute any Artisan, Docker, Git, SQL, or Regex snippet in 1 second without leaving your browser window. Summon the floating spotlight palette with <code>Ctrl + Shift + K</code>.</p>
+      
+      <div class="hero-actions">
+        <a href="https://github.com/sajusun/snapsnippet/releases" target="_blank" rel="noopener" class="btn-cta">Add to Chrome / Edge</a>
+        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
+        <a href="https://github.com/sajusun/snapsnippet" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+      </div>
+
+      <!-- Live Mockup -->
+      <div class="mockup-container">
+        <div class="spotlight-input-box">
+          <span style="color: #6366f1; font-size: 1.2rem;">🔍</span>
+          <input type="text" class="spotlight-input" value="reverb" readonly>
+          <span style="font-size: 0.75rem; color: #64748b; font-family: var(--font-mono);">ESC to close</span>
+        </div>
+        <div class="spotlight-results">
+          <div class="spotlight-item active">
+            <span>php artisan reverb:start --debug</span>
+            <span style="color: #a5b4fc; font-size: 0.75rem;">Enter to Copy ↵</span>
+          </div>
+          <div class="spotlight-item">
+            <span>docker compose up -d --build</span>
+            <span style="color: #64748b; font-size: 0.75rem;">Docker</span>
+          </div>
+          <div class="spotlight-item">
+            <span>git commit --amend --no-edit</span>
+            <span style="color: #64748b; font-size: 0.75rem;">Git</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Zero Friction Developer Momentum</h2>
+        <p>Stop searching Google for command syntax you look up every single week.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Global Spotlight (Ctrl+Shift+K)</h3>
+          <p>Raycast-style floating command overlay pops up on any active webpage to search and copy commands instantly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Curated Preset Library</h3>
+          <p>Preloaded with high-value templates for Laravel Artisan, Docker Compose, Git graphs, PostgreSQL, and Regex.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <h3>Starred Favorites</h3>
+          <p>Pin your most frequently used commands to the top of your spotlight list for instant one-click execution.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏷️</div>
+          <h3>Custom Snippet Organizer</h3>
+          <p>Create and categorize your personal project commands with custom tags and searchable descriptions.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">☁️</div>
+          <h3>Optional Cloud Sync</h3>
+          <p>Connects optionally to your own self-hosted Laravel Sanctum backend API to sync snippets across devices.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>100% Offline-First Privacy</h3>
+          <p>By default, snippets never leave your browser sandbox. Zero tracking, zero telemetry, zero surveillance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shortcuts -->
+    <section id="shortcuts" class="shortcuts-banner">
+      <div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Hotkeys</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Trigger the spotlight search palette from any webpage.</p>
+      </div>
+      <div>
+        <span class="shortcut-pill">Ctrl + Shift + K</span>
+        <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">(Cmd + Shift + K on Mac)</span>
+      </div>
+    </section>
+
+    <!-- Privacy Commitment -->
+    <div class="privacy-box">
+      <h3>🛡️ Offline-First Privacy Guarantee</h3>
+      <p>SnapSnippet never logs your copied snippets or typed search queries. Everything runs locally in your browser storage.</p>
+      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 SnapSnippet. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
+      <p style="margin-top: 8px; font-size: 0.82rem;">
+        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
+        <a href="https://github.com/sajusun/snapsnippet" target="_blank" rel="noopener">GitHub</a> &bull; 
+        <a href="../index.html">All Extensions Hub</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFill — Smart Dummy Form Filler for Web Developers & QA</title>
+  <meta name="description" content="Lightning-fast dummy data filler for web developers & QA engineers. Framework-ready for React, Vue, Inertia. 100% offline-first and private.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #111827;
+      --card-border: #1f293d;
+      --card-border-hover: #10b981;
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --primary-glow: rgba(16, 185, 129, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #10b981, #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--primary); }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #042f2e;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .btn-cta:hover {
+      background: #34d399;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e293b;
+      color: var(--text-main);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: #27354a;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Interactive Mockup */
+    .mockup-container {
+      max-width: 840px;
+      margin: 0 auto 80px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .mockup-header {
+      background: #0d131f;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mockup-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .mockup-body {
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .mockup-body { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.3rem; }
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+    }
+
+    .form-input {
+      width: 100%;
+      background: #090d16;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: #34d399;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    .mockup-sidebar {
+      background: #0c111d;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pill-tag {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Features Grid */
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Shortcuts Section */
+    .shortcuts-banner {
+      background: linear-gradient(135deg, #111827, #0d1524);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+
+    .shortcut-pill {
+      font-family: var(--font-mono);
+      background: #090d16;
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #34d399;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Privacy Banner */
+    .privacy-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .privacy-box h3 {
+      font-size: 1.35rem;
+      color: #34d399;
+      margin-bottom: 10px;
+    }
+
+    .privacy-box p {
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        <span>DevFill</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#shortcuts" class="nav-link">Shortcuts</a>
+        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge-pill">⚡ Open Source &bull; 100% Offline &bull; Manifest V3</div>
+      <h1>Smart Dummy Form Filler for<br><span>Web Developers &amp; QA Teams</span></h1>
+      <p>Fill entire registration forms, checkouts, and complex nested inputs in 1 millisecond. Dispatches native DOM events with zero keystroke logging.</p>
+      
+      <div class="hero-actions">
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools/releases" target="_blank" rel="noopener" class="btn-cta">Add to Chrome / Edge</a>
+        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+      </div>
+
+      <!-- Live Mockup -->
+      <div class="mockup-container">
+        <div class="mockup-header">
+          <span class="mockup-dot" style="background:#ef4444;"></span>
+          <span class="mockup-dot" style="background:#eab308;"></span>
+          <span class="mockup-dot" style="background:#10b981;"></span>
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #64748b; margin-left: 8px;">Auto-Filled State &bull; Alt + Shift + F</span>
+        </div>
+        <div class="mockup-body">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" value="Sakhawat Hossain" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Work Email</label>
+              <input type="email" class="form-input" value="test.developer@example.com" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password (Rule: Special + Num)</label>
+              <input type="text" class="form-input" value="DevP@ssw0rd!2026" readonly>
+            </div>
+          </div>
+          <div class="mockup-sidebar">
+            <div>
+              <span class="pill-tag">React / Vue Event Dispatch</span>
+              <h4 style="margin: 12px 0 6px; font-size: 0.95rem;">Framework State Synced</h4>
+              <p style="font-size: 0.85rem; color: #94a3b8;">Triggers native <code style="color:#34d399">input</code>, <code style="color:#34d399">change</code>, and <code style="color:#34d399">blur</code> events so state managers receive values immediately.</p>
+            </div>
+            <div style="border-top: 1px solid var(--card-border); padding-top: 12px; font-size: 0.8rem; color: #64748b;">
+              ⏱ Execution Time: <strong>0.8ms</strong> &bull; Zero Server Requests
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Built for Developer Momentum</h2>
+        <p>Stop typing manual test data. Automate repetitive form submissions with confidence.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>1-Click Smart Filler</h3>
+          <p>Recognizes email, names, phone numbers, postal codes, and selects using intelligent heuristic pattern matching.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚛️</div>
+          <h3>Framework Ready</h3>
+          <p>Dispatches native events compatible with React, Vue.js, Inertia.js, Angular, Blade, and pure HTML forms.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🖱️</div>
+          <h3>Context Menu Actions</h3>
+          <p>Right-click any individual input field to insert specific test data like dummy emails, dates, or UUIDs on the fly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Multi-Locale Datasets</h3>
+          <p>Supports generating synthetic names and addresses tailored to multiple international locales (English, Spanish, Bengali, etc.).</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Custom Test Passwords</h3>
+          <p>Configure your team's standard test password rule in options so validation rules pass without breaking a sweat.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>100% Offline &amp; Private</h3>
+          <p>Zero external scripts. All faker engines and datasets run inside your browser's private extension sandbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shortcuts -->
+    <section id="shortcuts" class="shortcuts-banner">
+      <div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Global Keyboard Shortcuts</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Trigger instant form automation without lifting your fingers from the keyboard.</p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <div>
+          <span class="shortcut-pill">Alt + Shift + F</span>
+          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Fill Form</span>
+        </div>
+        <div>
+          <span class="shortcut-pill">Alt + Shift + C</span>
+          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Clear Form</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Commitment -->
+    <div class="privacy-box">
+      <h3>🛡️ Built with Uncompromising Privacy</h3>
+      <p>DevFill never collects, inspects, or transmits form inputs or browsing history. Everything runs offline in your browser.</p>
+      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 DevFill. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>. Open source under the MIT License.</p>
+      <p style="margin-top: 8px; font-size: 0.82rem;">
+        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools" target="_blank" rel="noopener">GitHub</a> &bull; 
+        <a href="../index.html">All Extensions Hub</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

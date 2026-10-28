@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extensions Privacy Center - Sakhawat Hossain</title>
-  <meta name="description" content="Official Privacy Policies directory for browser extensions by Sakhawat Hossain (DevFill, EchoScope, EdgePDF, LaraLens, MapLeads Pro, OfficeMate, PureEdge, SnapSnippet).">
+  <title>Browser Extensions Portfolio & Privacy Center — Sakhawat Hossain</title>
+  <meta name="description" content="Official showcase, landing pages, and privacy compliance disclosures for all browser extensions by Sakhawat Hossain. 100% Client-side privacy and productivity.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #0b0f19;
-      --bg-surface: #111827;
-      --bg-subtle: #1e293b;
-      --border: #334155;
-      --border-hover: #60a5fa;
+      --bg-base: #080b13;
+      --bg-surface: #101626;
+      --bg-subtle: #192238;
+      --border: #23304d;
+      --border-hover: #3b82f6;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --primary: #3b82f6;
@@ -38,16 +38,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1140px;
       width: 100%;
     }
 
     header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 56px;
     }
 
     .badge-pill {
@@ -61,14 +62,14 @@
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2.75rem;
+      font-size: 2.9rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -76,78 +77,85 @@
 
     p.subtitle {
       color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 680px;
+      font-size: 1.15rem;
+      max-width: 740px;
       margin: 0 auto;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
       margin-bottom: 60px;
     }
 
     .card {
       background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
+      border-radius: 16px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.25s ease;
-      text-decoration: none;
-      color: inherit;
       position: relative;
-      overflow: hidden;
     }
 
     .card:hover {
       border-color: var(--border-hover);
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
     }
 
     .card-top {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       flex-shrink: 0;
     }
 
     .card-title {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.3;
     }
 
+    .card-title a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .card-title a:hover {
+      color: #60a5fa;
+    }
+
     .card-version {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-family: var(--font-mono);
       color: #94a3b8;
     }
 
     .card-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.5;
+      font-size: 0.92rem;
+      line-height: 1.6;
     }
 
     .card-footer {
@@ -155,19 +163,43 @@
       align-items: center;
       justify-content: space-between;
       border-top: 1px solid var(--border);
-      padding-top: 16px;
+      padding-top: 18px;
       font-size: 0.85rem;
-      color: #60a5fa;
-      font-weight: 600;
     }
 
-    .card-footer span.privacy-pill {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
-      padding: 2px 8px;
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 6px 12px;
       border-radius: 6px;
-      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-view:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    .privacy-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+
+    .privacy-link:hover {
+      color: #e2e8f0;
+      text-decoration: underline;
     }
 
     footer {
@@ -175,7 +207,7 @@
       color: var(--text-muted);
       font-size: 0.9rem;
       border-top: 1px solid var(--border);
-      padding-top: 30px;
+      padding-top: 36px;
       width: 100%;
     }
 
@@ -194,165 +226,164 @@
   <div class="container">
     
     <header>
-      <div class="badge-pill">🛡️ Privacy &amp; Data Governance Center</div>
-      <h1>Browser Extensions Privacy Hub</h1>
-      <p class="subtitle">Official Privacy Policies and compliance disclosures for all browser extensions engineered by Sakhawat Hossain. Zero personal surveillance, 100% client-side security.</p>
+      <div class="badge-pill">🚀 Browser Extensions Portfolio &amp; Privacy Hub</div>
+      <h1>Developer Tools &amp; Productivity Suite</h1>
+      <p class="subtitle">Official product showcase and compliance policies for browser extensions engineered by Sakhawat Hossain. 100% Client-side architecture with zero telemetry surveillance.</p>
     </header>
 
     <div class="grid">
 
       <!-- DevFill -->
-      <a href="./devfill/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(5, 150, 105, 0.2); border: 1px solid rgba(5, 150, 105, 0.4); color: #34d399;">✏️</div>
             <div>
-              <div class="card-title">DevFill</div>
+              <div class="card-title"><a href="./devfill/index.html">DevFill</a></div>
               <div class="card-version">v1.0.1 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Smart Dummy Form Filler for Web Developers &amp; QA Engineers. Generates synthetic test data offline with zero tracking.</p>
+          <p class="card-desc">Smart Dummy Form Filler for Web Developers &amp; QA. Fills forms in 1ms with React/Vue DOM events and keyboard shortcuts (Alt+Shift+F).</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">100% Offline</span>
-          <span>View Policy &rarr;</span>
+          <a href="./devfill/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./devfill/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- EchoScope -->
-      <a href="./echoscope/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(124, 58, 237, 0.2); border: 1px solid rgba(124, 58, 237, 0.4); color: #a78bfa;">📡</div>
             <div>
-              <div class="card-title">EchoScope</div>
+              <div class="card-title"><a href="./echoscope/index.html">EchoScope</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Real-time WebSocket &amp; Laravel Reverb Broadcast Inspector. Test private channels and event payloads locally.</p>
+          <p class="card-desc">Real-time WebSocket &amp; Laravel Reverb Broadcast Inspector. Test private channels and inspect JSON payloads without frontend code.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Zero Telemetry</span>
-          <span>View Policy &rarr;</span>
+          <a href="./echoscope/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./echoscope/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- EdgePDF SmartTools -->
-      <a href="./edgepdf/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(225, 29, 72, 0.2); border: 1px solid rgba(225, 29, 72, 0.4); color: #fb7185;">📄</div>
             <div>
-              <div class="card-title">EdgePDF SmartTools</div>
+              <div class="card-title"><a href="./edgepdf/index.html">EdgePDF SmartTools</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">1-Click Table to Excel (.xlsx) converter, client-side OCR for scanned documents, and document notes with zero server uploads.</p>
+          <p class="card-desc">1-Click Table to Excel (.xlsx) converter, client-side OCR for scanned documents, and dark reader mode with zero server uploads.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Zero Document Uploads</span>
-          <span>View Policy &rarr;</span>
+          <a href="./edgepdf/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./edgepdf/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- LaraLens -->
-      <a href="./laralens/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(255, 45, 32, 0.2); border: 1px solid rgba(255, 45, 32, 0.4); color: #ff8a80;">🔍</div>
             <div>
-              <div class="card-title">LaraLens</div>
+              <div class="card-title"><a href="./laralens/index.html">LaraLens</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Laravel &amp; Inertia.js DevTools. Inspect CSRF tokens, session cookies, Inertia props, and Ziggy routes locally.</p>
+          <p class="card-desc">Ultimate Laravel &amp; Inertia.js DevTools. Inspect Inertia page props, session cookies, CSRF tokens, and Ziggy routes locally.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Local DevTools</span>
-          <span>View Policy &rarr;</span>
+          <a href="./laralens/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./laralens/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- MapLeads Pro -->
-      <a href="./mapleads/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(37, 99, 235, 0.4); color: #60a5fa;">📍</div>
             <div>
-              <div class="card-title">MapLeads Pro</div>
+              <div class="card-title"><a href="./mapleads/index.html">MapLeads Pro</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Google Maps Lead Scraper &amp; B2B Exporter. Scrapes search results into Excel &amp; CSV with 100% client-side privacy.</p>
+          <p class="card-desc">Google Maps Lead Scraper &amp; B2B Exporter. Scrapes search results into Excel &amp; CSV with anti-detection physics and goldmine filters.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Zero Cloud Storage</span>
-          <span>View Policy &rarr;</span>
+          <a href="./mapleads/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./mapleads/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- OfficeMate for Edge -->
-      <a href="./officemate/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(0, 120, 212, 0.2); border: 1px solid rgba(0, 120, 212, 0.4); color: #38bdf8;">💼</div>
             <div>
-              <div class="card-title">OfficeMate for Edge</div>
+              <div class="card-title"><a href="./officemate/index.html">OfficeMate for Edge</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Corporate productivity copilot for Microsoft 365: Outlook AI drafts, Teams meeting action items, and tab workspace stashing.</p>
+          <p class="card-desc">Productivity copilot for Microsoft 365: Outlook AI drafts, Teams meeting action items, and 1-click workspace tab stashing.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Enterprise Privacy</span>
-          <span>View Policy &rarr;</span>
+          <a href="./officemate/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./officemate/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- PureEdge CleanTab -->
-      <a href="./pureedge/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(13, 148, 136, 0.2); border: 1px solid rgba(13, 148, 136, 0.4); color: #2dd4bf;">🛡️</div>
             <div>
-              <div class="card-title">PureEdge CleanTab</div>
+              <div class="card-title"><a href="./pureedge/index.html">PureEdge CleanTab</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Block bloated MSN news feeds, enjoy a 4K minimalist dashboard with weather &amp; Pomodoro, and save 50% RAM with Turbo Tab Sleep.</p>
+          <p class="card-desc">Purge bloated MSN news feeds, enjoy a 4K minimalist dashboard with weather &amp; Pomodoro, and save 50% RAM with Turbo Tab Sleep.</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Zero Tracking</span>
-          <span>View Policy &rarr;</span>
+          <a href="./pureedge/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./pureedge/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
       <!-- SnapSnippet -->
-      <a href="./snapsnippet/privacy/index.html" class="card">
+      <div class="card">
         <div class="card-top">
           <div class="card-header">
             <div class="card-icon" style="background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #a5b4fc;">⚡</div>
             <div>
-              <div class="card-title">SnapSnippet</div>
+              <div class="card-title"><a href="./snapsnippet/index.html">SnapSnippet</a></div>
               <div class="card-version">v1.0.0 • Manifest V3</div>
             </div>
           </div>
-          <p class="card-desc">Raycast-style spotlight command bar &amp; developer clipboard for Artisan, Docker, Git, SQL, and Regex snippets.</p>
+          <p class="card-desc">Raycast-style spotlight command bar &amp; developer clipboard for Artisan, Docker, Git, SQL, and Regex snippets (Ctrl+Shift+K).</p>
         </div>
         <div class="card-footer">
-          <span class="privacy-pill">Offline First</span>
-          <span>View Policy &rarr;</span>
+          <a href="./snapsnippet/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./snapsnippet/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
-      </a>
+      </div>
 
     </div>
 
     <footer>
-      <p>&copy; 2026 <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>. All extension privacy policies adhere strictly to Microsoft Edge Add-ons &amp; Chrome Web Store Developer Policies.</p>
+      <p>&copy; 2026 <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>. All extensions adhere strictly to Microsoft Edge Add-ons &amp; Chrome Web Store Developer Policies.</p>
     </footer>
 
   </div>
 
 </body>
 </html>
-

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaraLens — Ultimate Laravel & Inertia.js DevTools</title>
+  <meta name="description" content="Inspect CSRF tokens, session cookies, Inertia.js props, and Ziggy routes on any Laravel application. 100% read-only local developer inspection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0a09;
+      --card-bg: #181110;
+      --card-border: #2c1a18;
+      --card-border-hover: #ff2d20;
+      --primary: #ff2d20;
+      --primary-hover: #e02418;
+      --primary-glow: rgba(255, 45, 32, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 10, 9, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff2d20, #e11d48);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: #ff8a80; }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ff2d20;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .btn-cta:hover {
+      background: #ff5252;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #231513;
+      color: var(--text-main);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #ff2d20;
+      background: #311c19;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 45, 32, 0.15);
+      border: 1px solid rgba(255, 45, 32, 0.35);
+      color: #ff8a80;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ff6e40, #ff2d20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Mockup */
+    .mockup-container {
+      max-width: 860px;
+      margin: 0 auto 80px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .mockup-header {
+      background: #1d1210;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .mockup-body {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .mockup-body { grid-template-columns: 1fr; }
+    }
+
+    .mockup-box {
+      background: #110b0a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 45, 32, 0.15);
+      border: 1px solid rgba(255, 45, 32, 0.35);
+      color: #ff8a80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .privacy-box {
+      background: rgba(255, 45, 32, 0.08);
+      border: 1px solid rgba(255, 45, 32, 0.25);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .privacy-box h3 {
+      font-size: 1.35rem;
+      color: #ff8a80;
+      margin-bottom: 10px;
+    }
+
+    .privacy-box p {
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    footer a { color: #ff8a80; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 8v8"></path>
+            <path d="M8 12h8"></path>
+          </svg>
+        </div>
+        <span>LaraLens</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
+        <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+        <a href="https://github.com/sajusun/laralens/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge-pill">🔍 Laravel 11+ &bull; Inertia.js &bull; Ziggy Ready</div>
+      <h1>The Ultimate Laravel &amp;<br><span>Inertia.js DevTools</span></h1>
+      <p>Inspect Inertia.js page props, CSRF tokens, session cookies, and Ziggy routes on any running Laravel application directly from your browser extension.</p>
+      
+      <div class="hero-actions">
+        <a href="https://github.com/sajusun/laralens/releases" target="_blank" rel="noopener" class="btn-cta">Add to Chrome / Edge</a>
+        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
+        <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+      </div>
+
+      <!-- Live Mockup -->
+      <div class="mockup-container">
+        <div class="mockup-header">
+          <span style="color: #ff8a80;">LaraLens Inspector &bull; app.test</span>
+          <span style="color: #34d399;">Inertia v1.2.0 Detected</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-box">
+            <div style="color: #38bdf8; margin-bottom: 8px;">// Inertia Page Props</div>
+            <div style="color: #cbd5e1;">component: <span style="color:#f59e0b;">"Users/Profile"</span></div>
+            <div style="color: #cbd5e1;">auth.user: {</div>
+            <div style="padding-left: 12px; color: #a78bfa;">id: 104,</div>
+            <div style="padding-left: 12px; color: #a78bfa;">name: "Sakhawat",</div>
+            <div style="padding-left: 12px; color: #a78bfa;">role: "admin"</div>
+            <div style="color: #cbd5e1;">}</div>
+          </div>
+          <div class="mockup-box">
+            <div style="color: #38bdf8; margin-bottom: 8px;">// Security &amp; Cookies</div>
+            <div style="margin-bottom: 6px;"><span style="color:#34d399;">✔ CSRF:</span> <code style="color:#94a3b8; font-size:0.75rem;">x-csrf-token valid</code></div>
+            <div style="margin-bottom: 6px;"><span style="color:#34d399;">✔ laravel_session:</span> <span style="color:#cbd5e1;">HttpOnly, SameSite=Lax</span></div>
+            <div><span style="color:#38bdf8;">✔ Ziggy Routes:</span> <span style="color:#cbd5e1;">48 named routes loaded</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Developer Auditing Made Effortless</h2>
+        <p>No more guessing why props are missing or whether cookies have proper security flags.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">⚛️</div>
+          <h3>Inertia.js State Inspector</h3>
+          <p>Read <code>window.__page.props</code> in real time with nested JSON tree expansion and quick search filtering.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛣️</div>
+          <h3>Ziggy Route Search</h3>
+          <p>Search all Laravel named routes, HTTP methods, and URI parameters instantly without running <code>route:list</code>.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🍪</div>
+          <h3>Cookie Security Auditor</h3>
+          <p>Verify whether <code>laravel_session</code> and <code>XSRF-TOKEN</code> cookies are marked HttpOnly, Secure, and SameSite.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>CSRF Health Check</h3>
+          <p>Audits HTML <code>&lt;meta name="csrf-token"&gt;</code> tags and alerts if your frontend requests are vulnerable to mismatch errors.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3>Local &amp; Remote Audits</h3>
+          <p>Works seamlessly across <code>localhost</code>, <code>127.0.0.1</code>, <code>*.test</code> domains, as well as live staging environments.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Read-Only Sandboxed Privacy</h3>
+          <p>LaraLens is purely read-only. Your authentication cookies and user payloads are never transmitted outside your browser.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Commitment -->
+    <div class="privacy-box">
+      <h3>🛡️ Read-Only Client Inspection Privacy</h3>
+      <p>LaraLens operates exclusively within the active tab. Cookies and Inertia props are inspected in-memory with zero external tracking.</p>
+      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 LaraLens. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
+      <p style="margin-top: 8px; font-size: 0.82rem;">
+        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
+        <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener">GitHub</a> &bull; 
+        <a href="../index.html">All Extensions Hub</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfficeMate for Edge — Outlook AI Drafts, Teams Notes & Workspace Tab Stash</title>
+  <meta name="description" content="High-value productivity copilot for Microsoft 365: 1-click professional Outlook email replies, Teams meeting action-item extractor, and workspace tab stashing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090c13;
+      --card-bg: #101626;
+      --card-border: #1e2840;
+      --card-border-hover: #0078d4;
+      --primary: #0078d4;
+      --primary-hover: #005a9e;
+      --primary-glow: rgba(0, 120, 212, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .header-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(9, 12, 19, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0078d4, #0284c7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: #38bdf8; }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0078d4;
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .btn-cta:hover {
+      background: #0284c7;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #192338;
+      color: var(--text-main);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #0078d4;
+      background: #23314d;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 120, 212, 0.15);
+      border: 1px solid rgba(0, 120, 212, 0.35);
+      color: #7dd3fc;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #0078d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    /* Mockup */
+    .mockup-container {
+      max-width: 860px;
+      margin: 0 auto 80px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .mockup-header {
+      background: #0d1322;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .mockup-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .mockup-body { grid-template-columns: 1fr; }
+    }
+
+    .mockup-box {
+      background: #0b0f1a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(0, 120, 212, 0.15);
+      border: 1px solid rgba(0, 120, 212, 0.35);
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Shortcuts */
+    .shortcuts-banner {
+      background: linear-gradient(135deg, #101626, #14203a);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 80px;
+      flex-wrap: wrap;
+    }
+
+    .shortcut-pill {
+      font-family: var(--font-mono);
+      background: #090c13;
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #38bdf8;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: #0078d4;
+      box-shadow: 0 10px 30px rgba(0, 120, 212, 0.2);
+    }
+
+    .price-tag {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 16px 0;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .price-features li {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .privacy-box {
+      background: rgba(0, 120, 212, 0.08);
+      border: 1px solid rgba(0, 120, 212, 0.25);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .privacy-box h3 {
+      font-size: 1.35rem;
+      color: #7dd3fc;
+      margin-bottom: 10px;
+    }
+
+    .privacy-box p {
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    footer a { color: #38bdf8; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <span>OfficeMate for Edge</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
+        <a href="https://github.com/sajusun/officemate" target="_blank" rel="noopener" class="nav-link">GitHub</a>
+        <a href="https://github.com/sajusun/officemate/releases" target="_blank" rel="noopener" class="btn-cta">Install for Edge</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge-pill">💼 Microsoft 365 Copilot &bull; Outlook &bull; Teams &bull; Manifest V3</div>
+      <h1>Productivity Copilot for<br><span>Outlook Web, Teams &amp; Tabs</span></h1>
+      <p>1-Click professional email replies (Polite Pushback, Status Updates), Teams meeting action-item extractor, and project workspace tab stashing.</p>
+      
+      <div class="hero-actions">
+        <a href="https://github.com/sajusun/officemate/releases" target="_blank" rel="noopener" class="btn-cta">Add to Microsoft Edge</a>
+        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
+        <a href="https://github.com/sajusun/officemate" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+      </div>
+
+      <!-- Live Mockup -->
+      <div class="mockup-container">
+        <div class="mockup-header">
+          <span style="color: #38bdf8;">Outlook Web Compose &bull; 1-Click Tone Drafter</span>
+          <span style="color: #34d399;">Active Copilot Sidebar</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-box">
+            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 8px;">Selected Tone: <strong>Polite Pushback</strong></div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.5;">
+              "Thank you for sharing the updated requirements. While we understand the urgency, accommodating this change without adjusting current milestones would impact overall quality. Let's discuss scope prioritization on our sync."
+            </p>
+          </div>
+          <div class="mockup-box">
+            <div style="font-size: 0.78rem; color: #64748b; margin-bottom: 8px;">Workspace Stash: <strong>Client A - Q4 Migration</strong></div>
+            <ul style="list-style: none; font-size: 0.8rem; color: #94a3b8; line-height: 1.7;">
+              <li>📁 Jira Board: 14 Tickets Open</li>
+              <li>📁 Confluence: Architecture Spec</li>
+              <li>📁 Outlook: Client Approval Thread</li>
+            </ul>
+            <div style="margin-top: 10px; font-size: 0.75rem; color: #38bdf8;">✔ 1-Click Restore All 24 Tabs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Enterprise-Grade Corporate Productivity</h2>
+        <p>Built specifically for knowledge workers, engineering leads, and enterprise consultants.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <div class="feature-icon">✉️</div>
+          <h3>Outlook 1-Click Auto-Replies</h3>
+          <p>Instant professional drafts: Polite Pushback, Executive Status Updates, Formal Confirmations, and Friendly Follow-ups.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Teams Action-Item Grabber</h3>
+          <p>Highlight chat threads or meeting transcripts to automatically extract checklists and export as Markdown (.md).</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📂</div>
+          <h3>Workspace Tab Stash</h3>
+          <p>Stash 20–30 open project tabs into a labeled workspace. Restore everything in 1 click when switching clients.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Shadow DOM Isolation</h3>
+          <p>The floating copilot sidebar renders inside an isolated Shadow DOM to avoid CSS conflicts with internal enterprise portals.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Offline Heuristic Tone Engine</h3>
+          <p>Preloaded response templates run completely client-side without sending text to external servers.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Zero Email Surveillance</h3>
+          <p>We never capture, read, or monetize corporate communications. Everything is stored locally on your device.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shortcuts -->
+    <section class="shortcuts-banner">
+      <div>
+        <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Hotkeys for Fast Workflows</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Summon the copilot from any webpage in Microsoft Edge.</p>
+      </div>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+        <div>
+          <span class="shortcut-pill">Ctrl + Shift + O</span>
+          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Toggle Copilot Sidebar</span>
+        </div>
+        <div>
+          <span class="shortcut-pill">Ctrl + Shift + U</span>
+          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Stash Window Tabs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+      <div class="section-title">
+        <h2>Corporate Licensing Plans</h2>
+        <p>Free for individuals, or upgrade for unlimited workspaces and drafting.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3 style="color:#fff;">Starter Free</h3>
+          <div class="price-tag">$0 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ forever</span></div>
+          <ul class="price-features">
+            <li>✅ 3 AI email drafts per day</li>
+            <li>✅ 1 saved project workspace</li>
+            <li>✅ Teams meeting action extractor</li>
+            <li>✅ Isolated floating sidebar</li>
+          </ul>
+          <a href="https://github.com/sajusun/officemate/releases" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">Install Free</a>
+        </div>
+
+        <div class="price-card featured">
+          <div style="position: absolute; top: -12px; right: 24px; background: #0078d4; color: #fff; font-size: 0.75rem; padding: 2px 10px; border-radius: 9999px; font-weight: 700;">PRO CORPORATE</div>
+          <h3 style="color:#38bdf8;">OfficeMate Pro</h3>
+          <div class="price-tag">$8.99 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ month</span></div>
+          <ul class="price-features">
+            <li>✅ <strong>Unlimited</strong> AI email drafts</li>
+            <li>✅ <strong>Unlimited</strong> project workspaces</li>
+            <li>✅ Custom executive signatures</li>
+            <li>✅ Priority support for enterprise teams</li>
+          </ul>
+          <a href="https://github.com/sajusun/officemate" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">Get Pro License</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Commitment -->
+    <div class="privacy-box">
+      <h3>🛡️ Enterprise Privacy &amp; Data Security</h3>
+      <p>OfficeMate runs 100% locally. Emails, Teams transcripts, and project tab URLs never touch remote servers.</p>
+      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 OfficeMate for Edge. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
+      <p style="margin-top: 8px; font-size: 0.82rem;">
+        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
+        <a href="https://github.com/sajusun/officemate" target="_blank" rel="noopener">GitHub</a> &bull; 
+        <a href="../index.html">All Extensions Hub</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
+
