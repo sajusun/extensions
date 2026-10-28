@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - PureEdge CleanTab</title>
+  <meta name="description" content="Official Privacy Policy for PureEdge CleanTab extension. 100% Zero personal data collection, zero analytics, strictly local storage.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #ffffff;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-highlight: #0d9488;
+      --text-main: #0f172a;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --primary: #0d9488;
+      --primary-hover: #0f766e;
+      --primary-light: #f0fdfa;
+      --primary-border: #99f6e4;
+      --emerald-accent: #059669;
+      --code-bg: #f1f5f9;
+      --code-text: #0f172a;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-body);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* Clean white top bar */
+    .header-bar {
+      border-bottom: 1px solid var(--border-subtle);
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0d9488, #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
+    }
+
+    .brand-icon svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .badge-shield {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+
+    /* Hero section */
+    .hero-banner {
+      text-align: center;
+      margin-bottom: 44px;
+      padding: 0 12px;
+    }
+
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-top: 14px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .hero-banner p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+      margin: 0 auto 16px;
+      line-height: 1.6;
+    }
+
+    .meta-date {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+
+    /* Highlights 4-Grid */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 44px;
+    }
+
+    .highlight-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 22px 20px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .highlight-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .highlight-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+    }
+
+    .highlight-card h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .highlight-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Policy Content */
+    .policy-content {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 44px 48px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Table of Contents */
+    .toc {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+
+    .toc-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px 16px;
+    }
+
+    .toc-list a {
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.15s;
+    }
+
+    .toc-list a:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Policy Sections */
+    .policy-section {
+      margin-bottom: 44px;
+      padding-top: 16px;
+    }
+
+    .policy-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-section h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .policy-section h2 .sec-num {
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .policy-section p {
+      color: var(--text-body);
+      font-size: 0.96rem;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    .policy-section ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: var(--text-body);
+      font-size: 0.95rem;
+    }
+
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+
+    .policy-section strong {
+      color: var(--text-main);
+    }
+
+    /* Clean white Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+      background: #ffffff;
+    }
+
+    th {
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      padding: 12px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-body);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fafafa;
+    }
+
+    .code-pill {
+      font-family: var(--font-mono);
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--code-text);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+
+    .callout-box {
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      color: var(--text-main);
+      font-size: 0.92rem;
+    }
+
+    /* Links */
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    /* Contact box */
+    .contact-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 14px;
+    }
+
+    .contact-card p {
+      margin-bottom: 8px;
+    }
+
+    .contact-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 960px;
+      margin: 48px auto 0;
+      text-align: center;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px 0;
+      }
+      .policy-content {
+        padding: 24px 20px;
+      }
+      .hero-banner h1 {
+        font-size: 2rem;
+      }
+      .highlights-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span>PureEdge CleanTab</span>
+      </a>
+      <div class="nav-links">
+        <span class="badge-shield">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          100% Zero Tracking
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Hero Header -->
+    <div class="hero-banner">
+      <div class="badge-shield" style="margin-bottom: 8px;">Privacy &amp; Security First</div>
+      <h1>Privacy Policy</h1>
+      <p>PureEdge CleanTab is engineered from the ground up to respect your digital sovereignty. We do not track you, we do not log your activity, and we never monetize your data.</p>
+      <div class="meta-date">
+        <span>Effective Date: October 28, 2026</span>
+        <span>•</span>
+        <span>Version 1.0.0</span>
+      </div>
+    </div>
+
+    <!-- Highlights 4-Grid -->
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">🚫</div>
+        <h3>Zero Tracking</h3>
+        <p>No telemetry, no analytics beacons, no fingerprinting, and no background pings.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">💾</div>
+        <h3>Local Sandbox Storage</h3>
+        <p>Your notes, settings, and world clocks remain exclusively on your device via Chrome Local Storage.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">🛡️</div>
+        <h3>Ad &amp; Feed Blocker</h3>
+        <p>Blocks invasive MSN clickbait trackers and browser default search nag dialogs locally.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">⚡</div>
+        <h3>RAM Optimizer</h3>
+        <p>Turbo Tab Sleep discards inactive tabs natively without reading your webpage content.</p>
+      </div>
+    </div>
+
+    <!-- Main Content Card -->
+    <main class="policy-content">
+
+      <!-- Table of Contents -->
+      <nav class="toc">
+        <div class="toc-title">Table of Contents</div>
+        <ul class="toc-list">
+          <li><a href="#section-1"><span class="code-pill">01</span> Introduction &amp; Philosophy</a></li>
+          <li><a href="#section-2"><span class="code-pill">02</span> Data We Never Collect</a></li>
+          <li><a href="#section-3"><span class="code-pill">03</span> Local Device Storage</a></li>
+          <li><a href="#section-4"><span class="code-pill">04</span> Permissions Justification</a></li>
+          <li><a href="#section-5"><span class="code-pill">05</span> Third-Party Services</a></li>
+          <li><a href="#section-6"><span class="code-pill">06</span> Data Retention &amp; Deletion</a></li>
+          <li><a href="#section-7"><span class="code-pill">07</span> User Rights (GDPR &amp; CCPA)</a></li>
+          <li><a href="#section-8"><span class="code-pill">08</span> Children's Privacy (COPPA)</a></li>
+          <li><a href="#section-9"><span class="code-pill">09</span> Changes to Policy</a></li>
+          <li><a href="#section-10"><span class="code-pill">10</span> Contact &amp; Developer Info</a></li>
+        </ul>
+      </nav>
+
+      <!-- Section 1 -->
+      <section class="policy-section" id="section-1">
+        <h2><span class="sec-num">01.</span> Introduction &amp; Core Philosophy</h2>
+        <p>This Privacy Policy explains how <strong>PureEdge CleanTab</strong> ("we", "our", or "the extension") handles user information across all supported browsers, including Microsoft Edge and Google Chrome.</p>
+        <p>Our philosophy is uncompromising: <em>Your new tab dashboard is your personal workspace, not an advertising channel.</em> The extension runs entirely client-side inside your browser sandbox and communicates with no external proprietary servers for data harvesting or analytics.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="policy-section" id="section-2">
+        <h2><span class="sec-num">02.</span> Data We Never Collect</h2>
+        <p>We believe the best way to safeguard user privacy is never to possess your data in the first place. PureEdge CleanTab does <strong>NOT</strong> collect, monitor, transmit, sell, or disclose:</p>
+        <ul>
+          <li><strong>Browsing History &amp; URLs:</strong> We do not track or log which websites you visit or how long you spend on them.</li>
+          <li><strong>Personal Identifiable Information (PII):</strong> No names, email addresses, phone numbers, or account credentials are collected.</li>
+          <li><strong>Keystrokes &amp; Search Input:</strong> Search terms typed into the search bar are sent directly to the search provider selected by you (e.g., DuckDuckGo, Google, Bing). PureEdge does not log or intermediate search queries.</li>
+          <li><strong>IP Addresses &amp; Geo-Coordinates:</strong> We do not record your IP address or request your precise GPS location.</li>
+          <li><strong>Telemetry &amp; Usage Analytics:</strong> We do not use Google Analytics, Mixpanel, Sentry, PostHog, or any user tracking SDK.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="policy-section" id="section-3">
+        <h2><span class="sec-num">03.</span> Data Stored On Your Local Device</h2>
+        <p>To provide a personalized dashboard experience across browser restarts, PureEdge CleanTab saves your custom preferences using the standard browser storage API (<span class="code-pill">chrome.storage.local</span>). This data is stored strictly in your browser's private local directory and is never sent to our servers.</p>
+        <p>Locally stored items include:</p>
+        <ul>
+          <li><strong>Appearance &amp; Theme:</strong> Your selected 4K wallpaper preset, dark/light theme toggle, custom wallpaper URL, and glassmorphism blur settings.</li>
+          <li><strong>World Clock Preferences:</strong> Selected international timezones (e.g., New York, London, Tokyo) to calculate time offsets.</li>
+          <li><strong>Daily Tasks &amp; Scratchpad:</strong> Your todo items, task completion status, and multi-line notes.</li>
+          <li><strong>Quick Link Shortcuts:</strong> Custom bookmarks and shortcuts you add to your dashboard dock.</li>
+          <li><strong>Widget Toggles:</strong> Visibility toggles for the clock, weather, quotes, tasks, soundscapes, and search bar.</li>
+          <li><strong>Turbo RAM Saver Thresholds:</strong> Inactivity interval choice (e.g., 5 min, 15 min, 30 min).</li>
+        </ul>
+        <div class="callout-box">
+          💡 <strong>Data Portability:</strong> You can wipe or reset this data at any time through the PureEdge CleanTab Settings drawer or by simply clearing your browser's extension storage or uninstalling the extension.
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="policy-section" id="section-4">
+        <h2><span class="sec-num">04.</span> Browser Permissions Justification</h2>
+        <p>In adherence to the Microsoft Edge Add-ons and Google Chrome Web Store Least Privilege Principle, PureEdge requests only the minimum permissions essential for its stated features:</p>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Permission</th>
+                <th>Scope</th>
+                <th>Why It Is Strictly Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-pill">storage</span></td>
+                <td>Local Sandbox</td>
+                <td>Required to persist user preferences (tasks, selected wallpaper, world clocks, shortcuts) locally on your device.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">tabs</span></td>
+                <td>Tab Management</td>
+                <td>Required exclusively for the <strong>Turbo RAM Saver</strong> feature to enumerate inactive background tabs and invoke <span class="code-pill">chrome.tabs.discard()</span> to free system memory, and to open shortcuts clicked by the user. PureEdge does not read tab content.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">alarms</span></td>
+                <td>Background Timing</td>
+                <td>Required to run periodic 5-minute background maintenance timers that check whether inactive tabs have exceeded your inactivity threshold.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">incognito: spanning</span></td>
+                <td>InPrivate Mode</td>
+                <td>Allows users who explicitly enable InPrivate access to enjoy the clean, distraction-free new tab inside private windows.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">Host: *.msn.com/*</span><br><span class="code-pill">Host: *.bing.com/*</span><br><span class="code-pill">Host: edge.microsoft.com/*</span></td>
+                <td>Content Script Injection</td>
+                <td>Required solely for the MSN Purger &amp; Anti-Nag Shield (<span class="code-pill">purger.js</span>) to remove clickbait news feed DOM containers and dismiss default browser nag banners on startup.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="policy-section" id="section-5">
+        <h2><span class="sec-num">05.</span> Third-Party Web Services</h2>
+        <p>PureEdge CleanTab integrates with a minimal set of privacy-respecting external services for specific optional dashboard widgets:</p>
+        <ul>
+          <li><strong>Open-Meteo Weather API (Optional):</strong> If you choose to enable the weather widget and specify a city, the extension fetches current temperature and conditions from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a>. Open-Meteo is an open-source weather provider that does not require an API key and does not log personal IP addresses.</li>
+          <li><strong>Search Engine Redirection:</strong> The dashboard search input redirects your query to your chosen engine (DuckDuckGo, Google, or Bing). All interactions on the destination search page are governed by that provider's respective privacy policy.</li>
+          <li><strong>Gumroad Pro Licensing (Optional):</strong> If you purchase and activate PureEdge Pro, your license key is verified via HTTPS directly against Gumroad's official API (<span class="code-pill">api.gumroad.com</span>) to authenticate your receipt. No personal browsing history or usage metrics are attached to this verification.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="policy-section" id="section-6">
+        <h2><span class="sec-num">06.</span> Data Retention &amp; Deletion</h2>
+        <p>Because PureEdge CleanTab does not operate remote databases or user accounts, we retain none of your data on external servers. All information remains on your physical device.</p>
+        <p>When you uninstall the extension from your browser (<span class="code-pill">edge://extensions</span> or <span class="code-pill">chrome://extensions</span>), your browser immediately and permanently erases all associated local storage, settings, and cached preferences.</p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="policy-section" id="section-7">
+        <h2><span class="sec-num">07.</span> User Rights (GDPR &amp; CCPA / CPRA)</h2>
+        <p>Under the European General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA):</p>
+        <ul>
+          <li><strong>Right of Access &amp; Portability:</strong> All data is stored in plain JSON within your browser's local storage and can be inspected or exported at any time.</li>
+          <li><strong>Right to Erasure:</strong> You can delete all data at will with zero impediment by uninstalling the extension.</li>
+          <li><strong>Right to Opt-Out:</strong> PureEdge CleanTab does not sell, rent, or share personal data with data brokers or ad networks.</li>
+        </ul>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="policy-section" id="section-8">
+        <h2><span class="sec-num">08.</span> Children's Privacy (COPPA)</h2>
+        <p>PureEdge CleanTab is safe for all audiences. We do not knowingly collect or solicit personal information from children under the age of 13. If you believe a child has provided us with personal information, please contact us and we will verify that zero data exists.</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="policy-section" id="section-9">
+        <h2><span class="sec-num">09.</span> Changes to this Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect extension updates or browser store regulatory requirements. Any modifications will be posted directly to this URL with an updated "Effective Date" timestamp. Your continued use of the extension constitutes acceptance of the updated terms.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="policy-section" id="section-10">
+        <h2><span class="sec-num">10.</span> Contact &amp; Developer Info</h2>
+        <p>If you have any questions, security concerns, or feedback regarding this Privacy Policy, please contact our team:</p>
+        <div class="contact-card">
+          <p><strong>Developer:</strong> PureEdge Labs / Sakhawat Hossain</p>
+          <p><strong>Support Email:</strong> <a href="mailto:support@pureedge.app">support@pureedge.app</a> (or <a href="mailto:sajusun@gmail.com">sajusun@gmail.com</a>)</p>
+          <p><strong>Project Repository:</strong> <a href="https://github.com/sajusun/pure-edge" target="_blank" rel="noopener">github.com/sajusun/pure-edge</a></p>
+          <p><strong>Official Policy URL:</strong> <a href="https://sajusun.github.io/pure-edge/privacy-policy/" target="_blank" rel="noopener">https://sajusun.github.io/pure-edge/privacy-policy/</a></p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2026 PureEdge CleanTab. All rights reserved. Built with privacy, minimalism, and speed in mind.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
