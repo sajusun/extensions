@@ -1,62 +1,51 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - EdgePDF SmartTools</title>
-  <meta name="description" content="Official Privacy Policy for EdgePDF SmartTools extension. 1-Click Table to Excel & OCR. 100% local processing, zero document uploads, zero tracking.">
+  <meta name="description" content="Official Privacy Policy for EdgePDF SmartTools extension for Microsoft Edge. 100% local document processing, zero document uploads, zero tracking.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #ffffff;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-highlight: #e11d48;
-      --text-main: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-subtle: #94a3b8;
+      --bg: #0e1117;
+      --card-bg: #161b22;
+      --card-bg-elevated: #1c222d;
+      --card-border: #28303d;
+      --card-border-hover: #e11d48;
       --primary: #e11d48;
       --primary-hover: #be123c;
-      --primary-light: #fff1f2;
-      --primary-border: #fecdd3;
-      --code-bg: #f1f5f9;
-      --code-text: #0f172a;
+      --accent-green: #10b981;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-body);
+      background-color: var(--bg);
+      color: var(--text-main);
       font-family: var(--font-sans);
       line-height: 1.7;
-      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 80px;
+      padding-bottom: 60px;
     }
 
     .header-bar {
-      border-bottom: 1px solid var(--border-subtle);
-      background: #ffffff;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      background: rgba(14, 17, 23, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
     }
 
     .header-inner {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 16px 24px;
       display: flex;
@@ -64,589 +53,291 @@
       justify-content: space-between;
     }
 
-    .brand-logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
       color: var(--text-main);
       font-weight: 700;
-      font-size: 1.125rem;
-      letter-spacing: -0.01em;
+      font-size: 1.15rem;
     }
 
     .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       background: linear-gradient(135deg, #e11d48, #f43f5e);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.25);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
     }
 
-    .brand-icon svg {
-      width: 19px;
-      height: 19px;
-      fill: none;
-      stroke: #ffffff;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .badge-shield {
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      padding: 5px 12px;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      transition: color 0.15s ease;
+    }
+
+    .back-link:hover {
+      color: var(--text-main);
     }
 
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 48px 24px 0;
+      padding: 40px 24px;
     }
 
-    .hero-banner {
-      text-align: center;
-      margin-bottom: 44px;
-      padding: 0 12px;
-    }
-
-    .hero-banner h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-top: 14px;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .hero-banner p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 680px;
-      margin: 0 auto 16px;
-      line-height: 1.6;
-    }
-
-    .meta-date {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 12px;
-      border-radius: 6px;
-    }
-
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-bottom: 44px;
-    }
-
-    .highlight-card {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 22px 20px;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .highlight-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .highlight-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      margin-bottom: 14px;
-    }
-
-    .highlight-card h3 {
-      font-size: 0.98rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-main);
-    }
-
-    .highlight-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .policy-content {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 44px 48px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .toc {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 20px 24px;
+    .doc-header {
       margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
     }
 
-    .toc-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 14px;
+    .doc-header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
 
-    .toc-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 10px 16px;
+    .doc-meta {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .toc-list a {
-      color: var(--text-body);
-      text-decoration: none;
-      font-size: 0.88rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.15s;
+    .privacy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
     }
 
-    .toc-list a:hover {
-      color: var(--primary);
-      text-decoration: underline;
-    }
-
-    .policy-section {
-      margin-bottom: 44px;
-      padding-top: 16px;
-    }
-
-    .policy-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .policy-section h2 {
+    .privacy-card h2 {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      color: #ffffff;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-      letter-spacing: -0.01em;
     }
 
-    .policy-section h2 .sec-num {
-      color: var(--primary);
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .policy-section p {
-      color: var(--text-body);
-      font-size: 0.96rem;
+    .privacy-card p {
+      color: #cbd5e1;
+      font-size: 0.98rem;
       margin-bottom: 14px;
-      line-height: 1.7;
     }
 
-    .policy-section ul {
-      margin-left: 20px;
-      margin-bottom: 16px;
-      color: var(--text-body);
-      font-size: 0.95rem;
-    }
-
-    .policy-section li {
-      margin-bottom: 8px;
-    }
-
-    .policy-section strong {
-      color: var(--text-main);
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin: 24px 0;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.88rem;
-      background: #ffffff;
-    }
-
-    th {
-      background: var(--bg-subtle);
-      color: var(--text-main);
-      padding: 12px 16px;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-body);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background: #fafafa;
-    }
-
-    .code-pill {
-      font-family: var(--font-mono);
-      background: var(--code-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--code-text);
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-    }
-
-    .callout-box {
-      background: var(--primary-light);
-      border-left: 4px solid var(--primary);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      color: var(--text-main);
-      font-size: 0.92rem;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    a:hover {
-      color: var(--primary-hover);
-    }
-
-    .contact-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-top: 14px;
-    }
-
-    .contact-card p {
-      margin-bottom: 8px;
-    }
-
-    .contact-card p:last-child {
+    .privacy-card p:last-child {
       margin-bottom: 0;
     }
 
-    footer {
-      max-width: 960px;
-      margin: 48px auto 0;
-      text-align: center;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 32px;
-      color: var(--text-muted);
+    .privacy-card ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .privacy-card ul li {
+      padding: 6px 0;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .privacy-card ul li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Table */
+    .permission-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.92rem;
+    }
+
+    .permission-table th {
+      text-align: left;
+      padding: 12px;
+      background: #11151d;
+      border-bottom: 1px solid var(--card-border);
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .permission-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+
+    .permission-table code {
+      font-family: var(--font-mono);
+      background: #0e1117;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      color: #f1f5f9;
       font-size: 0.85rem;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        padding: 24px 16px 0;
-      }
-      .policy-content {
-        padding: 24px 20px;
-      }
-      .hero-banner h1 {
-        font-size: 2rem;
-      }
-      .highlights-grid {
-        grid-template-columns: 1fr;
-      }
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 30px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 40px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Header Bar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand-logo" title="Back to Product Page">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-        </div>
-        <span>EdgePDF SmartTools</span>
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">EP</div>
+        <span>EdgePDF <span style="color: #fb7185;">SmartTools</span></span>
       </a>
-      <div class="nav-links"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
-        <span class="badge-shield">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          100% Zero Document Uploads
-        </span>
-      </div>
+      <a href="../index.html" class="back-link">
+        &larr; Back to Product Overview
+      </a>
     </div>
   </header>
 
   <div class="container">
-    
-    <!-- Hero Header -->
-    <div class="hero-banner">
-      <div class="badge-shield" style="margin-bottom: 8px;">Document Privacy &amp; Security</div>
+    <div class="doc-header">
       <h1>Privacy Policy</h1>
-      <p>EdgePDF SmartTools is committed to document privacy. All PDF parsing, OCR snipping, and Excel generation execute 100% locally on your computer inside your browser's client-side sandbox.</p>
-      <div class="meta-date">
-        <span>Effective Date: October 28, 2026</span>
-        <span>â€¢</span>
-        <span>Version 1.0.0</span>
+      <div class="doc-meta">
+        <span>Effective Date: October 2026</span>
+        <span>•</span>
+        <span>Version: 1.0.0</span>
+        <span>•</span>
+        <span>Target Browser: Microsoft Edge</span>
       </div>
     </div>
 
-    <!-- Highlights 4-Grid -->
-    <div class="highlights-grid">
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸš«</div>
-        <h3>Zero Document Uploads</h3>
-        <p>Your confidential invoices, financial statements, and PDFs never leave your machine.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸ’¾</div>
-        <h3>Local Sandbox Storage</h3>
-        <p>Export count, UI preferences, and optional personal API keys remain strictly in chrome.storage.local.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">âš¡</div>
-        <h3>Client-Side OCR &amp; Excel</h3>
-        <p>Uses SheetJS and client-side canvas parsing to generate .xlsx spreadsheets completely offline.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸ›¡ï¸</div>
-        <h3>BYOK Cloud AI Security</h3>
-        <p>Optional AI summaries communicate directly with OpenAI or Google Gemini only if you provide your own key.</p>
-      </div>
+    <!-- Core Commitment Card -->
+    <div class="privacy-card" style="border-color: #10b981; background: rgba(16, 185, 129, 0.05);">
+      <h2 style="color: #34d399;">🛡️ Executive Summary: 100% Client-Side Architecture</h2>
+      <p>
+        EdgePDF SmartTools was built from day one around a strict local-first privacy standard. When you open a PDF contract, tax document, bank statement, or research paper in Microsoft Edge, <strong>your documents NEVER leave your device.</strong>
+      </p>
+      <p>
+        We do not own remote document processing servers, we do not upload files, and we do not track or log what you read, copy, or export.
+      </p>
     </div>
 
-    <!-- Main Content Card -->
-    <main class="policy-content">
+    <!-- Section 1 -->
+    <div class="privacy-card">
+      <h2>1. Information We Do NOT Collect</h2>
+      <p>Because EdgePDF SmartTools runs 100% locally in your browser memory:</p>
+      <ul>
+        <li><strong>Zero Document Content:</strong> Text, tabular figures, scanned images, and metadata inside your PDFs are parsed directly on your CPU via client-side Web Workers.</li>
+        <li><strong>Zero Browsing History:</strong> We do not track, log, or transmit the URLs or file paths of documents you open.</li>
+        <li><strong>Zero Personal Identification:</strong> No names, email addresses, or IP addresses are collected during standard usage.</li>
+        <li><strong>Zero Ad Tracking:</strong> No tracking cookies, third-party analytics pixels, or advertising SDKs are included.</li>
+      </ul>
+    </div>
 
-      <!-- Table of Contents -->
-      <nav class="toc">
-        <div class="toc-title">Table of Contents</div>
-        <ul class="toc-list">
-          <li><a href="#section-1"><span class="code-pill">01</span> Introduction &amp; Commitment</a></li>
-          <li><a href="#section-2"><span class="code-pill">02</span> Data We Never Collect</a></li>
-          <li><a href="#section-3"><span class="code-pill">03</span> Local Device Storage</a></li>
-          <li><a href="#section-4"><span class="code-pill">04</span> Permissions Justification</a></li>
-          <li><a href="#section-5"><span class="code-pill">05</span> Third-Party Services</a></li>
-          <li><a href="#section-6"><span class="code-pill">06</span> Remote Code Compliance</a></li>
-          <li><a href="#section-7"><span class="code-pill">07</span> Data Retention &amp; Erasure</a></li>
-          <li><a href="#section-8"><span class="code-pill">08</span> User Rights (GDPR &amp; CCPA)</a></li>
-          <li><a href="#section-9"><span class="code-pill">09</span> Children's Privacy (COPPA)</a></li>
-          <li><a href="#section-10"><span class="code-pill">10</span> Contact &amp; Developer Info</a></li>
-        </ul>
-      </nav>
+    <!-- Section 2 -->
+    <div class="privacy-card">
+      <h2>2. Browser Permissions &amp; Technical Justification</h2>
+      <p>To operate seamlessly inside the Microsoft Edge built-in PDF viewer, the extension requests minimal permissions:</p>
+      <table class="permission-table">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Technical Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>Allows EdgePDF to run only when the user clicks the extension or uses a keyboard shortcut on the active PDF tab. It never inspects background tabs.</td>
+          </tr>
+          <tr>
+            <td><code>storage</code></td>
+            <td>Used exclusively to persist your local user preferences (such as dark reader mode state and daily export quota counters) in <code>chrome.storage.local</code>.</td>
+          </tr>
+          <tr>
+            <td><code>scripting</code></td>
+            <td>Used to inject the client-side area snip OCR crosshair canvas into the current tab when you press <code>Alt + Shift + O</code>.</td>
+          </tr>
+          <tr>
+            <td><code>contextMenus</code></td>
+            <td>Adds convenient right-click options ("Extract Table to Excel", "Snip with OCR") directly to your Edge viewer context menu.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Section 1 -->
-      <section class="policy-section" id="section-1">
-        <h2><span class="sec-num">01.</span> Introduction &amp; Commitment</h2>
-        <p>This Privacy Policy explains how <strong>EdgePDF SmartTools - 1-Click Table to Excel &amp; OCR</strong> ("we", "our", or "the extension") protects user privacy across Microsoft Edge, Google Chrome, and compatible Chromium browsers.</p>
-        <p>We believe your sensitive business documents, research papers, financial invoices, and medical records belong solely to you. EdgePDF SmartTools is architected from the ground up as a client-side document utility: all table extraction algorithms, optical character recognition (OCR) routines, and spreadsheet generation engines run locally within your browser sandbox.</p>
-      </section>
+    <!-- Section 3 -->
+    <div class="privacy-card">
+      <h2>3. Pro License Verification (Gumroad)</h2>
+      <p>
+        If you purchase EdgePDF Pro, license verification is performed securely via the official Gumroad API (<code>https://api.gumroad.com</code>).
+      </p>
+      <p>
+        This request sends only the license key you manually entered to verify validity. No browsing history, document data, or computer identifiers are ever transmitted with this verification.
+      </p>
+    </div>
 
-      <!-- Section 2 -->
-      <section class="policy-section" id="section-2">
-        <h2><span class="sec-num">02.</span> Data We Never Collect</h2>
-        <p>We do not collect, intercept, record, sell, or disclose your personal information. Specifically, EdgePDF SmartTools does <strong>NOT</strong> collect:</p>
-        <ul>
-          <li><strong>Document Files &amp; PDF Content:</strong> PDFs opened in your browser or dropped into EdgePDF Studio are never uploaded to any remote server operated by us.</li>
-          <li><strong>Extracted Table Data:</strong> Tables converted into Microsoft Excel (<span class="code-pill">.xlsx</span>) or CSV are generated in local computer memory.</li>
-          <li><strong>Browsing Activity &amp; URLs:</strong> We do not monitor your web browsing history, bookmarks, or web activity.</li>
-          <li><strong>Personally Identifiable Information (PII):</strong> We do not collect names, email addresses, phone numbers, or account credentials.</li>
-          <li><strong>Telemetry &amp; Usage Trackers:</strong> We do not run Google Analytics, Sentry, Mixpanel, or background telemetry pings.</li>
-        </ul>
-      </section>
+    <!-- Section 4 -->
+    <div class="privacy-card">
+      <h2>4. Optional AI Summarizer (BYOK)</h2>
+      <p>
+        EdgePDF provides basic local document summaries without any network connection. For users who choose to enable advanced AI summarization via OpenAI or Google Gemini:
+      </p>
+      <ul>
+        <li>This feature is strictly <strong>opt-in</strong> and requires you to provide your own API key (Bring-Your-Own-Key).</li>
+        <li>Requests are made directly from your browser to OpenAI or Google Gemini's official API endpoints.</li>
+        <li>Your API key is stored securely in your browser's local encrypted storage and is never transmitted to us or any intermediary server.</li>
+      </ul>
+    </div>
 
-      <!-- Section 3 -->
-      <section class="policy-section" id="section-3">
-        <h2><span class="sec-num">03.</span> Data Stored On Your Local Device</h2>
-        <p>EdgePDF SmartTools utilizes your browser's private local storage (<span class="code-pill">chrome.storage.local</span>) to persist settings locally on your machine:</p>
-        <ul>
-          <li><strong>Toolbar &amp; UI Preferences:</strong> Position and visibility toggles for the floating PDF toolbar and high-contrast dark reader mode.</li>
-          <li><strong>Daily Free Export Counter:</strong> A timestamp and integer counting free table exports per 24-hour cycle.</li>
-          <li><strong>Local Export History:</strong> Recent conversion metadata (file name, table row count, export timestamp) saved locally so you can easily review your recent work.</li>
-          <li><strong>Document Notes:</strong> User annotations and notes created in the side-by-side reader, stored locally per document URL or file hash.</li>
-          <li><strong>Optional BYOK AI Keys:</strong> If you choose to configure cloud AI features with your own personal OpenAI or Google Gemini API key, that key is stored strictly on your local machine and is never transmitted to us.</li>
-        </ul>
-        <div class="callout-box">
-          ðŸ’¡ <strong>Data Reset:</strong> You can purge all cached notes, preferences, and keys at any time via the EdgePDF Settings drawer or by uninstalling the extension.
-        </div>
-      </section>
+    <!-- Section 5 -->
+    <div class="privacy-card">
+      <h2>5. Compliance with Store Developer Policies</h2>
+      <p>
+        EdgePDF SmartTools complies fully with the <strong>Microsoft Edge Add-ons Developer Agreement</strong> and Manifest V3 security standards. We guarantee that user data is never sold, leased, or transferred to third-party data brokers or advertising networks.
+      </p>
+    </div>
 
-      <!-- Section 4 -->
-      <section class="policy-section" id="section-4">
-        <h2><span class="sec-num">04.</span> Browser Permissions Justification</h2>
-        <p>In adherence to the Microsoft Edge Add-ons and Chrome Web Store Least Privilege Principle, EdgePDF SmartTools requests only the minimum permissions essential for document processing:</p>
-        
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Permission</th>
-                <th>Scope</th>
-                <th>Why It Is Strictly Required</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="code-pill">storage</span></td>
-                <td>Local Sandbox Storage</td>
-                <td>Required to persist UI preferences, local export history, notes, and optional personal AI API keys locally on your device.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">activeTab</span></td>
-                <td>Active Tab Inspection</td>
-                <td>Required to access and extract tables or OCR regions from the currently open PDF or web page only when explicitly triggered by you (via button, hotkey, or context menu).</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">scripting</span></td>
-                <td>Content Script Injection</td>
-                <td>Required to inject the interactive area snip crop box and floating PDF action toolbar into the active tab.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">contextMenus</span></td>
-                <td>Right-Click Shortcuts</td>
-                <td>Enables quick context-menu shortcuts (e.g. "Export Table to Excel", "Area Snip OCR") directly when right-clicking on pages.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">api.gumroad.com</span></td>
-                <td>Pro License Verification</td>
-                <td>Used strictly to verify license keys against Gumroad's secure licensing API if you activate an EdgePDF Pro license.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">api.openai.com</span><br><span class="code-pill">generativelanguage.googleapis.com</span></td>
-                <td>Optional BYOK AI Endpoints</td>
-                <td>Enables direct communication between your browser and OpenAI or Google Gemini only if you provide your own personal API key for AI document summarization.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Section 5 -->
-      <section class="policy-section" id="section-5">
-        <h2><span class="sec-num">05.</span> Third-Party Services &amp; APIs</h2>
-        <p>EdgePDF SmartTools connects only to external third-party services in the following specific, user-initiated circumstances:</p>
-        <ul>
-          <li><strong>Gumroad Licensing (<span class="code-pill">api.gumroad.com</span>):</strong> When you purchase EdgePDF Pro and input your license key, a secure HTTPS call verifies your key with Gumroad. No document data or browsing history is included.</li>
-          <li><strong>OpenAI / Google Gemini (Optional BYOK):</strong> If you choose to enable cloud AI summarization using your own personal API key, text snippets you request to summarize are transmitted directly from your browser to OpenAI or Google's endpoints over encrypted TLS. Please review <a href="https://openai.com/privacy" target="_blank" rel="noopener">OpenAI Privacy Policy</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</li>
-        </ul>
-      </section>
-
-      <!-- Section 6 -->
-      <section class="policy-section" id="section-6">
-        <h2><span class="sec-num">06.</span> Remote Code Compliance</h2>
-        <p>EdgePDF SmartTools complies fully with Manifest V3 security requirements:</p>
-        <ul>
-          <li>All libraries, including PDF.js, SheetJS (<span class="code-pill">xlsx</span>), and OCR canvas processors, are packaged locally inside the extension.</li>
-          <li>No external scripts, remote code, or CDN-hosted dependencies are fetched or executed at runtime.</li>
-        </ul>
-      </section>
-
-      <!-- Section 7 -->
-      <section class="policy-section" id="section-7">
-        <h2><span class="sec-num">07.</span> Data Retention &amp; Erasure</h2>
-        <p>We maintain no remote user databases or account servers. All data remains exclusively on your personal device. Uninstalling the extension immediately wipes all associated local storage and preferences.</p>
-      </section>
-
-      <!-- Section 8 -->
-      <section class="policy-section" id="section-8">
-        <h2><span class="sec-num">08.</span> User Rights (GDPR &amp; CCPA)</h2>
-        <p>Under GDPR and CCPA, you have complete sovereignty over your data. We do not sell, rent, or monetize your information. You can inspect or delete all local data at any time.</p>
-      </section>
-
-      <!-- Section 9 -->
-      <section class="policy-section" id="section-9">
-        <h2><span class="sec-num">09.</span> Children's Privacy (COPPA)</h2>
-        <p>EdgePDF SmartTools is a general audience document productivity utility. We do not knowingly collect personal information from children under the age of 13.</p>
-      </section>
-
-      <!-- Section 10 -->
-      <section class="policy-section" id="section-10">
-        <h2><span class="sec-num">10.</span> Contact &amp; Developer Info</h2>
-        <p>If you have any questions or feedback regarding this Privacy Policy, please reach out to our team:</p>
-        <div class="contact-card">
-          <p><strong>Developer:</strong> Sakhawat Hossain</p>
-          <p><strong>Support Email:</strong> <a href="mailto:support@edgepdf.tools">support@edgepdf.tools</a></p>
-          <p><strong>Portfolio &amp; Website:</strong> <a href="https://sajusun.github.io" target="_blank" rel="noopener">https://sajusun.github.io</a></p>
-          <p><strong>GitHub Repository:</strong> <a href="https://github.com/sajusun/edge-pdf" target="_blank" rel="noopener">github.com/sajusun/edge-pdf</a></p>
-        </div>
-      </section>
-
-    </main>
+    <!-- Section 6 -->
+    <div class="privacy-card">
+      <h2>6. Contact &amp; Questions</h2>
+      <p>
+        If you have questions regarding this Privacy Policy or require enterprise audit verification, please reach out via the official developer support channel on our <a href="../index.html" style="color: #fb7185; text-decoration: underline;">EdgePDF overview page</a>.
+      </p>
+    </div>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 EdgePDF SmartTools. All rights reserved. Built with privacy and document security first.</p>
+      <p>&copy; 2026 EdgePDF SmartTools. Built exclusively for Microsoft Edge.</p>
     </footer>
-
   </div>
 
 </body>
 </html>
-
-

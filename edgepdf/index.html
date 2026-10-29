@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EdgePDF SmartTools — 1-Click Table to Excel & OCR for Edge & Chrome</title>
-  <meta name="description" content="Convert tables to Excel (.xlsx) from Edge PDF viewer, client-side OCR for scanned documents, and AI summarizer. 100% private with zero document uploads.">
+  <title>EdgePDF SmartTools — 1-Click Table to Excel & OCR for Microsoft Edge</title>
+  <meta name="description" content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents, and local AI summarizer in Microsoft Edge. 100% private.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d090a;
-      --card-bg: #171113;
-      --card-border: #2a1a1f;
+      --bg: #0e1117;
+      --card-bg: #161b22;
+      --card-bg-elevated: #1c222d;
+      --card-border: #28303d;
       --card-border-hover: #e11d48;
       --primary: #e11d48;
       --primary-hover: #be123c;
-      --primary-glow: rgba(225, 29, 72, 0.25);
-      --text-main: #f8fafc;
+      --primary-glow: rgba(225, 29, 72, 0.2);
+      --accent-green: #10b981;
+      --accent-blue: #38bdf8;
+      --text-main: #f1f5f9;
       --text-muted: #94a3b8;
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -38,7 +41,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(13, 9, 10, 0.85);
+      background: rgba(14, 17, 23, 0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--card-border);
     }
@@ -46,7 +49,7 @@
     .header-inner {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,7 +62,7 @@
       text-decoration: none;
       color: var(--text-main);
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .brand-icon {
@@ -70,17 +73,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px var(--primary-glow);
-    }
-
-    .brand-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.35);
     }
 
     .nav-links {
@@ -89,54 +85,56 @@
       gap: 24px;
     }
 
-    .nav-link {
+    .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.92rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.15s ease;
     }
 
-    .nav-link:hover { color: #fb7185; }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
 
     .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #e11d48;
+      background: var(--primary);
       color: #ffffff;
       padding: 9px 18px;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 2px 10px var(--primary-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px var(--primary-glow);
     }
 
     .btn-cta:hover {
-      background: #f43f5e;
+      background: var(--primary-hover);
       transform: translateY(-1px);
     }
 
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #241419;
+      background: var(--card-bg-elevated);
       color: var(--text-main);
       padding: 9px 18px;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       border: 1px solid var(--card-border);
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
-      border-color: #e11d48;
-      background: #311a22;
+      border-color: #475569;
+      background: #232b38;
     }
 
     .container {
@@ -145,6 +143,7 @@
       padding: 0 24px;
     }
 
+    /* Hero Section */
     .hero {
       padding: 80px 0 60px;
       text-align: center;
@@ -154,99 +153,141 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(225, 29, 72, 0.15);
+      background: rgba(225, 29, 72, 0.12);
       border: 1px solid rgba(225, 29, 72, 0.35);
-      color: #fecdd3;
+      color: #fb7185;
       padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
       margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: 3.25rem;
+      font-size: clamp(2.3rem, 5.2vw, 3.8rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      margin-bottom: 22px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 span.gradient-text {
+      background: linear-gradient(135deg, #f43f5e 0%, #fb7185 50%, #fda4af 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero h1 span {
-      background: linear-gradient(135deg, #fb7185, #f43f5e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
+    .hero p.lead {
       font-size: 1.18rem;
       color: var(--text-muted);
       max-width: 720px;
       margin: 0 auto 36px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .hero-actions {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
-    /* Mockup */
-    .mockup-container {
-      max-width: 860px;
-      margin: 0 auto 80px;
+    .trust-bullets {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      color: #64748b;
+      font-size: 0.88rem;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    /* Interactive Preview Box */
+    .preview-card {
+      margin: 50px auto 0;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       overflow: hidden;
-      text-align: left;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      max-width: 1000px;
     }
 
-    .mockup-header {
-      background: #1c1114;
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--card-border);
+    .preview-header {
+      background: #11151d;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
     }
 
-    .mockup-body {
-      padding: 24px;
+    .window-dots {
+      display: flex;
+      gap: 6px;
     }
 
-    .table-demo {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
+    .window-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #334155;
+    }
+
+    .window-dots span:nth-child(1) { background: #ef4444; }
+    .window-dots span:nth-child(2) { background: #f59e0b; }
+    .window-dots span:nth-child(3) { background: #10b981; }
+
+    .preview-url {
+      background: var(--bg);
+      padding: 4px 16px;
+      border-radius: 6px;
       font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      flex: 1;
+      max-width: 500px;
     }
 
-    .table-demo th {
-      background: rgba(225, 29, 72, 0.15);
-      color: #fb7185;
-      padding: 8px 12px;
-      text-align: left;
+    .preview-body {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .preview-body { grid-template-columns: 1fr; }
+    }
+
+    .sample-doc {
+      background: #0e1117;
       border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
-    .table-demo td {
-      padding: 8px 12px;
-      border: 1px solid var(--card-border);
-      color: #cbd5e1;
+    .sample-excel {
+      background: #091a13;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
+    /* Section Headings */
     .section-title {
       text-align: center;
-      margin-bottom: 48px;
+      margin: 90px 0 45px;
     }
 
     .section-title h2 {
@@ -259,13 +300,15 @@
     .section-title p {
       color: var(--text-muted);
       font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto;
     }
 
-    .grid-3 {
+    /* Features Grid */
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
+      gap: 22px;
     }
 
     .feature-card {
@@ -278,350 +321,441 @@
 
     .feature-card:hover {
       border-color: var(--card-border-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
     }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(225, 29, 72, 0.15);
-      border: 1px solid rgba(225, 29, 72, 0.35);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.25);
       color: #fb7185;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 18px;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
     }
 
     .feature-card h3 {
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      color: #ffffff;
+      margin-bottom: 10px;
     }
 
     .feature-card p {
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    /* Shortcuts */
-    .shortcuts-banner {
-      background: linear-gradient(135deg, #171113, #221319);
+    /* Hotkeys Bar */
+    .hotkey-banner {
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 40px;
+      border-radius: 14px;
+      padding: 24px 32px;
+      margin-top: 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 80px;
       flex-wrap: wrap;
+      gap: 20px;
     }
 
-    .shortcut-pill {
-      font-family: var(--font-mono);
-      background: #0d090a;
+    .hotkey-pill {
+      background: #0e1117;
       border: 1px solid #334155;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border-radius: 6px;
-      color: #fb7185;
-      font-weight: 600;
+      font-family: var(--font-mono);
       font-size: 0.85rem;
+      color: #f1f5f9;
+      font-weight: 600;
     }
 
-    /* Pricing Table */
+    /* Pricing Section */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .price-card {
+    .pricing-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 32px;
+      padding: 36px;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    .price-card.featured {
+    .pricing-card.popular {
       border-color: #e11d48;
       box-shadow: 0 10px 30px rgba(225, 29, 72, 0.15);
     }
 
-    .price-tag {
-      font-size: 2.2rem;
-      font-weight: 800;
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--primary);
       color: #fff;
-      margin: 16px 0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
     }
 
-    .price-features {
-      list-style: none;
-      margin-bottom: 24px;
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .price-features li {
-      margin-bottom: 10px;
+    .pricing-desc {
+      color: var(--text-muted);
       font-size: 0.9rem;
-      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .price-value {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-value span {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 30px;
+      flex: 1;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .privacy-box {
-      background: rgba(225, 29, 72, 0.08);
-      border: 1px solid rgba(225, 29, 72, 0.25);
-      border-radius: 14px;
-      padding: 32px;
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .privacy-box h3 {
-      font-size: 1.35rem;
-      color: #fecdd3;
-      margin-bottom: 10px;
-    }
-
-    .privacy-box p {
+      gap: 10px;
+      font-size: 0.93rem;
       color: #cbd5e1;
-      max-width: 680px;
-      margin: 0 auto 20px;
-      font-size: 0.95rem;
     }
 
+    .feature-list li.dimmed {
+      color: #64748b;
+    }
+
+    /* Privacy Guarantee Banner */
+    .privacy-banner {
+      background: linear-gradient(135deg, rgba(22, 27, 34, 0.9) 0%, rgba(30, 20, 24, 0.7) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 80px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .privacy-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .privacy-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 600px;
+    }
+
+    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 40px 0;
-      text-align: center;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
+      margin-top: 40px;
     }
 
-    footer a { color: #fb7185; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Sticky Header Bar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10 9 9 9 8 9"></polyline>
-          </svg>
-        </div>
-        <span>EdgePDF SmartTools</span>
+      <a href="./index.html" class="brand">
+        <div class="brand-icon">EP</div>
+        <span>EdgePDF <span style="color: #fb7185;">SmartTools</span></span>
       </a>
       <nav class="nav-links">
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
-        <a href="https://github.com/sajusun/edge-pdf" target="_blank" rel="noopener" class="nav-link">GitHub</a>
-        <a href="https://github.com/sajusun/edge-pdf/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+        <a href="#features">Features</a>
+        <a href="#hotkeys">Shortcuts</a>
+        <a href="#pricing">Tiers</a>
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="#edge-store-edgepdf" class="btn-cta">Get for Edge</a>
       </nav>
     </div>
   </header>
 
   <div class="container">
-
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="badge-pill">📄 100% Client-Side &bull; Zero Server Uploads &bull; Manifest V3</div>
-      <h1>1-Click Table to Excel &amp; OCR<br><span>for PDF Documents</span></h1>
-      <p>Convert messy tables in financial statements, invoices, and research PDFs into clean Microsoft Excel (.xlsx) files. Extract text from scanned areas with client-side OCR.</p>
-      
+      <div class="badge-pill">
+        <span>⚡ Built Specifically for Microsoft Edge Built-in PDF Viewer</span>
+      </div>
+      <h1>
+        Turn Any PDF &amp; Invoice Table <br>
+        <span class="gradient-text">Into Clean Excel in 1 Click.</span>
+      </h1>
+      <p class="lead">
+        Convert tabular data from PDF documents directly to native Microsoft Excel (.xlsx), CSV, and TSV clipboard. Extract text from scanned receipts with client-side OCR. 100% private in local browser memory.
+      </p>
+
       <div class="hero-actions">
-        <a href="https://github.com/sajusun/edge-pdf/releases" target="_blank" rel="noopener" class="btn-cta">Add to Edge / Chrome</a>
-        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
-        <a href="https://github.com/sajusun/edge-pdf" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+        <a href="#edge-store-edgepdf" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
+          Get for Microsoft Edge
+        </a>
+        <a href="#gumroad-edgepdf" class="btn-secondary" style="padding: 12px 24px; font-size: 1.02rem;">
+          Get EdgePDF Pro ↗
+        </a>
       </div>
 
-      <!-- Live Mockup -->
-      <div class="mockup-container">
-        <div class="mockup-header">
-          <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #fb7185;">Quarterly_Report_2026.pdf &bull; Page 4</span>
-          <span class="btn-cta" style="padding: 4px 10px; font-size: 0.75rem;">Exported .xlsx</span>
+      <div class="trust-bullets">
+        <span>🔒 100% Client-Side Processing</span>
+        <span>•</span>
+        <span>📄 Zero Document Uploads</span>
+        <span>•</span>
+        <span>⚡ Native .xlsx Formatting</span>
+        <span>•</span>
+        <span>🔍 Client-Side OCR Snip</span>
+      </div>
+
+      <!-- Preview UI Box -->
+      <div class="preview-card">
+        <div class="preview-header">
+          <div class="window-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="preview-url">edge://pdf-viewer/Q3-Financial-Statement.pdf</div>
+          <span style="font-size: 0.82rem; color: #34d399; font-weight: 600;">● Active on Tab</span>
         </div>
-        <div class="mockup-body">
-          <table class="table-demo">
-            <thead>
-              <tr>
-                <th>Quarter</th>
-                <th>Revenue</th>
-                <th>Net Profit</th>
-                <th>YoY Growth</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Q1 2026</td>
-                <td>$1,240,000</td>
-                <td>$380,000</td>
-                <td>+18.4%</td>
-              </tr>
-              <tr>
-                <td>Q2 2026</td>
-                <td>$1,450,000</td>
-                <td>$450,000</td>
-                <td>+22.1%</td>
-              </tr>
-              <tr>
-                <td>Q3 2026</td>
-                <td>$1,890,000</td>
-                <td>$590,000</td>
-                <td>+31.5%</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.8rem; color: #64748b; margin-top: 12px; font-family: var(--font-mono);">
-            💡 Extracted in 0.3s using SheetJS. Processed in-memory inside browser sandbox.
-          </p>
+        <div class="preview-body">
+          <div class="sample-doc">
+            <div style="color: #fb7185; font-weight: 700; margin-bottom: 12px;">[Detected PDF Table: Page 3]</div>
+            <div style="color: #cbd5e1; line-height: 1.8;">
+              Item 01: Cloud Compute ......... $12,450.00<br>
+              Item 02: Network Fiber ......... $3,240.50<br>
+              Item 03: Security Audit ........ $8,900.00<br>
+              Total Due ...................... $24,590.50
+            </div>
+            <div style="margin-top: 14px; font-size: 0.8rem; color: #64748b;">
+              1-Click floating action pill attached
+            </div>
+          </div>
+          <div class="sample-excel">
+            <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;">📊 Generated Microsoft Excel (.xlsx)</div>
+            <div style="color: #cbd5e1; line-height: 1.8;">
+              A1: Description &nbsp;|&nbsp; B1: Amount (USD)<br>
+              A2: Cloud Compute &nbsp;|&nbsp; B2: 12450.00<br>
+              A3: Network Fiber &nbsp;|&nbsp; B3: 3240.50<br>
+              A4: Total Due &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp; B4: =SUM(B2:B3)
+            </div>
+            <div style="margin-top: 14px; font-size: 0.8rem; color: #10b981;">
+              ✓ Numbers cleanly typed • Instant formulas
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
+    <!-- Features Section -->
     <section id="features">
       <div class="section-title">
-        <h2>Professional Document Superpowers</h2>
-        <p>Engineered for analysts, accountants, and researchers working with complex PDFs.</p>
+        <h2>Executive Document Superpowers</h2>
+        <p>Engineered for analysts, accountants, lawyers, and researchers who handle complex PDFs daily.</p>
       </div>
 
-      <div class="grid-3">
+      <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">📊</div>
-          <h3>1-Click Table to Excel</h3>
-          <p>Instantly converts tabular data from PDF pages into formatted Microsoft Excel (.xlsx) and CSV files.</p>
+          <h3>1-Click PDF Table to Excel</h3>
+          <p>Extracts structured data from financial statements, invoices, and research papers directly into clean Microsoft Excel (.xlsx) and CSV files.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📷</div>
+          <div class="feature-icon">🔍</div>
           <h3>Client-Side Area Snip OCR</h3>
-          <p>Snip any scanned document region or chart image to extract raw text instantly onto your clipboard.</p>
+          <p>Press <span class="hotkey-pill">Alt + Shift + O</span> to drag a box over any scanned receipt, paper invoice, or non-selectable image to capture text instantly.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📝</div>
-          <h3>Persistent Document Notes</h3>
-          <p>Take side-by-side annotations as you read. Notes persist per document URL and export to Markdown (.md).</p>
+          <div class="feature-icon">⚡</div>
+          <h3>Floating PDF Smart Toolbar</h3>
+          <p>An elegant, unobtrusive pill attached to the Edge PDF viewer that gives you instant access to export, copy, dark mode, and OCR tools without cluttering your view.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🌙</div>
-          <h3>High-Contrast Dark Reader</h3>
-          <p>Invert bright white PDF documents with high-contrast, eye-friendly dark mode themes.</p>
+          <h3>Intelligent PDF Dark Reader</h3>
+          <p>Invert blinding white PDF backgrounds into an eye-comfort night mode while preserving original colors of embedded charts, diagrams, and figures.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">📁</div>
-          <h3>EdgePDF Studio Viewer</h3>
-          <p>Dedicated drag-and-drop studio viewer for local PDFs without opening heavy external desktop readers.</p>
+          <div class="feature-icon">🤖</div>
+          <h3>AI Document Explainer</h3>
+          <p>Instant local heuristics for high-level bullet takeaways, with optional Bring-Your-Own-Key OpenAI and Google Gemini integration for legal summaries.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>Zero Server Uploads</h3>
-          <p>Confidential contracts, tax records, and bank statements remain 100% on your device.</p>
+          <div class="feature-icon">🔒</div>
+          <h3>100% Client-Side Private</h3>
+          <p>All parsing, OCR, and table extractions run in local browser memory. Zero external server uploads. Your confidential documents stay on your machine.</p>
         </div>
       </div>
     </section>
 
-    <!-- Shortcuts -->
-    <section class="shortcuts-banner">
+    <!-- Hotkeys Banner -->
+    <section id="hotkeys" class="hotkey-banner">
       <div>
-        <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Document Hotkeys</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Speed through long documents with dedicated shortcuts.</p>
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;">Lightning-Fast PDF Hotkeys</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Control your document workflow without touching the mouse.</p>
       </div>
-      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <div>
-          <span class="shortcut-pill">Alt + Shift + T</span>
-          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Table to Excel</span>
+          <span class="hotkey-pill">Alt + Shift + T</span>
+          <span style="font-size: 0.88rem; color: #cbd5e1; margin-left: 6px;">Extract Table</span>
         </div>
         <div>
-          <span class="shortcut-pill">Alt + Shift + O</span>
-          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Area Snip OCR</span>
+          <span class="hotkey-pill">Alt + Shift + O</span>
+          <span style="font-size: 0.88rem; color: #cbd5e1; margin-left: 6px;">Snip OCR</span>
         </div>
         <div>
-          <span class="shortcut-pill">Alt + Shift + P</span>
-          <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Toggle Toolbar</span>
+          <span class="hotkey-pill">Alt + Shift + P</span>
+          <span style="font-size: 0.88rem; color: #cbd5e1; margin-left: 6px;">Toggle Toolbar</span>
         </div>
       </div>
     </section>
 
-    <!-- Pricing -->
+    <!-- Pricing / Tiers Section -->
     <section id="pricing">
       <div class="section-title">
         <h2>Simple, Transparent Tiers</h2>
-        <p>Free forever for casual usage, or upgrade to Pro for power document workflows.</p>
+        <p>Start free for everyday document parsing, or upgrade to Pro for unlimited high-volume extraction.</p>
       </div>
 
       <div class="pricing-grid">
-        <div class="price-card">
-          <h3 style="color:#fff;">Starter Free</h3>
-          <div class="price-tag">$0 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ forever</span></div>
-          <ul class="price-features">
-            <li>✅ 3 Table to Excel exports per day</li>
-            <li>✅ Client-side OCR Area Snip</li>
-            <li>✅ Side-by-side persistent notes</li>
-            <li>✅ High-contrast dark reader</li>
+        <!-- Starter Free Tier -->
+        <div class="pricing-card">
+          <h3>Starter Free</h3>
+          <p class="pricing-desc">For casual reading, student papers, and occasional invoices.</p>
+          <div class="price-value">
+            $0 <span>/ free forever</span>
+          </div>
+          <ul class="feature-list">
+            <li>✓ 3 Table to Excel exports per day</li>
+            <li>✓ Client-side Area Snip OCR</li>
+            <li>✓ Floating PDF viewer toolbar</li>
+            <li>✓ PDF Dark Reader mode</li>
+            <li>✓ 100% local client-side privacy</li>
+            <li class="dimmed">✗ Unlimited daily exports</li>
+            <li class="dimmed">✗ Advanced batch table extract</li>
+            <li class="dimmed">✗ Custom BYOK AI summarizer</li>
           </ul>
-          <a href="https://github.com/sajusun/edge-pdf/releases" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">Install Free</a>
+          <a href="#edge-store-edgepdf" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">
+            Install Free Edition
+          </a>
         </div>
 
-        <div class="price-card featured">
-          <div style="position: absolute; top: -12px; right: 24px; background: #e11d48; color: #fff; font-size: 0.75rem; padding: 2px 10px; border-radius: 9999px; font-weight: 700;">PRO LIFETIME</div>
-          <h3 style="color:#fb7185;">EdgePDF Pro</h3>
-          <div class="price-tag">$19 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ one-time</span></div>
-          <ul class="price-features">
-            <li>✅ <strong>Unlimited</strong> daily table exports</li>
-            <li>✅ Batch multi-page table extraction</li>
-            <li>✅ Optional BYOK AI summarizer (OpenAI / Gemini)</li>
-            <li>✅ Priority customer support</li>
+        <!-- Pro Tier -->
+        <div class="pricing-card popular">
+          <div class="popular-tag">RECOMMENDED</div>
+          <h3 style="color: #fb7185;">EdgePDF Pro</h3>
+          <p class="pricing-desc">For accountants, financial analysts, and high-volume professionals.</p>
+          <div class="price-value">
+            $19 <span>/ one-time lifetime</span>
+          </div>
+          <ul class="feature-list">
+            <li>✓ <strong>Unlimited</strong> daily table exports</li>
+            <li>✓ High-speed batch multi-page table extract</li>
+            <li>✓ Priority OCR precision engine</li>
+            <li>✓ Floating toolbar personalization</li>
+            <li>✓ Custom BYOK AI summarizer (OpenAI / Gemini)</li>
+            <li>✓ Lifetime updates &amp; priority email support</li>
+            <li>✓ 100% client-side privacy guarantee</li>
           </ul>
-          <a href="https://github.com/sajusun/edge-pdf" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">Get Pro License</a>
+          <a href="#gumroad-edgepdf" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">
+            Get EdgePDF Pro ↗
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Privacy Commitment -->
-    <div class="privacy-box">
-      <h3>🛡️ Enterprise-Grade Document Privacy</h3>
-      <p>EdgePDF SmartTools parses PDFs in browser memory using PDF.js and SheetJS. Your sensitive documents never leave your computer.</p>
-      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    <!-- Privacy Banner -->
+    <div class="privacy-banner">
+      <div class="privacy-content">
+        <h3>🛡️ Enterprise-Grade Document Privacy</h3>
+        <p>EdgePDF SmartTools parses PDF documents entirely inside your Edge browser memory using PDF.js and SheetJS. Your confidential contracts, financial figures, and invoices never leave your computer.</p>
+      </div>
+      <div>
+        <a href="./privacy/index.html" class="btn-secondary">
+          Read Privacy Policy &rarr;
+        </a>
+      </div>
     </div>
-
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2026 EdgePDF SmartTools. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
-      <p style="margin-top: 8px; font-size: 0.82rem;">
-        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
-        <a href="https://github.com/sajusun/edge-pdf" target="_blank" rel="noopener">GitHub</a> &bull; 
+    <div class="container footer-inner">
+      <p>&copy; 2026 EdgePDF SmartTools. Built exclusively for Microsoft Edge.</p>
+      <div class="footer-links">
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="#gumroad-edgepdf">EdgePDF Pro</a>
         <a href="../index.html">All Extensions Hub</a>
-      </p>
+      </div>
     </div>
   </footer>
 
 </body>
 </html>
-

@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MapLeads Pro — Google Maps Lead Scraper & B2B Exporter</title>
-  <meta name="description" content="Scrape Google Maps search results into Excel (.xlsx) & CSV. Auto-extracts emails, phones, websites, addresses, and ratings with 100% client-side privacy.">
+  <title>MapLeads Pro — Google Maps B2B Lead Scraper & Exporter</title>
+  <meta name="description" content="Scrape Google Maps search results into Excel (.xlsx) & CSV. Auto-extracts emails, phone numbers, websites, addresses, and ratings with 100% client-side privacy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090c15;
-      --card-bg: #111728;
-      --card-border: #1e2942;
+      --bg: #090d16;
+      --card-bg: #0f172a;
+      --card-bg-elevated: #172033;
+      --card-border: #1e293b;
       --card-border-hover: #2563eb;
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
       --primary-glow: rgba(37, 99, 235, 0.25);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -38,7 +42,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(9, 12, 21, 0.85);
+      background: rgba(9, 13, 22, 0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--card-border);
     }
@@ -46,7 +50,7 @@
     .header-inner {
       max-width: 1160px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,28 +63,21 @@
       text-decoration: none;
       color: var(--text-main);
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
     }
 
     .brand-icon {
       width: 38px;
       height: 38px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #2563eb, #10b981);
+      background: linear-gradient(135deg, #ef4444, #dc2626);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px var(--primary-glow);
-    }
-
-    .brand-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
     }
 
     .nav-links {
@@ -89,54 +86,56 @@
       gap: 24px;
     }
 
-    .nav-link {
+    .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.92rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.15s ease;
     }
 
-    .nav-link:hover { color: #60a5fa; }
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
 
     .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #2563eb;
+      background: var(--primary);
       color: #ffffff;
       padding: 9px 18px;
       border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 0.92rem;
       text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 2px 10px var(--primary-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px var(--primary-glow);
     }
 
     .btn-cta:hover {
-      background: #3b82f6;
+      background: var(--primary-hover);
       transform: translateY(-1px);
     }
 
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #1b2438;
+      background: var(--card-bg-elevated);
       color: var(--text-main);
       padding: 9px 18px;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       border: 1px solid var(--card-border);
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
-      border-color: #2563eb;
-      background: #25334f;
+      border-color: #3b82f6;
+      background: #1e293b;
     }
 
     .container {
@@ -145,6 +144,7 @@
       padding: 0 24px;
     }
 
+    /* Hero Section */
     .hero {
       padding: 80px 0 60px;
       text-align: center;
@@ -154,102 +154,155 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(37, 99, 235, 0.15);
+      background: rgba(37, 99, 235, 0.14);
       border: 1px solid rgba(37, 99, 235, 0.35);
-      color: #93c5fd;
+      color: #60a5fa;
       padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 600;
       margin-bottom: 24px;
     }
 
+    .badge-secondary-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
     .hero h1 {
-      font-size: 3.25rem;
+      font-size: clamp(2.3rem, 5.2vw, 3.8rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.15;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      margin-bottom: 22px;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero h1 span.gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 50%, #93c5fd 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero h1 span {
-      background: linear-gradient(135deg, #60a5fa, #34d399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
+    .hero p.lead {
       font-size: 1.18rem;
       color: var(--text-muted);
-      max-width: 720px;
+      max-width: 740px;
       margin: 0 auto 36px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .hero-actions {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
 
-    /* Mockup */
-    .mockup-container {
-      max-width: 860px;
-      margin: 0 auto 80px;
+    .trust-bullets {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      color: #64748b;
+      font-size: 0.88rem;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    /* Interactive Preview Box */
+    .preview-card {
+      margin: 50px auto 0;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       overflow: hidden;
-      text-align: left;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      max-width: 1000px;
     }
 
-    .mockup-header {
-      background: #0d121f;
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--card-border);
+    .preview-header {
+      background: #090d16;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots span {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #334155;
+    }
+
+    .window-dots span:nth-child(1) { background: #ef4444; }
+    .window-dots span:nth-child(2) { background: #f59e0b; }
+    .window-dots span:nth-child(3) { background: #10b981; }
+
+    .preview-url {
+      background: #111827;
+      padding: 4px 16px;
+      border-radius: 6px;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
-    }
-
-    .mockup-body {
-      padding: 24px;
-      overflow-x: auto;
-    }
-
-    .table-demo {
-      width: 100%;
-      border-collapse: collapse;
       font-size: 0.82rem;
+      color: var(--text-muted);
+      flex: 1;
+      max-width: 540px;
+    }
+
+    .preview-body {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .preview-body { grid-template-columns: 1fr; }
+    }
+
+    .sample-maps {
+      background: #090d16;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 20px;
       font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
-    .table-demo th {
-      background: rgba(37, 99, 235, 0.15);
-      color: #60a5fa;
-      padding: 8px 12px;
-      text-align: left;
-      border: 1px solid var(--card-border);
+    .sample-excel {
+      background: #061e16;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 10px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
-    .table-demo td {
-      padding: 8px 12px;
-      border: 1px solid var(--card-border);
-      color: #cbd5e1;
-    }
-
+    /* Section Headings */
     .section-title {
       text-align: center;
-      margin-bottom: 48px;
+      margin: 90px 0 45px;
     }
 
     .section-title h2 {
@@ -262,13 +315,15 @@
     .section-title p {
       color: var(--text-muted);
       font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto;
     }
 
-    .grid-3 {
+    /* Features Grid */
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
+      gap: 22px;
     }
 
     .feature-card {
@@ -281,338 +336,395 @@
 
     .feature-card:hover {
       border-color: var(--card-border-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
     }
 
     .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       background: rgba(37, 99, 235, 0.15);
-      border: 1px solid rgba(37, 99, 235, 0.35);
+      border: 1px solid rgba(37, 99, 235, 0.3);
       color: #60a5fa;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 18px;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
     }
 
     .feature-card h3 {
-      font-size: 1.15rem;
+      font-size: 1.22rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      color: #ffffff;
+      margin-bottom: 10px;
     }
 
     .feature-card p {
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    /* Shortcuts */
-    .shortcuts-banner {
-      background: linear-gradient(135deg, #111728, #18223c);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 80px;
-      flex-wrap: wrap;
-    }
-
-    .shortcut-pill {
-      font-family: var(--font-mono);
-      background: #090c15;
-      border: 1px solid #334155;
-      padding: 6px 12px;
-      border-radius: 6px;
-      color: #60a5fa;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-
-    /* Pricing */
+    /* Pricing Section */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 860px;
+      margin: 0 auto;
     }
 
-    .price-card {
+    .pricing-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 16px;
-      padding: 32px;
+      padding: 36px;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    .price-card.featured {
+    .pricing-card.popular {
       border-color: #2563eb;
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.18);
     }
 
-    .price-tag {
-      font-size: 2.2rem;
-      font-weight: 800;
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--primary);
       color: #fff;
-      margin: 16px 0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
     }
 
-    .price-features {
-      list-style: none;
-      margin-bottom: 24px;
+    .pricing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .price-features li {
-      margin-bottom: 10px;
+    .pricing-desc {
+      color: var(--text-muted);
       font-size: 0.9rem;
-      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .price-value {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-value span {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 30px;
+      flex: 1;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .privacy-box {
-      background: rgba(37, 99, 235, 0.08);
-      border: 1px solid rgba(37, 99, 235, 0.25);
-      border-radius: 14px;
-      padding: 32px;
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .privacy-box h3 {
-      font-size: 1.35rem;
-      color: #93c5fd;
-      margin-bottom: 10px;
-    }
-
-    .privacy-box p {
+      gap: 10px;
+      font-size: 0.93rem;
       color: #cbd5e1;
-      max-width: 680px;
-      margin: 0 auto 20px;
-      font-size: 0.95rem;
     }
 
+    .feature-list li.dimmed {
+      color: #64748b;
+    }
+
+    /* Privacy Banner */
+    .privacy-banner {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(23, 37, 84, 0.6) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px;
+      margin: 80px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .privacy-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .privacy-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 600px;
+    }
+
+    /* Footer */
     footer {
       border-top: 1px solid var(--card-border);
       padding: 40px 0;
-      text-align: center;
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
+      margin-top: 40px;
     }
 
-    footer a { color: #60a5fa; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Sticky Header Bar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-        </div>
-        <span>MapLeads Pro</span>
+      <a href="./index.html" class="brand">
+        <div class="brand-icon">⚡</div>
+        <span>MapLeads <span style="color: #60a5fa;">Pro</span></span>
       </a>
       <nav class="nav-links">
-        <a href="#features" class="nav-link">Features</a>
-        <a href="#pricing" class="nav-link">Pricing</a>
-        <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
-        <a href="https://github.com/sajusun/mapleads" target="_blank" rel="noopener" class="nav-link">GitHub</a>
-        <a href="https://github.com/sajusun/mapleads/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="#edge-store-mapleads" class="btn-cta">Get for Edge</a>
       </nav>
     </div>
   </header>
 
   <div class="container">
-
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="badge-pill">📍 High-Speed Local Scraping &bull; Anti-Detection Physics &bull; Manifest V3</div>
-      <h1>Google Maps Lead Scraper &amp;<br><span>B2B Spreadsheet Exporter</span></h1>
-      <p>Extract verified local businesses from Google Maps directly into formatted Microsoft Excel (.xlsx), CSV, and TSV spreadsheets. Zero cloud databases, zero account registration.</p>
-      
+      <div class="badge-pill">
+        <span>🎯 Available on Microsoft Edge Add-ons</span>
+        <span class="badge-secondary-pill">Chrome Web Store (Coming Soon)</span>
+      </div>
+      <h1>
+        Turn Google Maps Results <br>
+        <span class="gradient-text">Into Verified B2B Leads in 1 Click.</span>
+      </h1>
+      <p class="lead">
+        Extract business phone numbers, verified websites, public email addresses, physical addresses, and Google review ratings into clean Microsoft Excel (.xlsx) and CSV spreadsheets. 100% private in browser memory.
+      </p>
+
       <div class="hero-actions">
-        <a href="https://github.com/sajusun/mapleads/releases" target="_blank" rel="noopener" class="btn-cta">Add to Chrome / Edge</a>
-        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
-        <a href="https://github.com/sajusun/mapleads" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+        <a href="#edge-store-mapleads" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
+          Get for Microsoft Edge
+        </a>
+        <a href="#gumroad-mapleads" class="btn-secondary" style="padding: 12px 24px; font-size: 1.02rem;">
+          Get MapLeads Pro ↗
+        </a>
       </div>
 
-      <!-- Live Mockup -->
-      <div class="mockup-container">
-        <div class="mockup-header">
-          <span style="color: #60a5fa;">Query: "Dentists in Austin, TX" &bull; 82 Leads Scraped</span>
-          <span class="btn-cta" style="padding: 4px 10px; font-size: 0.75rem; background:#10b981;">Download .xlsx</span>
+      <div class="trust-bullets">
+        <span>🔒 100% Client-Side Privacy</span>
+        <span>•</span>
+        <span>📊 Native Excel &amp; CSV Export</span>
+        <span>•</span>
+        <span>🛡️ Anti-Block Human Scrolling</span>
+        <span>•</span>
+        <span>🔍 Deep Email &amp; Social Scraper</span>
+      </div>
+
+      <!-- Preview UI Box -->
+      <div class="preview-card">
+        <div class="preview-header">
+          <div class="window-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="preview-url">https://www.google.com/maps/search/Solar+Installers+Austin+TX</div>
+          <span style="font-size: 0.82rem; color: #34d399; font-weight: 600;">● 128 Leads Extracted</span>
         </div>
-        <div class="mockup-body">
-          <table class="table-demo">
-            <thead>
-              <tr>
-                <th>Business Name</th>
-                <th>Phone</th>
-                <th>Website</th>
-                <th>Rating</th>
-                <th>Address</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Austin Smile Center</td>
-                <td>(512) 555-0192</td>
-                <td>austinsmile.com</td>
-                <td>4.9 (184)</td>
-                <td>1204 Congress Ave, Austin, TX</td>
-              </tr>
-              <tr>
-                <td>Lone Star Dental Care</td>
-                <td>(512) 555-0841</td>
-                <td>lonestardental.net</td>
-                <td>4.8 (92)</td>
-                <td>801 S Lamar Blvd, Austin, TX</td>
-              </tr>
-              <tr>
-                <td>Capital Family Dental</td>
-                <td>(512) 555-0374</td>
-                <td><span style="color:#ef4444;">No Website (Goldmine)</span></td>
-                <td>4.7 (46)</td>
-                <td>2100 Guadalupe St, Austin, TX</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="preview-body">
+          <div class="sample-maps">
+            <div style="color: #60a5fa; font-weight: 700; margin-bottom: 12px;">[Google Maps Search Stream]</div>
+            <div style="color: #cbd5e1; line-height: 1.8;">
+              01: Austin Pure Solar Co. ..... (512) 892-4410<br>
+              02: Lone Star Energy Tech ..... (512) 773-1900<br>
+              03: Hill Country Renewables ... (512) 441-2099<br>
+              04: Horizon Solar Solutions ... (512) 650-8801
+            </div>
+            <div style="margin-top: 14px; font-size: 0.8rem; color: #64748b;">
+              Scraped with human-like jitter delay
+            </div>
+          </div>
+          <div class="sample-excel">
+            <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;">📊 Generated Microsoft Excel (.xlsx)</div>
+            <div style="color: #cbd5e1; line-height: 1.8;">
+              A1: Name | B1: Phone | C1: Domain | D1: Rating<br>
+              A2: Austin Pure Solar | (512) 892-4410 | 4.9 (184)<br>
+              A3: Lone Star Energy | (512) 773-1900 | 4.8 (92)<br>
+              A4: Hill Country Renew | (512) 441-2099 | 5.0 (65)
+            </div>
+            <div style="margin-top: 14px; font-size: 0.8rem; color: #10b981;">
+              ✓ Auto-deduplicated • Formatted for CRM import
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
+    <!-- Features Section -->
     <section id="features">
       <div class="section-title">
-        <h2>Built for Outbound Sales &amp; Agencies</h2>
-        <p>Save 10+ hours a week of manual copy-pasting with intelligent client-side extraction.</p>
+        <h2>Built for High-Velocity Lead Generation</h2>
+        <p>Engineered for freelance developers, marketing agencies, and B2B sales teams who need local clients fast.</p>
       </div>
 
-      <div class="grid-3">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>1-Click Google Maps Extraction</h3>
+          <p>Search any query or location and hit "Start Scraping". MapLeads Pro reads public business cards directly as they appear on the map.</p>
+        </div>
+
         <div class="feature-card">
           <div class="feature-icon">📊</div>
-          <h3>Multi-Format Direct Export</h3>
-          <p>Export directly to Excel (.xlsx) with auto-calculated column widths, clean CRM CSV, or copy TSV with 1 click.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <h3>Gaussian Human Physics</h3>
-          <p>Emulates natural user scrolling with random pauses and micro-jitter physics to safely prevent bot detection.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">💎</div>
-          <h3>"No Website" Goldmine Filter</h3>
-          <p>Instantly filters thriving local businesses that lack an online presence—perfect for freelance web dev pitches.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">✉️</div>
-          <h3>Background Email Enrichment</h3>
-          <p>Client-side background scanning visits business websites to extract contact emails and social media handles.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🧹</div>
-          <h3>Auto Deduplication</h3>
-          <p>Automatically detects and removes duplicate business listings across multi-keyword scraping sessions.</p>
+          <h3>Native Excel (.xlsx) &amp; CSV Export</h3>
+          <p>Export hundreds of clean business records with phone numbers, websites, full addresses, and rating metrics ready for HubSpot or Notion.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
+          <h3>Anti-Block Human Simulation</h3>
+          <p>Randomized scroll delays and jitter trajectory prevent Google Maps rate limits, allowing smooth and safe prospecting sessions.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Deep Website Contact Scraper</h3>
+          <p>Crawls extracted business websites to find public email addresses and social links (LinkedIn, Twitter/X, Instagram, Facebook).</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Automatic Deduplication</h3>
+          <p>Never contact the same prospect twice. Duplicate business listings are identified and filtered out in real-time.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
           <h3>100% Client-Side Privacy</h3>
-          <p>Your search keywords and prospect databases never touch our servers. Stored locally in your browser sandbox.</p>
+          <p>Runs entirely in local browser memory. Zero external scraping databases. We never store, resell, or monetize your prospect lists.</p>
         </div>
       </div>
     </section>
 
-    <!-- Shortcuts -->
-    <section class="shortcuts-banner">
-      <div>
-        <h3 style="font-size: 1.4rem; margin-bottom: 6px;">Hotkeys for Fast Scraping</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Start or pause your scraping queue directly from your keyboard.</p>
-      </div>
-      <div>
-        <span class="shortcut-pill">Alt + Shift + M</span>
-        <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 8px;">Toggle Lead Scraper</span>
-      </div>
-    </section>
-
-    <!-- Pricing -->
+    <!-- Pricing / Tiers Section -->
     <section id="pricing">
       <div class="section-title">
-        <h2>Transparent Pricing Tiers</h2>
-        <p>Start extracting leads today for free, or unlock unlimited scraping with Pro.</p>
+        <h2>Simple, Transparent Tiers</h2>
+        <p>Start free for everyday prospecting, or upgrade to Pro for unlimited high-volume lead extraction.</p>
       </div>
 
       <div class="pricing-grid">
-        <div class="price-card">
-          <h3 style="color:#fff;">Free Tier</h3>
-          <div class="price-tag">$0 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ forever</span></div>
-          <ul class="price-features">
-            <li>✅ 50 leads extracted per day</li>
-            <li>✅ Excel (.xlsx) &amp; CSV export</li>
-            <li>✅ 1-Click TSV clipboard copy</li>
-            <li>✅ No credit card required</li>
+        <!-- Starter Free Tier -->
+        <div class="pricing-card">
+          <h3>Starter Free</h3>
+          <p class="pricing-desc">For freelancers and occasional local business lookups.</p>
+          <div class="price-value">
+            $0 <span>/ free forever</span>
+          </div>
+          <ul class="feature-list">
+            <li>✓ 50 leads per day limit</li>
+            <li>✓ 1-Click Google Maps scraping</li>
+            <li>✓ In-browser live preview grid</li>
+            <li>✓ Native Excel (.xlsx) &amp; CSV export</li>
+            <li>✓ Automatic duplicate filter</li>
+            <li>✓ 100% client-side privacy</li>
+            <li class="dimmed">✗ Unlimited daily leads</li>
+            <li class="dimmed">✗ Deep website email scraper</li>
+            <li class="dimmed">✗ Custom speed presets</li>
           </ul>
-          <a href="https://github.com/sajusun/mapleads/releases" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">Install Free</a>
+          <a href="#edge-store-mapleads" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">
+            Install Free Edition
+          </a>
         </div>
 
-        <div class="price-card featured">
-          <div style="position: absolute; top: -12px; right: 24px; background: #2563eb; color: #fff; font-size: 0.75rem; padding: 2px 10px; border-radius: 9999px; font-weight: 700;">LIFETIME ACCESS</div>
-          <h3 style="color:#60a5fa;">MapLeads Pro</h3>
-          <div class="price-tag">$29 <span style="font-size: 0.9rem; color: #94a3b8; font-weight: normal;">/ one-time</span></div>
-          <ul class="price-features">
-            <li>✅ <strong>Unlimited</strong> leads per day</li>
-            <li>✅ Full email &amp; social background enrichment</li>
-            <li>✅ "No Website" goldmine filter</li>
-            <li>✅ Priority customer support</li>
+        <!-- Pro Tier -->
+        <div class="pricing-card popular">
+          <div class="popular-tag">MOST POPULAR</div>
+          <h3 style="color: #60a5fa;">MapLeads Pro</h3>
+          <p class="pricing-desc">For agencies, lead generation specialists, and sales teams.</p>
+          <div class="price-value">
+            $29 <span>/ one-time lifetime</span>
+          </div>
+          <ul class="feature-list">
+            <li>✓ <strong>Unlimited</strong> daily leads</li>
+            <li>✓ Deep website public email crawler</li>
+            <li>✓ Social link extraction (LinkedIn, IG, X)</li>
+            <li>✓ Advanced anti-block speed tuning</li>
+            <li>✓ High-speed batch processing</li>
+            <li>✓ Lifetime updates &amp; priority email support</li>
+            <li>✓ 100% client-side privacy guarantee</li>
           </ul>
-          <a href="https://github.com/sajusun/mapleads" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">Get Pro License</a>
+          <a href="#gumroad-mapleads" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">
+            Get MapLeads Pro ↗
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Privacy Commitment -->
-    <div class="privacy-box">
-      <h3>🛡️ Zero Cloud Storage Lead Privacy</h3>
-      <p>Unlike third-party scraping services that resell your prospect lists, MapLeads Pro runs 100% locally on your machine.</p>
-      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    <!-- Privacy Banner -->
+    <div class="privacy-banner">
+      <div class="privacy-content">
+        <h3>🛡️ Zero Telemetry, Local-Only Architecture</h3>
+        <p>Unlike expensive cloud scraping services that store your client lists on their servers, MapLeads Pro operates 100% inside your local browser memory. Your leads remain completely confidential.</p>
+      </div>
+      <div>
+        <a href="./privacy/index.html" class="btn-secondary">
+          Read Privacy Policy &rarr;
+        </a>
+      </div>
     </div>
-
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2026 MapLeads Pro. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
-      <p style="margin-top: 8px; font-size: 0.82rem;">
-        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
-        <a href="https://github.com/sajusun/mapleads" target="_blank" rel="noopener">GitHub</a> &bull; 
+    <div class="container footer-inner">
+      <p>&copy; 2026 MapLeads Pro. Available for Microsoft Edge &bull; Chrome (Coming Soon).</p>
+      <div class="footer-links">
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="#gumroad-mapleads">MapLeads Pro</a>
         <a href="../index.html">All Extensions Hub</a>
-      </p>
+      </div>
     </div>
   </footer>
 
 </body>
 </html>
-
