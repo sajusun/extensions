@@ -3,23 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PureEdge CleanTab — Block MSN Clickbaits & Minimalist 4K NewTab</title>
-  <meta name="description" content="Purge bloated MSN news feeds, block nagging Edge popups, enjoy a stunning 4K minimalist dashboard with weather & Pomodoro, and save 50% RAM with Turbo Tab Sleep.">
+  <title>PureEdge CleanTab — Purge MSN Clickbaits & Minimalist 4K NewTab for Microsoft Edge</title>
+  <meta name="description" content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep, and enjoy a minimalist 4K new tab with Pomodoro and world clocks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090e0e;
-      --card-bg: #101919;
-      --card-border: #1a2c2c;
-      --card-border-hover: #0d9488;
+      --bg: #0a0e17;
+      --bg-surface: #111827;
+      --bg-elevated: #162032;
+      --border: #1e293b;
+      --border-hover: #334155;
       --primary: #0d9488;
-      --primary-hover: #0f766e;
-      --primary-glow: rgba(13, 148, 136, 0.25);
+      --primary-hover: #14b8a6;
+      --primary-subtle: rgba(13, 148, 136, 0.12);
+      --amber: #f59e0b;
+      --amber-hover: #fbbf24;
+      --amber-subtle: rgba(245, 158, 11, 0.12);
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -34,19 +39,33 @@
       overflow-x: hidden;
     }
 
+    a { color: inherit; text-decoration: none; }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Slim Enterprise Sticky Navbar */
     .header-bar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(9, 14, 14, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--card-border);
+      z-index: 1000;
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
     }
 
     .header-inner {
-      max-width: 1160px;
+      width: 100%;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -56,26 +75,24 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
-      color: var(--text-main);
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
+      color: #ffffff;
     }
 
     .brand-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       background: linear-gradient(135deg, #0d9488, #059669);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px var(--primary-glow);
     }
 
     .brand-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       stroke: #fff;
       fill: none;
       stroke-width: 2.2;
@@ -83,70 +100,72 @@
       stroke-linejoin: round;
     }
 
+    .brand-sub {
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-left: 2px;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
     }
 
     .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.92rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: color 0.15s ease;
     }
 
-    .nav-link:hover { color: #2dd4bf; }
+    .nav-link:hover { color: #ffffff; }
 
-    .btn-cta {
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav-free {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: #0d9488;
-      color: #ffffff;
-      padding: 9px 18px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 2px 10px var(--primary-glow);
-    }
-
-    .btn-cta:hover {
-      background: #14b8a6;
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #172626;
+      gap: 6px;
+      background: var(--bg-surface);
       color: var(--text-main);
-      padding: 9px 18px;
-      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 0.85rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      border: 1px solid var(--card-border);
-      transition: all 0.2s;
+      transition: all 0.15s ease;
     }
 
-    .btn-secondary:hover {
-      border-color: #0d9488;
-      background: #203636;
+    .btn-nav-free:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-hover);
     }
 
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
+    .btn-nav-pro {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.15s ease;
     }
 
+    .btn-nav-pro:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Hero Section */
     .hero {
-      padding: 80px 0 60px;
+      padding: 72px 0 60px 0;
       text-align: center;
     }
 
@@ -154,104 +173,184 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(13, 148, 136, 0.15);
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--primary-subtle);
       border: 1px solid rgba(13, 148, 136, 0.35);
-      color: #5eead4;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      color: #2dd4bf;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
       margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: 3.25rem;
+      font-size: 3.2rem;
+      line-height: 1.15;
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.15;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, #2dd4bf, #0d9488);
+      background: linear-gradient(135deg, #2dd4bf, #14b8a6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero p {
-      font-size: 1.18rem;
-      color: var(--text-muted);
-      max-width: 720px;
+    .hero-lead {
+      max-width: 680px;
       margin: 0 auto 36px;
-      line-height: 1.7;
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
-    /* Mockup */
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0d9488;
+      color: #ffffff;
+      padding: 13px 26px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-hero-primary:hover {
+      background: #14b8a6;
+      transform: translateY(-1px);
+    }
+
+    .btn-hero-pro {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #0f172a;
+      padding: 13px 26px;
+      border-radius: 9px;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-hero-pro:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      padding: 13px 22px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      color: #ffffff;
+      border-color: var(--border-hover);
+    }
+
+    /* Product Dashboard Preview (Clean Enterprise Mockup) */
     .mockup-container {
-      max-width: 860px;
-      margin: 0 auto 80px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
       overflow: hidden;
-      text-align: left;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      margin-bottom: 84px;
     }
 
-    .mockup-header {
-      background: #0d1616;
-      padding: 12px 18px;
-      border-bottom: 1px solid var(--card-border);
+    .mockup-header-bar {
+      background: #0d121c;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+    }
+
+    .mockup-indicators {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .mockup-stats {
+      display: flex;
+      gap: 20px;
     }
 
     .mockup-body {
-      padding: 36px;
-      text-align: center;
-      background: radial-gradient(circle at center, rgba(13, 148, 136, 0.15), transparent 70%);
+      padding: 48px 24px;
+      background: radial-gradient(circle at top center, rgba(13, 148, 136, 0.08) 0%, transparent 70%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .mockup-time {
-      font-size: 3.5rem;
+      font-size: 3.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: #fff;
-      font-family: var(--font-mono);
+      color: #ffffff;
+      margin-bottom: 4px;
     }
 
-    .mockup-greeting {
+    .mockup-date {
       font-size: 1.1rem;
-      color: #2dd4bf;
-      margin-bottom: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
     }
 
     .mockup-dock {
       display: inline-flex;
-      gap: 14px;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.85rem;
-      color: #cbd5e1;
+      align-items: center;
+      gap: 18px;
+      background: rgba(10, 14, 23, 0.7);
+      border: 1px solid var(--border);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: #e2e8f0;
     }
 
+    /* Section Headers */
     .section-title {
       text-align: center;
       margin-bottom: 48px;
@@ -262,219 +361,578 @@
       font-weight: 800;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
+      color: #ffffff;
     }
 
     .section-title p {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .grid-3 {
+    /* 6 Core Features Grid */
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 80px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 96px;
     }
 
     .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 28px;
-      transition: all 0.25s ease;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .feature-card:hover {
-      border-color: var(--card-border-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
     }
 
-    .feature-icon {
+    .feature-icon-box {
       width: 44px;
       height: 44px;
       border-radius: 10px;
-      background: rgba(13, 148, 136, 0.15);
-      border: 1px solid rgba(13, 148, 136, 0.35);
-      color: #2dd4bf;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       margin-bottom: 18px;
     }
 
     .feature-card h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 8px;
       color: #ffffff;
+      margin-bottom: 8px;
     }
 
     .feature-card p {
-      color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
       line-height: 1.6;
     }
 
-    .privacy-box {
-      background: rgba(13, 148, 136, 0.08);
-      border: 1px solid rgba(13, 148, 136, 0.25);
+    /* Free vs Pro Section */
+    .pricing-section {
+      margin-bottom: 96px;
+      scroll-margin-top: 80px;
+    }
+
+    .pricing-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto 48px;
+    }
+
+    .pricing-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 32px;
-      text-align: center;
-      margin-bottom: 80px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
-    .privacy-box h3 {
-      font-size: 1.35rem;
-      color: #5eead4;
-      margin-bottom: 10px;
+    .pricing-card.pro-card {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.04) 0%, var(--bg-surface) 100%);
     }
 
-    .privacy-box p {
-      color: #cbd5e1;
-      max-width: 680px;
-      margin: 0 auto 20px;
-      font-size: 0.95rem;
+    .popular-tag {
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #0f172a;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding: 40px 0;
-      text-align: center;
+    .card-tier-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .card-tier-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      min-height: 42px;
+    }
+
+    .card-price {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-period {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .perk-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex: 1;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: #e2e8f0;
+    }
+
+    .perk-check {
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    .perk-cross {
       color: var(--text-muted);
-      font-size: 0.88rem;
     }
 
-    footer a { color: #2dd4bf; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .btn-pricing-free {
+      width: 100%;
+      padding: 12px 0;
+      text-align: center;
+      background: var(--bg-elevated);
+      color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-pricing-free:hover {
+      background: #1f2c42;
+      border-color: var(--border-hover);
+    }
+
+    .btn-pricing-pro {
+      width: 100%;
+      padding: 12px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      color: #0f172a;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-pricing-pro:hover {
+      filter: brightness(1.08);
+    }
+
+    /* Comparison Table Matrix */
+    .matrix-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .matrix-table th, .matrix-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .matrix-table th {
+      background: #0d121c;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .matrix-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .matrix-table td:nth-child(2), .matrix-table td:nth-child(3) {
+      text-align: center;
+      width: 180px;
+    }
+
+    .matrix-table th:nth-child(2), .matrix-table th:nth-child(3) {
+      text-align: center;
+      width: 180px;
+    }
+
+    .cell-highlight {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    /* Privacy Banner */
+    .privacy-banner {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-bottom: 84px;
+    }
+
+    .privacy-banner h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .privacy-banner p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 860px) {
+      .hero h1 { font-size: 2.4rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-cards-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Slim Enterprise Sticky Navbar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand">
+      <a href="./index.html" class="brand">
         <div class="brand-icon">
           <svg viewBox="0 0 24 24">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <span>PureEdge CleanTab</span>
+        <span>PureEdge <span class="brand-sub">CleanTab</span></span>
       </a>
+
       <nav class="nav-links">
         <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Free vs Pro</a>
         <a href="./privacy/index.html" class="nav-link">Privacy Policy</a>
-        <a href="https://github.com/sajusun/pure-edge" target="_blank" rel="noopener" class="nav-link">GitHub</a>
-        <a href="https://github.com/sajusun/pure-edge/releases" target="_blank" rel="noopener" class="btn-cta">Install Free</a>
+        <a href="../index.html" class="nav-link">All Extensions</a>
       </nav>
+
+      <div class="nav-actions">
+        <a href="#" class="btn-nav-free" title="Coming soon on Microsoft Edge Add-ons">Add to Edge</a>
+        <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-nav-pro">Get Pro ↗</a>
+      </div>
     </div>
   </header>
 
   <div class="container">
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="badge-pill">🛡️ Ad Purger &bull; 4K New Tab &bull; Save 50% RAM</div>
+      <div class="badge-pill">Built Exclusively for Microsoft Edge</div>
       <h1>Purge MSN Clickbaits &amp;<br><span>Minimalist 4K NewTab</span></h1>
-      <p>Clean up Microsoft Edge from bloated news feeds and nagging popups. Enjoy a distraction-free new tab with Pomodoro, world clocks, and Turbo Tab Sleep.</p>
-      
+      <p class="hero-lead">
+        Clean up Microsoft Edge from bloated news feeds, sponsored junk, and intrusive nag bars. 
+        Enjoy a distraction-free new tab with Pomodoro, world clocks, and Turbo Tab Sleep that saves up to 50% RAM.
+      </p>
+
       <div class="hero-actions">
-        <a href="https://github.com/sajusun/pure-edge/releases" target="_blank" rel="noopener" class="btn-cta">Add to Microsoft Edge</a>
-        <a href="./privacy/index.html" class="btn-secondary">🛡️ Privacy Policy</a>
-        <a href="https://github.com/sajusun/pure-edge" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo</a>
+        <a href="#" class="btn-hero-primary" title="Coming soon on Microsoft Edge Add-ons">
+          <span>Add to Microsoft Edge (Free)</span>
+        </a>
+        <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-hero-pro">
+          <span>👑 Get Pro Lifetime Key ↗</span>
+        </a>
+        <a href="#pricing" class="btn-hero-secondary">
+          <span>Compare Plans &darr;</span>
+        </a>
       </div>
 
-      <!-- Live Mockup -->
+      <!-- Clean Product Mockup -->
       <div class="mockup-container">
-        <div class="mockup-header">
-          <span style="color: #2dd4bf;">MSN Purger Active &bull; Zero Clickbaits</span>
-          <span style="color: #34d399;">Turbo RAM Saver: 1.4 GB Saved</span>
+        <div class="mockup-header-bar">
+          <div class="mockup-indicators">
+            <span class="mockup-dot dot-red"></span>
+            <span class="mockup-dot dot-yellow"></span>
+            <span class="mockup-dot dot-green"></span>
+            <span style="margin-left: 8px;">edge://newtab — PureEdge CleanTab Hub</span>
+          </div>
+          <div class="mockup-stats">
+            <span style="color: #2dd4bf;">MSN Purger: Active</span>
+            <span style="color: #34d399;">Turbo RAM Saver: 1.4 GB Saved</span>
+          </div>
         </div>
         <div class="mockup-body">
-          <div class="mockup-greeting">Good Afternoon, Sakhawat</div>
           <div class="mockup-time">02:45 PM</div>
-          <div style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 24px;">"Focus on the work in front of you."</div>
+          <div class="mockup-date">Thursday, October 29 &bull; Focus Session Active</div>
           <div class="mockup-dock">
-            <span>⏱ Pomodoro (25m)</span>
+            <span>⏱ Focus Pomodoro (25:00)</span>
             <span>&bull;</span>
-            <span>🌍 London &bull; Tokyo</span>
+            <span>🌐 London (08:45 AM) &bull; Tokyo (11:45 PM)</span>
             <span>&bull;</span>
-            <span>📝 4 Tasks Left</span>
+            <span>📝 3 Daily Tasks Pending</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
+    <!-- 6 Core Value Features -->
     <section id="features">
       <div class="section-title">
-        <h2>A Breath of Fresh Air for Your Browser</h2>
-        <p>Your new tab is your digital desk. Reclaim it from advertising networks.</p>
+        <h2>Engineered for Focus, Speed &amp; Privacy</h2>
+        <p>Reclaim your browser from advertising networks and memory bloat.</p>
       </div>
 
-      <div class="grid-3">
+      <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🚫</div>
+          <div class="feature-icon-box">🛡️</div>
           <h3>MSN Clickbait Purger</h3>
-          <p>Blocks invasive news feeds, video auto-plays, and sponsored shopping widgets on new tab loads.</p>
+          <p>Instantly strips news cards, autoplay videos, and sponsored shopping widgets that clutter default Edge tabs.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🖼️</div>
+          <div class="feature-icon-box">⚡</div>
+          <h3>Turbo RAM Saver</h3>
+          <p>Discards idle background tabs automatically using native browser APIs, freeing up to 50% system memory.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">🖼️</div>
           <h3>Curated 4K Wallpapers</h3>
-          <p>Choose from stunning nature landscapes, architectural presets, or set your own custom wallpaper image.</p>
+          <p>Switch between ultra-minimalist dark mode, alpine landscapes, ocean waves, or set your own custom image URL.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Turbo Tab Sleep (RAM Saver)</h3>
-          <p>Discards memory-hogging background tabs automatically using native APIs to save up to 50% system memory.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⏱️</div>
-          <h3>Integrated Pomodoro Timer</h3>
-          <p>Built-in 25-minute focus intervals and breaks directly in your dashboard dock to keep momentum high.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
+          <div class="feature-icon-box">🌐</div>
           <h3>Multi-Zone World Clocks</h3>
-          <p>Display time offsets for your distributed team members across New York, London, Tokyo, and Dhaka.</p>
+          <p>Track real-time hours across 400+ international locations to keep remote work and global calls synchronized.</p>
         </div>
 
         <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>100% Zero Tracking</h3>
-          <p>No telemetry, no tracking pixels, and no logging of typed search queries. Everything stays local.</p>
+          <div class="feature-icon-box">🎧</div>
+          <h3>Ambient Focus Soundscapes</h3>
+          <p>Integrated binaural audio streams including Rain on Leaves, Ocean Swell, Warm Lofi, and Deep Brown Noise.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">🕶️</div>
+          <h3>Ghost / InPrivate Shield</h3>
+          <p>Route searches through DuckDuckGo with zero search tracking, zero cookie persistence, and 1-click tab purge.</p>
         </div>
       </div>
     </section>
 
-    <!-- Privacy Commitment -->
-    <div class="privacy-box">
-      <h3>🛡️ Zero Telemetry Privacy Promise</h3>
-      <p>PureEdge CleanTab is engineered from the ground up to respect user privacy. We never monitor your browsing or sell your data.</p>
-      <a href="./privacy/index.html" class="btn-secondary">Read Full Privacy Policy &rarr;</a>
+    <!-- Free vs Pro Breakdown Section -->
+    <section id="pricing" class="pricing-section">
+      <div class="section-title">
+        <h2>Transparent Tiers. Zero Subscriptions.</h2>
+        <p>Get started for free or unlock unlimited power tools with a lifetime license.</p>
+      </div>
+
+      <div class="pricing-cards-grid">
+        <!-- Tier 1: Free Forever -->
+        <div class="pricing-card">
+          <div class="card-tier-title">PureEdge Free</div>
+          <div class="card-tier-desc">Essential bloatware purging and clean new tab for daily productivity.</div>
+          <div class="card-price">$0 <span class="price-period">forever</span></div>
+          
+          <div class="card-divider"></div>
+
+          <ul class="perk-list">
+            <li class="perk-item"><span class="perk-check">✓</span> MSN Clickbait &amp; Feed Purger</li>
+            <li class="perk-item"><span class="perk-check">✓</span> Anti-Nag Popup &amp; Promo Shield</li>
+            <li class="perk-item"><span class="perk-check">✓</span> Turbo RAM Saver (Tab Auto-Sleep)</li>
+            <li class="perk-item"><span class="perk-check">✓</span> CleanTab Clock, Date &amp; Greeting</li>
+            <li class="perk-item"><span class="perk-check">✓</span> Daily Focus Goal &amp; Task Notes</li>
+            <li class="perk-item"><span class="perk-check">✓</span> Pomodoro Timer (25m / 5m / 15m)</li>
+            <li class="perk-item"><span class="perk-check">✓</span> Up to 2 Multi-Zone World Clocks</li>
+            <li class="perk-item"><span class="perk-check">✓</span> 2 Minimalist Themes (AMOLED &amp; Nordic)</li>
+            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ambient Binaural Focus Sounds</span></li>
+            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ghost Zero-Trace Private Routing</span></li>
+          </ul>
+
+          <a href="#" class="btn-pricing-free" title="Coming soon on Microsoft Edge Add-ons">Add to Microsoft Edge</a>
+        </div>
+
+        <!-- Tier 2: Pro Lifetime -->
+        <div class="pricing-card pro-card">
+          <span class="popular-tag">Lifetime License</span>
+          <div class="card-tier-title">PureEdge Pro 👑</div>
+          <div class="card-tier-desc">Full suite of focus soundscapes, unlimited global clocks, and 4K wallpapers.</div>
+          <div class="card-price">Lifetime <span class="price-period">one-time payment</span></div>
+          
+          <div class="card-divider"></div>
+
+          <ul class="perk-list">
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Everything in Free tier</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Unlimited 400+ International Clocks</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>All 4K Themes (Alpine, Forest, Sunset, Neon)</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Custom Wallpaper Image URLs</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Binaural Focus Audio (Rain, Ocean, Lofi, Brown)</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Ghost / InPrivate Anti-Tracking Shield</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Priority Feature Updates &amp; Direct Support</b></li>
+          </ul>
+
+          <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-pricing-pro">
+            <span>Get PureEdge Pro Key (Gumroad)</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature Comparison Matrix -->
+      <div class="matrix-wrapper">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Feature Capability</th>
+              <th>PureEdge Free</th>
+              <th>PureEdge Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MSN Feed &amp; Ad Content Purging</td>
+              <td>✅ Included</td>
+              <td class="cell-highlight">✅ Included</td>
+            </tr>
+            <tr>
+              <td>Turbo RAM Saver (Background Tab Sleep)</td>
+              <td>✅ Included</td>
+              <td class="cell-highlight">✅ Included</td>
+            </tr>
+            <tr>
+              <td>Pomodoro Focus Timer &amp; Todo Notes</td>
+              <td>✅ Included</td>
+              <td class="cell-highlight">✅ Included</td>
+            </tr>
+            <tr>
+              <td>Multi-Timezone World Clocks</td>
+              <td>Max 2 Clocks</td>
+              <td class="cell-highlight">Unlimited (400+ Zones)</td>
+            </tr>
+            <tr>
+              <td>4K Wallpaper Backgrounds</td>
+              <td>2 Standard Presets</td>
+              <td class="cell-highlight">All 4K + Custom URLs</td>
+            </tr>
+            <tr>
+              <td>Ambient Soundscapes (Rain, Lofi, Ocean, Brown Noise)</td>
+              <td>Muted</td>
+              <td class="cell-highlight">Full High-Fidelity Audio</td>
+            </tr>
+            <tr>
+              <td>Ghost / InPrivate Tab Shield</td>
+              <td>Disabled</td>
+              <td class="cell-highlight">Active Zero-Trace Mode</td>
+            </tr>
+            <tr>
+              <td>Payment Model</td>
+              <td>Free Forever</td>
+              <td class="cell-highlight">One-Time Lifetime License</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Zero Telemetry Commitment -->
+    <div class="privacy-banner">
+      <h3>🛡️ 100% Zero-Telemetry Privacy Commitment</h3>
+      <p>PureEdge operates strictly inside your local browser storage. We never collect personal data, track your browsing history, or transmit analytics.</p>
+      <a href="./privacy/index.html" class="btn-hero-secondary" style="display: inline-flex;">
+        <span>Read Full Privacy Policy &rarr;</span>
+      </a>
     </div>
 
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2026 PureEdge CleanTab. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
-      <p style="margin-top: 8px; font-size: 0.82rem;">
-        <a href="./privacy/index.html">Privacy Policy</a> &bull; 
-        <a href="https://github.com/sajusun/pure-edge" target="_blank" rel="noopener">GitHub</a> &bull; 
+    <div class="container footer-inner">
+      <p>&copy; 2026 PureEdge CleanTab. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: #2dd4bf;">Sakhawat Hossain</a>.</p>
+      <div class="footer-links">
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
         <a href="../index.html">All Extensions Hub</a>
-      </p>
+      </div>
     </div>
   </footer>
 
 </body>
 </html>
-

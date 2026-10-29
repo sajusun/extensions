@@ -1,148 +1,151 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - PureEdge CleanTab</title>
+  <title>Privacy Policy — PureEdge CleanTab</title>
   <meta name="description" content="Official Privacy Policy for PureEdge CleanTab extension. 100% Zero personal data collection, zero analytics, strictly local storage.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #ffffff;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-highlight: #0d9488;
-      --text-main: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-subtle: #94a3b8;
+      --bg: #0a0e17;
+      --bg-surface: #111827;
+      --bg-elevated: #162032;
+      --border: #1e293b;
+      --border-hover: #334155;
       --primary: #0d9488;
-      --primary-hover: #0f766e;
-      --primary-light: #f0fdfa;
-      --primary-border: #99f6e4;
-      --emerald-accent: #059669;
-      --code-bg: #f1f5f9;
-      --code-text: #0f172a;
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --primary-hover: #14b8a6;
+      --primary-subtle: rgba(13, 148, 136, 0.12);
+      --text-main: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-body);
+      background-color: var(--bg);
+      color: var(--text-secondary);
       font-family: var(--font-sans);
       line-height: 1.7;
-      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       padding-bottom: 80px;
     }
 
-    /* Clean white top bar */
+    a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: var(--primary-hover); }
+
+    /* Sticky Enterprise Navbar */
     .header-bar {
-      border-bottom: 1px solid var(--border-subtle);
-      background: #ffffff;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      z-index: 1000;
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 64px;
+      display: flex;
+      align-items: center;
     }
 
     .header-inner {
+      width: 100%;
       max-width: 960px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand-logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
-      color: var(--text-main);
       font-weight: 700;
-      font-size: 1.125rem;
-      letter-spacing: -0.01em;
+      font-size: 1.15rem;
+      color: #ffffff;
+      text-decoration: none;
     }
 
     .brand-icon {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
       background: linear-gradient(135deg, #0d9488, #059669);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
     }
 
     .brand-icon svg {
-      width: 19px;
-      height: 19px;
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
       fill: none;
-      stroke: #ffffff;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .nav-links {
+    .nav-actions {
       display: flex;
       align-items: center;
       gap: 16px;
     }
 
+    .btn-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.15s ease;
+    }
+
+    .btn-back:hover { color: #ffffff; }
+
     .badge-shield {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
+      background: var(--primary-subtle);
+      border: 1px solid rgba(13, 148, 136, 0.35);
+      color: #2dd4bf;
       padding: 5px 12px;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
 
-    /* Main Container */
+    /* Container */
     .container {
-      max-width: 960px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 48px 24px 0;
     }
 
-    /* Hero section */
+    /* Hero / Header */
     .hero-banner {
       text-align: center;
-      margin-bottom: 44px;
-      padding: 0 12px;
+      margin-bottom: 40px;
     }
 
     .hero-banner h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
+      color: #ffffff;
       margin-top: 14px;
       margin-bottom: 12px;
-      color: var(--text-main);
     }
 
     .hero-banner p {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       font-size: 1.05rem;
       max-width: 680px;
       margin: 0 auto 16px;
@@ -150,175 +153,169 @@
     }
 
     .meta-date {
-      color: var(--text-muted);
-      font-size: 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
       font-family: var(--font-mono);
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 12px;
-      border-radius: 6px;
     }
 
     /* Highlights 4-Grid */
     .highlights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
     }
 
     .highlight-card {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 22px 20px;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .highlight-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.08);
-      transform: translateY(-2px);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
     }
 
     .highlight-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      margin-bottom: 14px;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
     }
 
     .highlight-card h3 {
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-main);
+      color: #ffffff;
+      margin-bottom: 4px;
     }
 
     .highlight-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.88rem;
+      color: var(--text-secondary);
       line-height: 1.5;
     }
 
-    /* Policy Content */
+    /* Main Policy Content Card */
     .policy-content {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 44px 48px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 44px 40px;
     }
 
     /* Table of Contents */
     .toc {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
       padding: 20px 24px;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .toc-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 14px;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
     }
 
     .toc-list {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 10px 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 16px;
     }
 
     .toc-list a {
-      color: var(--text-body);
-      text-decoration: none;
+      color: var(--text-secondary);
       font-size: 0.88rem;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: color 0.15s;
     }
 
     .toc-list a:hover {
-      color: var(--primary);
-      text-decoration: underline;
+      color: #2dd4bf;
     }
 
-    /* Policy Sections */
+    /* Sections */
     .policy-section {
-      margin-bottom: 44px;
-      padding-top: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
 
-    .policy-section:last-child {
+    .policy-section:last-of-type {
+      border-bottom: none;
       margin-bottom: 0;
+      padding-bottom: 0;
     }
 
     .policy-section h2 {
       font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-      letter-spacing: -0.01em;
+      gap: 8px;
     }
 
-    .policy-section h2 .sec-num {
+    .sec-num {
       color: var(--primary);
       font-family: var(--font-mono);
-      font-size: 0.95rem;
-      font-weight: 600;
+      font-size: 1.1rem;
     }
 
     .policy-section p {
-      color: var(--text-body);
-      font-size: 0.96rem;
       margin-bottom: 14px;
-      line-height: 1.7;
+      font-size: 0.95rem;
     }
 
     .policy-section ul {
       margin-left: 20px;
-      margin-bottom: 16px;
-      color: var(--text-body);
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       font-size: 0.95rem;
     }
 
-    .policy-section li {
-      margin-bottom: 8px;
+    .policy-section li strong {
+      color: #ffffff;
     }
 
-    .policy-section strong {
-      color: var(--text-main);
+    /* Code Pill */
+    .code-pill {
+      font-family: var(--font-mono);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: #2dd4bf;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.82rem;
     }
 
-    /* Clean white Table */
+    /* Callout Box */
+    .callout-box {
+      background: rgba(13, 148, 136, 0.08);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 18px 0;
+      color: #e2e8f0;
+      font-size: 0.92rem;
+    }
+
+    /* Tables */
     .table-container {
       overflow-x: auto;
-      margin: 24px 0;
+      margin: 18px 0;
+      border: 1px solid var(--border);
       border-radius: 8px;
-      border: 1px solid var(--border-subtle);
     }
 
     table {
@@ -326,73 +323,36 @@
       border-collapse: collapse;
       text-align: left;
       font-size: 0.88rem;
-      background: #ffffff;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
     }
 
     th {
-      background: var(--bg-subtle);
+      background: var(--bg-elevated);
       color: var(--text-main);
-      padding: 12px 16px;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-body);
+      font-weight: 700;
     }
 
     tr:last-child td {
       border-bottom: none;
     }
 
-    tr:hover td {
-      background: #fafafa;
-    }
-
-    .code-pill {
-      font-family: var(--font-mono);
-      background: var(--code-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--code-text);
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-    }
-
-    .callout-box {
-      background: var(--primary-light);
-      border-left: 4px solid var(--primary);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      color: var(--text-main);
+    /* Contact Card */
+    .contact-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 14px;
       font-size: 0.92rem;
     }
 
-    /* Links */
-    a {
-      color: var(--primary);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    a:hover {
-      color: var(--primary-hover);
-    }
-
-    /* Contact box */
-    .contact-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-top: 14px;
-    }
-
     .contact-card p {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .contact-card p:last-child {
@@ -401,37 +361,29 @@
 
     /* Footer */
     footer {
-      max-width: 960px;
-      margin: 48px auto 0;
+      max-width: 860px;
+      margin: 40px auto 0;
       text-align: center;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
       color: var(--text-muted);
       font-size: 0.85rem;
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 24px 16px 0;
-      }
-      .policy-content {
-        padding: 24px 20px;
-      }
-      .hero-banner h1 {
-        font-size: 2rem;
-      }
-      .highlights-grid {
-        grid-template-columns: 1fr;
-      }
+      .highlights-grid { grid-template-columns: 1fr; }
+      .toc-list { grid-template-columns: 1fr; }
+      .policy-content { padding: 28px 20px; }
+      .hero-banner h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Enterprise Navbar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand-logo" title="Back to Product Page">
+      <a href="../index.html" class="brand" title="Back to PureEdge CleanTab Overview">
         <div class="brand-icon">
           <svg viewBox="0 0 24 24">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -439,7 +391,9 @@
         </div>
         <span>PureEdge CleanTab</span>
       </a>
-      <div class="nav-links"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
+
+      <div class="nav-actions">
+        <a href="../index.html" class="btn-back">&larr; Back to Product Page</a>
         <span class="badge-shield">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
           100% Zero Tracking
@@ -452,12 +406,12 @@
     
     <!-- Hero Header -->
     <div class="hero-banner">
-      <div class="badge-shield" style="margin-bottom: 8px;">Privacy &amp; Security First</div>
+      <div class="badge-shield" style="margin-bottom: 8px;">Strictly Local Storage</div>
       <h1>Privacy Policy</h1>
-      <p>PureEdge CleanTab is engineered from the ground up to respect your digital sovereignty. We do not track you, we do not log your activity, and we never monetize your data.</p>
+      <p>PureEdge CleanTab is engineered from the ground up to respect your digital sovereignty. We do not track your activity, log your keystrokes, or transmit analytics.</p>
       <div class="meta-date">
-        <span>Effective Date: October 28, 2026</span>
-        <span>â€¢</span>
+        <span>Effective Date: October 29, 2026</span>
+        <span>&bull;</span>
         <span>Version 1.0.0</span>
       </div>
     </div>
@@ -465,27 +419,27 @@
     <!-- Highlights 4-Grid -->
     <div class="highlights-grid">
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸš«</div>
+        <div class="highlight-icon">🚫</div>
         <h3>Zero Tracking</h3>
-        <p>No telemetry, no analytics beacons, no fingerprinting, and no background pings.</p>
+        <p>No telemetry, no analytics beacons, no fingerprinting, and no background tracking pings.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ’¾</div>
+        <div class="highlight-icon">💾</div>
         <h3>Local Sandbox Storage</h3>
-        <p>Your notes, settings, and world clocks remain exclusively on your device via Chrome Local Storage.</p>
+        <p>Your notes, settings, and world clocks remain exclusively on your device via standard browser storage.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ›¡ï¸</div>
+        <div class="highlight-icon">🛡️</div>
         <h3>Ad &amp; Feed Blocker</h3>
         <p>Blocks invasive MSN clickbait trackers and browser default search nag dialogs locally.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">âš¡</div>
+        <div class="highlight-icon">⚡</div>
         <h3>RAM Optimizer</h3>
-        <p>Turbo Tab Sleep discards inactive tabs natively without reading your webpage content.</p>
+        <p>Turbo Tab Sleep discards inactive tabs natively without reading any webpage content.</p>
       </div>
     </div>
 
@@ -512,7 +466,7 @@
       <!-- Section 1 -->
       <section class="policy-section" id="section-1">
         <h2><span class="sec-num">01.</span> Introduction &amp; Core Philosophy</h2>
-        <p>This Privacy Policy explains how <strong>PureEdge CleanTab</strong> ("we", "our", or "the extension") handles user information across all supported browsers, including Microsoft Edge and Google Chrome.</p>
+        <p>This Privacy Policy explains how <strong>PureEdge CleanTab</strong> ("we", "our", or "the extension") handles user information exclusively for Microsoft Edge browser users.</p>
         <p>Our philosophy is uncompromising: <em>Your new tab dashboard is your personal workspace, not an advertising channel.</em> The extension runs entirely client-side inside your browser sandbox and communicates with no external proprietary servers for data harvesting or analytics.</p>
       </section>
 
@@ -535,22 +489,22 @@
         <p>To provide a personalized dashboard experience across browser restarts, PureEdge CleanTab saves your custom preferences using the standard browser storage API (<span class="code-pill">chrome.storage.local</span>). This data is stored strictly in your browser's private local directory and is never sent to our servers.</p>
         <p>Locally stored items include:</p>
         <ul>
-          <li><strong>Appearance &amp; Theme:</strong> Your selected 4K wallpaper preset, dark/light theme toggle, custom wallpaper URL, and glassmorphism blur settings.</li>
-          <li><strong>World Clock Preferences:</strong> Selected international timezones (e.g., New York, London, Tokyo) to calculate time offsets.</li>
+          <li><strong>Appearance &amp; Theme:</strong> Your selected 4K wallpaper preset, dark/light theme toggle, custom wallpaper URL, and widget toggles.</li>
+          <li><strong>World Clock Preferences:</strong> Selected international timezones (e.g., New York, London, Tokyo, Dhaka) to calculate time offsets.</li>
           <li><strong>Daily Tasks &amp; Scratchpad:</strong> Your todo items, task completion status, and multi-line notes.</li>
           <li><strong>Quick Link Shortcuts:</strong> Custom bookmarks and shortcuts you add to your dashboard dock.</li>
           <li><strong>Widget Toggles:</strong> Visibility toggles for the clock, weather, quotes, tasks, soundscapes, and search bar.</li>
           <li><strong>Turbo RAM Saver Thresholds:</strong> Inactivity interval choice (e.g., 5 min, 15 min, 30 min).</li>
         </ul>
         <div class="callout-box">
-          ðŸ’¡ <strong>Data Portability:</strong> You can wipe or reset this data at any time through the PureEdge CleanTab Settings drawer or by simply clearing your browser's extension storage or uninstalling the extension.
+          💡 <strong>Data Portability:</strong> You can wipe or reset this data at any time through the PureEdge CleanTab Settings drawer or by simply clearing your browser's extension storage or uninstalling the extension.
         </div>
       </section>
 
       <!-- Section 4 -->
       <section class="policy-section" id="section-4">
         <h2><span class="sec-num">04.</span> Browser Permissions Justification</h2>
-        <p>In adherence to the Microsoft Edge Add-ons and Google Chrome Web Store Least Privilege Principle, PureEdge requests only the minimum permissions essential for its stated features:</p>
+        <p>In adherence to the Microsoft Edge Add-ons Least Privilege Principle, PureEdge requests only the minimum permissions essential for its stated features:</p>
         
         <div class="table-container">
           <table>
@@ -607,7 +561,7 @@
       <section class="policy-section" id="section-6">
         <h2><span class="sec-num">06.</span> Data Retention &amp; Deletion</h2>
         <p>Because PureEdge CleanTab does not operate remote databases or user accounts, we retain none of your data on external servers. All information remains on your physical device.</p>
-        <p>When you uninstall the extension from your browser (<span class="code-pill">edge://extensions</span> or <span class="code-pill">chrome://extensions</span>), your browser immediately and permanently erases all associated local storage, settings, and cached preferences.</p>
+        <p>When you uninstall the extension from your browser (<span class="code-pill">edge://extensions</span>), your browser immediately and permanently erases all associated local storage, settings, and cached preferences.</p>
       </section>
 
       <!-- Section 7 -->
@@ -639,9 +593,8 @@
         <p>If you have any questions, security concerns, or feedback regarding this Privacy Policy, please contact our team:</p>
         <div class="contact-card">
           <p><strong>Developer:</strong> PureEdge Labs / Sakhawat Hossain</p>
-          <p><strong>Support Email:</strong> <a href="mailto:support@pureedge.app">support@pureedge.app</a> (or <a href="mailto:sajusun@gmail.com">sajusun@gmail.com</a>)</p>
-          <p><strong>Project Repository:</strong> <a href="https://github.com/sajusun/pure-edge" target="_blank" rel="noopener">github.com/sajusun/pure-edge</a></p>
-          <p><strong>Official Policy URL:</strong> <a href="https://sajusun.github.io/pure-edge/privacy-policy/" target="_blank" rel="noopener">https://sajusun.github.io/pure-edge/privacy-policy/</a></p>
+          <p><strong>Support Email:</strong> <a href="mailto:sajusun@gmail.com">sajusun@gmail.com</a></p>
+          <p><strong>Official Product Page:</strong> <a href="https://sajusun.github.io/extensions/pureedge/">https://sajusun.github.io/extensions/pureedge/</a></p>
         </div>
       </section>
 
