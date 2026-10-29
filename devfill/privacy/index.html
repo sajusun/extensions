@@ -1,64 +1,70 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - DevFill Smart Dummy Form Filler</title>
-  <meta name="description" content="Official Privacy Policy for DevFill browser extension. 100% offline-first, zero data collection, zero analytics, strictly local storage.">
+  <title>Privacy Policy — DevFill Smart Dummy Form Filler</title>
+  <meta name="description" content="Official Privacy Policy for DevFill browser extension. 100% offline-first, zero data collection, zero telemetry, open source under MIT License.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #ffffff;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-highlight: #059669;
-      --text-main: #0f172a;
-      --text-body: #334155;
+      --bg: #090d16;
+      --bg-surface: #0f172a;
+      --bg-elevated: #162032;
+      --border: #1e293d;
+      --border-hover: #334155;
+      --primary: #10b981;
+      --primary-hover: #34d399;
+      --primary-subtle: rgba(16, 185, 129, 0.12);
+      --text-main: #f8fafc;
+      --text-secondary: #94a3b8;
       --text-muted: #64748b;
-      --text-subtle: #94a3b8;
-      --primary: #059669;
-      --primary-hover: #047857;
-      --primary-light: #ecfdf5;
-      --primary-border: #a7f3d0;
-      --code-bg: #f1f5f9;
-      --code-text: #0f172a;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-body);
+      background-color: var(--bg);
+      color: var(--text-secondary);
       font-family: var(--font-sans);
       line-height: 1.7;
-      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       padding-bottom: 80px;
     }
 
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    /* Sticky Enterprise Header */
     .header-bar {
-      border-bottom: 1px solid var(--border-subtle);
-      background: #ffffff;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      background: rgba(9, 13, 22, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 68px;
+      display: flex;
+      align-items: center;
     }
 
     .header-inner {
-      max-width: 960px;
+      width: 100%;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,53 +77,66 @@
       text-decoration: none;
       color: var(--text-main);
       font-weight: 700;
-      font-size: 1.125rem;
-      letter-spacing: -0.01em;
+      font-size: 1.15rem;
     }
 
     .brand-icon {
       width: 34px;
       height: 34px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #059669, #10b981);
+      background: linear-gradient(135deg, #10b981, #059669);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
     }
 
     .brand-icon svg {
-      width: 19px;
-      height: 19px;
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
       fill: none;
-      stroke: #ffffff;
       stroke-width: 2.2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .nav-links {
+    .nav-actions {
       display: flex;
       align-items: center;
       gap: 16px;
     }
 
-    .badge-shield {
+    .nav-back-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      padding: 5px 12px;
+      transition: color 0.15s ease;
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-main);
+    }
+
+    .badge-offline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-subtle);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 4px 12px;
       border-radius: 9999px;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.01em;
     }
 
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 48px 24px 0;
     }
@@ -125,24 +144,23 @@
     .hero-banner {
       text-align: center;
       margin-bottom: 44px;
-      padding: 0 12px;
     }
 
     .hero-banner h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-top: 14px;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .hero-banner p {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       font-size: 1.05rem;
       max-width: 680px;
       margin: 0 auto 16px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .meta-date {
@@ -152,12 +170,13 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
       border-radius: 6px;
     }
 
+    /* 4-Card Highlights Grid */
     .highlights-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -166,17 +185,15 @@
     }
 
     .highlight-card {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 22px 20px;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.15s ease;
     }
 
     .highlight-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+      border-color: #334155;
       transform: translateY(-2px);
     }
 
@@ -184,9 +201,9 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
+      background: var(--primary-subtle);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #34d399;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -198,28 +215,30 @@
       font-size: 0.98rem;
       font-weight: 700;
       margin-bottom: 6px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .highlight-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
+      font-size: 0.86rem;
+      color: var(--text-secondary);
       line-height: 1.5;
     }
 
+    /* Main Policy Card */
     .policy-content {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 44px 48px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
 
+    /* Table of Contents */
     .toc {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
+      background: #090d16;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px 24px;
+      padding: 22px 26px;
       margin-bottom: 40px;
     }
 
@@ -240,7 +259,7 @@
     }
 
     .toc-list a {
-      color: var(--text-body);
+      color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.88rem;
       display: inline-flex;
@@ -250,8 +269,18 @@
     }
 
     .toc-list a:hover {
-      color: var(--primary);
+      color: var(--text-main);
       text-decoration: underline;
+    }
+
+    .code-pill {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: #34d399;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.8rem;
     }
 
     .policy-section {
@@ -266,12 +295,12 @@
     .policy-section h2 {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 12px;
       letter-spacing: -0.01em;
     }
@@ -284,7 +313,7 @@
     }
 
     .policy-section p {
-      color: var(--text-body);
+      color: var(--text-secondary);
       font-size: 0.96rem;
       margin-bottom: 14px;
       line-height: 1.7;
@@ -293,7 +322,7 @@
     .policy-section ul {
       margin-left: 20px;
       margin-bottom: 16px;
-      color: var(--text-body);
+      color: var(--text-secondary);
       font-size: 0.95rem;
     }
 
@@ -302,14 +331,15 @@
     }
 
     .policy-section strong {
-      color: var(--text-main);
+      color: #ffffff;
     }
 
+    /* Table Container */
     .table-container {
       overflow-x: auto;
       margin: 24px 0;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      border: 1px solid var(--border);
     }
 
     table {
@@ -317,21 +347,24 @@
       border-collapse: collapse;
       text-align: left;
       font-size: 0.88rem;
-      background: #ffffff;
+      background: var(--bg-surface);
     }
 
     th {
-      background: var(--bg-subtle);
-      color: var(--text-main);
-      padding: 12px 16px;
+      background: #090d16;
+      color: #ffffff;
+      padding: 13px 18px;
       font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-body);
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
     }
 
     tr:last-child td {
@@ -339,45 +372,25 @@
     }
 
     tr:hover td {
-      background: #fafafa;
-    }
-
-    .code-pill {
-      font-family: var(--font-mono);
-      background: var(--code-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--code-text);
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .callout-box {
-      background: var(--primary-light);
+      background: rgba(16, 185, 129, 0.08);
       border-left: 4px solid var(--primary);
       border-radius: 6px;
       padding: 16px 20px;
       margin: 20px 0;
-      color: var(--text-main);
+      color: #cbd5e1;
       font-size: 0.92rem;
     }
 
-    a {
-      color: var(--primary);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    a:hover {
-      color: var(--primary-hover);
-    }
-
     .contact-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
+      background: #090d16;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 20px 24px;
-      margin-top: 14px;
+      padding: 22px 26px;
+      margin-top: 16px;
     }
 
     .contact-card p {
@@ -388,38 +401,31 @@
       margin-bottom: 0;
     }
 
+    /* Footer */
     footer {
-      max-width: 960px;
+      max-width: 980px;
       margin: 48px auto 0;
       text-align: center;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border);
       padding-top: 32px;
       color: var(--text-muted);
       font-size: 0.85rem;
     }
 
     @media (max-width: 768px) {
-      .container {
-        padding: 24px 16px 0;
-      }
-      .policy-content {
-        padding: 24px 20px;
-      }
-      .hero-banner h1 {
-        font-size: 2rem;
-      }
-      .highlights-grid {
-        grid-template-columns: 1fr;
-      }
+      .container { padding: 24px 16px 0; }
+      .policy-content { padding: 24px 20px; }
+      .hero-banner h1 { font-size: 2rem; }
+      .highlights-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Enterprise Header -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand-logo" title="Back to Product Page">
+      <a href="../index.html" class="brand-logo" title="Back to DevFill Home">
         <div class="brand-icon">
           <svg viewBox="0 0 24 24">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -428,8 +434,10 @@
         </div>
         <span>DevFill</span>
       </a>
-      <div class="nav-links"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
-        <span class="badge-shield">
+
+      <div class="nav-actions">
+        <a href="../index.html" class="nav-back-link">&larr; Back to Product Home</a>
+        <span class="badge-offline">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
           100% Offline &amp; Zero Tracking
         </span>
@@ -441,38 +449,40 @@
     
     <!-- Hero Header -->
     <div class="hero-banner">
-      <div class="badge-shield" style="margin-bottom: 8px;">Developer Tool Privacy</div>
+      <div class="badge-offline" style="margin-bottom: 10px;">Developer Tool Privacy</div>
       <h1>Privacy Policy</h1>
-      <p>DevFill is a client-side developer productivity utility designed to generate synthetic form data locally. We do not collect, transmit, or monetize any of your data.</p>
+      <p>DevFill is a client-side developer utility designed to generate synthetic form test data locally. We do not collect, transmit, or monetize any of your data.</p>
       <div class="meta-date">
-        <span>Effective Date: October 28, 2026</span>
-        <span>â€¢</span>
+        <span>Effective Date: October 29, 2026</span>
+        <span>&bull;</span>
         <span>Version 1.0.1</span>
+        <span>&bull;</span>
+        <span>MIT License</span>
       </div>
     </div>
 
-    <!-- Highlights 4-Grid -->
+    <!-- 4 Highlights Cards -->
     <div class="highlights-grid">
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸš«</div>
+        <div class="highlight-icon">🚫</div>
         <h3>Zero Data Collection</h3>
-        <p>No user data, form values, keystrokes, or URLs are ever recorded or transmitted.</p>
+        <p>No user data, form values, keystrokes, or URLs are ever recorded or transmitted anywhere.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ’¾</div>
+        <div class="highlight-icon">💾</div>
         <h3>Strictly Local Storage</h3>
         <p>Preferences (locale, password templates) are stored exclusively in your local browser sandbox.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">âš¡</div>
+        <div class="highlight-icon">⚡</div>
         <h3>100% Offline-First</h3>
         <p>All fake data generation algorithms run locally in your browser with zero network calls.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ›¡ï¸</div>
+        <div class="highlight-icon">🛡️</div>
         <h3>No Remote Scripts</h3>
         <p>Zero external scripts or third-party CDNs. Full compliance with Chrome and Edge Web Store policies.</p>
       </div>
@@ -501,7 +511,7 @@
       <!-- Section 1 -->
       <section class="policy-section" id="section-1">
         <h2><span class="sec-num">01.</span> Introduction &amp; Philosophy</h2>
-        <p>This Privacy Policy explains how <strong>DevFill - Smart Dummy Form Filler</strong> ("we", "our", or "the extension") handles information across supported browsers, including Google Chrome, Microsoft Edge, Brave, and Chromium derivatives.</p>
+        <p>This Privacy Policy explains how <strong>DevFill - Smart Dummy Form Filler</strong> ("we", "our", or "the extension") handles information across supported browsers, including Microsoft Edge, Google Chrome, Brave, and Chromium derivatives.</p>
         <p>DevFill is built specifically for software engineers, QA testers, and web designers. Our philosophy is clear: <em>Developer utilities must be transparent, private, and completely offline.</em> DevFill operates entirely within your browser's client-side sandbox and makes no remote network requests for telemetry, tracking, or data collection.</p>
       </section>
 
@@ -530,14 +540,14 @@
           <li><strong>UI State:</strong> Toggle states such as auto-submit checkboxes or notifications preferences.</li>
         </ul>
         <div class="callout-box">
-          ðŸ’¡ <strong>Local Control:</strong> You can clear all saved settings at any time via the DevFill Options page or by clearing your browser's extension data.
+          💡 <strong>Local Control:</strong> You can clear all saved settings at any time via the DevFill Options page or by clearing your browser's extension data.
         </div>
       </section>
 
       <!-- Section 4 -->
       <section class="policy-section" id="section-4">
         <h2><span class="sec-num">04.</span> Browser Permissions Justification</h2>
-        <p>In accordance with the Chrome Web Store and Microsoft Edge Add-ons Minimum Privileges Principle, DevFill requests only the essential permissions required to provide synthetic form filling functionality:</p>
+        <p>In accordance with the Microsoft Edge Add-ons and Chrome Web Store Minimum Privileges Principle, DevFill requests only the essential permissions required to provide synthetic form filling functionality:</p>
         
         <div class="table-container">
           <table>
@@ -577,7 +587,7 @@
       <!-- Section 5 -->
       <section class="policy-section" id="section-5">
         <h2><span class="sec-num">05.</span> Remote Code Compliance</h2>
-        <p>DevFill strictly adheres to Chrome Web Store and Microsoft Edge Manifest V3 security mandates:</p>
+        <p>DevFill strictly adheres to Manifest V3 security mandates:</p>
         <ul>
           <li><strong>No Remote Code Execution:</strong> DevFill does not download, evaluate, or execute any external JavaScript, remote WebAssembly, or CDN-hosted libraries.</li>
           <li><strong>Self-Contained Bundle:</strong> All generators, mock datasets, dictionaries, and utility scripts are 100% packaged and compiled locally inside the extension archive.</li>
@@ -593,7 +603,7 @@
       <!-- Section 7 -->
       <section class="policy-section" id="section-7">
         <h2><span class="sec-num">07.</span> Data Retention &amp; Deletion</h2>
-        <p>We operate no remote databases or backend servers. When you uninstall DevFill from your browser (<span class="code-pill">chrome://extensions</span> or <span class="code-pill">edge://extensions</span>), your browser immediately purges all locally stored preferences.</p>
+        <p>We operate no remote databases or backend servers. When you uninstall DevFill from your browser (<span class="code-pill">edge://extensions</span> or <span class="code-pill">chrome://extensions</span>), your browser immediately purges all locally stored preferences.</p>
       </section>
 
       <!-- Section 8 -->
@@ -621,6 +631,7 @@
           <p><strong>Developer:</strong> Sakhawat Hossain</p>
           <p><strong>Portfolio &amp; Website:</strong> <a href="https://sajusun.github.io" target="_blank" rel="noopener">https://sajusun.github.io</a></p>
           <p><strong>GitHub Repository:</strong> <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools" target="_blank" rel="noopener">github.com/sajusun/Auto-Filler-Developer-Tools</a></p>
+          <p><strong>Microsoft Edge Add-on:</strong> <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener">DevFill on Microsoft Edge Store</a></p>
           <p><strong>Support &amp; Feedback:</strong> <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools/issues" target="_blank" rel="noopener">Submit an Issue on GitHub</a></p>
         </div>
       </section>
@@ -630,11 +641,15 @@
     <!-- Footer -->
     <footer>
       <p>&copy; 2026 DevFill. All rights reserved. Open source under the MIT License.</p>
+      <p style="margin-top: 8px;">
+        <a href="../index.html">Product Home</a> &bull; 
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener">Edge Add-ons</a> &bull; 
+        <a href="https://github.com/sajusun/Auto-Filler-Developer-Tools" target="_blank" rel="noopener">GitHub</a> &bull; 
+        <a href="../../index.html">All Extensions Hub</a>
+      </p>
     </footer>
 
   </div>
 
 </body>
 </html>
-
-
