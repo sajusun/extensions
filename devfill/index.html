@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevFill — Smart Dummy Form Filler for Web Developers & QA</title>
   <meta name="description" content="Lightning-fast dummy data form filler for modern web developers & QA engineers. Framework-ready for React, Vue, Inertia. 100% Free & Open Source.">
+  <link rel="icon" type="image/png" href="./icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -70,25 +71,13 @@
       letter-spacing: -0.01em;
     }
 
-    .brand-icon {
+    .brand-icon-img {
       width: 36px;
       height: 36px;
       border-radius: 9px;
-      background: linear-gradient(135deg, #10b981, #059669);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      object-fit: cover;
       box-shadow: 0 4px 14px var(--primary-glow);
-    }
-
-    .brand-icon svg {
-      width: 20px;
-      height: 20px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-links {
@@ -598,12 +587,7 @@
   <header class="header-bar">
     <div class="header-inner">
       <a href="../index.html" class="brand">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-          </svg>
-        </div>
+        <img src="./icon.png" alt="DevFill Official Icon" class="brand-icon-img" width="36" height="36">
         <span>DevFill</span>
       </a>
 

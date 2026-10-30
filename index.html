@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browser Extensions Portfolio & Privacy Center — Sakhawat Hossain</title>
   <meta name="description" content="Official showcase, landing pages, and privacy compliance disclosures for browser extensions engineered by Sakhawat Hossain. 100% Client-side privacy and productivity.">
+  <link rel="icon" type="image/png" href="./assets/icons/echoscope.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -123,18 +124,18 @@
     .card-identity {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .card-icon {
+    .card-icon-img {
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
+      object-fit: cover;
       flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      background: #090c15;
     }
 
     .card-title {
@@ -293,7 +294,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.35); color: #a78bfa;">📡</div>
+              <img src="./assets/icons/echoscope.png" alt="EchoScope Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./echoscope/index.html">EchoScope</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -323,7 +324,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399;">✏️</div>
+              <img src="./assets/icons/devfill.png" alt="DevFill Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./devfill/index.html">DevFill</a></div>
                 <div class="card-version">v1.0.1 • Manifest V3</div>
@@ -353,7 +354,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171;">🔍</div>
+              <img src="./assets/icons/laralens.png" alt="LaraLens Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./laralens/index.html">LaraLens</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -383,7 +384,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(13, 148, 136, 0.15); border: 1px solid rgba(13, 148, 136, 0.35); color: #2dd4bf;">🛡️</div>
+              <img src="./assets/icons/pureedge.png" alt="PureEdge Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./pureedge/index.html">PureEdge CleanTab</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -403,7 +404,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(225, 29, 72, 0.15); border: 1px solid rgba(225, 29, 72, 0.35); color: #fb7185;">📄</div>
+              <img src="./assets/icons/edgepdf.png" alt="EdgePDF Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./edgepdf/index.html">EdgePDF SmartTools</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -423,7 +424,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.35); color: #60a5fa;">📍</div>
+              <img src="./assets/icons/mapleads.png" alt="MapLeads Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./mapleads/index.html">MapLeads Pro</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -443,7 +444,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); color: #a5b4fc;">⚡</div>
+              <img src="./assets/icons/snapsnippet.png" alt="SnapSnippet Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./snapsnippet/index.html">SnapSnippet</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
@@ -469,7 +470,7 @@
         <div class="card-top">
           <div class="card-header">
             <div class="card-identity">
-              <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); border: 1px solid rgba(2, 132, 199, 0.35); color: #38bdf8;">💼</div>
+              <img src="./assets/icons/officemate.png" alt="OfficeMate Official Icon" class="card-icon-img" width="44" height="44">
               <div>
                 <div class="card-title"><a href="./officemate/index.html">OfficeMate for Edge</a></div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
