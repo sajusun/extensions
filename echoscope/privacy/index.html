@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,53 +10,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #ffffff;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-highlight: #7c3aed;
-      --text-main: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-subtle: #94a3b8;
-      --primary: #7c3aed;
-      --primary-hover: #6d28d9;
-      --primary-light: #f5f3ff;
-      --primary-border: #ddd6fe;
-      --code-bg: #f1f5f9;
-      --code-text: #0f172a;
+      --bg: #0d101c;
+      --card-bg: #14192b;
+      --card-bg-elevated: #1a2138;
+      --card-border: #242c44;
+      --card-border-hover: #8b5cf6;
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --accent-green: #10b981;
+      --accent-cyan: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background-color: var(--bg-base);
-      color: var(--text-body);
+      background-color: var(--bg);
+      color: var(--text-main);
       font-family: var(--font-sans);
       line-height: 1.7;
-      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 80px;
+      padding-bottom: 60px;
     }
 
     .header-bar {
-      border-bottom: 1px solid var(--border-subtle);
-      background: #ffffff;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      background: rgba(13, 16, 28, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
     }
 
     .header-inner {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 16px 24px;
       display: flex;
@@ -64,565 +54,285 @@
       justify-content: space-between;
     }
 
-    .brand-logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
       color: var(--text-main);
       font-weight: 700;
-      font-size: 1.125rem;
-      letter-spacing: -0.01em;
+      font-size: 1.15rem;
     }
 
     .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+      color: #fff;
+      font-weight: 900;
+      font-size: 1.1rem;
     }
 
-    .brand-icon svg {
-      width: 19px;
-      height: 19px;
-      fill: none;
-      stroke: #ffffff;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .badge-shield {
+    .back-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      padding: 5px 12px;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      transition: color 0.15s ease;
+    }
+
+    .back-link:hover {
+      color: var(--text-main);
     }
 
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 48px 24px 0;
+      padding: 40px 24px;
     }
 
-    .hero-banner {
-      text-align: center;
-      margin-bottom: 44px;
-      padding: 0 12px;
-    }
-
-    .hero-banner h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-top: 14px;
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    .hero-banner p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 680px;
-      margin: 0 auto 16px;
-      line-height: 1.6;
-    }
-
-    .meta-date {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--font-mono);
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 12px;
-      border-radius: 6px;
-    }
-
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin-bottom: 44px;
-    }
-
-    .highlight-card {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 22px 20px;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .highlight-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .highlight-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--primary-light);
-      border: 1px solid var(--primary-border);
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      margin-bottom: 14px;
-    }
-
-    .highlight-card h3 {
-      font-size: 0.98rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-main);
-    }
-
-    .highlight-card p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .policy-content {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 44px 48px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .toc {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 12px;
-      padding: 20px 24px;
+    .doc-header {
       margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
     }
 
-    .toc-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 14px;
+    .doc-header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
     }
 
-    .toc-list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 10px 16px;
+    .doc-meta {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .toc-list a {
-      color: var(--text-body);
-      text-decoration: none;
-      font-size: 0.88rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: color 0.15s;
+    .privacy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
     }
 
-    .toc-list a:hover {
-      color: var(--primary);
-      text-decoration: underline;
-    }
-
-    .policy-section {
-      margin-bottom: 44px;
-      padding-top: 16px;
-    }
-
-    .policy-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .policy-section h2 {
+    .privacy-card h2 {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      color: #ffffff;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 12px;
-      letter-spacing: -0.01em;
     }
 
-    .policy-section h2 .sec-num {
-      color: var(--primary);
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .policy-section p {
-      color: var(--text-body);
-      font-size: 0.96rem;
+    .privacy-card p {
+      color: #cbd5e1;
+      font-size: 0.98rem;
       margin-bottom: 14px;
-      line-height: 1.7;
     }
 
-    .policy-section ul {
-      margin-left: 20px;
-      margin-bottom: 16px;
-      color: var(--text-body);
-      font-size: 0.95rem;
-    }
-
-    .policy-section li {
-      margin-bottom: 8px;
-    }
-
-    .policy-section strong {
-      color: var(--text-main);
-    }
-
-    .table-container {
-      overflow-x: auto;
-      margin: 24px 0;
-      border-radius: 8px;
-      border: 1px solid var(--border-subtle);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.88rem;
-      background: #ffffff;
-    }
-
-    th {
-      background: var(--bg-subtle);
-      color: var(--text-main);
-      padding: 12px 16px;
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    td {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-body);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background: #fafafa;
-    }
-
-    .code-pill {
-      font-family: var(--font-mono);
-      background: var(--code-bg);
-      border: 1px solid var(--border-subtle);
-      color: var(--code-text);
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.8rem;
-    }
-
-    .callout-box {
-      background: var(--primary-light);
-      border-left: 4px solid var(--primary);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      color: var(--text-main);
-      font-size: 0.92rem;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    a:hover {
-      color: var(--primary-hover);
-    }
-
-    .contact-card {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-subtle);
-      border-radius: 10px;
-      padding: 20px 24px;
-      margin-top: 14px;
-    }
-
-    .contact-card p {
-      margin-bottom: 8px;
-    }
-
-    .contact-card p:last-child {
+    .privacy-card p:last-child {
       margin-bottom: 0;
     }
 
-    footer {
-      max-width: 960px;
-      margin: 48px auto 0;
-      text-align: center;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 32px;
-      color: var(--text-muted);
+    .privacy-card ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .privacy-card ul li {
+      padding: 6px 0;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 10px;
+    }
+
+    .privacy-card ul li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Table */
+    .permission-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.92rem;
+    }
+
+    .permission-table th {
+      text-align: left;
+      padding: 12px;
+      background: #090c15;
+      border-bottom: 1px solid var(--card-border);
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .permission-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+
+    .permission-table code {
+      font-family: var(--font-mono);
+      background: #090c15;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      color: #c4b5fd;
       font-size: 0.85rem;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        padding: 24px 16px 0;
-      }
-      .policy-content {
-        padding: 24px 20px;
-      }
-      .hero-banner h1 {
-        font-size: 2rem;
-      }
-      .highlights-grid {
-        grid-template-columns: 1fr;
-      }
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 30px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 40px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Header Bar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="../index.html" class="brand-logo" title="Back to Product Page">
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-          </svg>
-        </div>
+      <a href="../index.html" class="brand">
+        <div class="brand-icon">📡</div>
         <span>EchoScope</span>
       </a>
-      <div class="nav-links"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
-        <span class="badge-shield">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          100% Client-Side Debugger
-        </span>
-      </div>
+      <a href="../index.html" class="back-link">
+        &larr; Back to Product Overview
+      </a>
     </div>
   </header>
 
   <div class="container">
-    
-    <!-- Hero Header -->
-    <div class="hero-banner">
-      <div class="badge-shield" style="margin-bottom: 8px;">Developer Tool Privacy</div>
+    <div class="doc-header">
       <h1>Privacy Policy</h1>
-      <p>EchoScope is an offline-first WebSocket and Laravel Reverb Broadcast Inspector. We believe your event streams and internal API payloads belong strictly on your local machine.</p>
-      <div class="meta-date">
-        <span>Effective Date: October 28, 2026</span>
-        <span>â€¢</span>
-        <span>Version 1.0.0</span>
+      <div class="doc-meta">
+        <span>Effective Date: October 2026</span>
+        <span>•</span>
+        <span>Version: 1.0.0</span>
+        <span>•</span>
+        <span>Platforms: Microsoft Edge &bull; Chrome</span>
       </div>
     </div>
 
-    <!-- Highlights 4-Grid -->
-    <div class="highlights-grid">
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸš«</div>
-        <h3>Zero Data Harvesting</h3>
-        <p>No telemetry, no tracking analytics, and no transmission of intercepted broadcast packets.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸ’¾</div>
-        <h3>Local Sandbox Storage</h3>
-        <p>Connection profiles (host, port, app key, auth tokens) are saved strictly in chrome.storage.local.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">âš¡</div>
-        <h3>Direct P2P WebSocket</h3>
-        <p>Connections occur directly between your browser and your local/remote server without intermediary proxies.</p>
-      </div>
-
-      <div class="highlight-card">
-        <div class="highlight-icon">ðŸ›¡ï¸</div>
-        <h3>No Remote Scripts</h3>
-        <p>All connection handlers, Reverb protocol adapters, and UI components are compiled locally.</p>
-      </div>
+    <!-- Core Commitment Card -->
+    <div class="privacy-card" style="border-color: #10b981; background: rgba(16, 185, 129, 0.05);">
+      <h2 style="color: #34d399;">🛡️ Executive Summary: 100% Client-Side Developer Sandbox</h2>
+      <p>
+        EchoScope is built strictly as a local developer inspection tool. When you connect to your local or remote WebSocket server (e.g. Laravel Reverb, Pusher, Soketi), <strong>all connection handshakes, authentication tokens, and broadcast payloads stay 100% inside your browser memory.</strong>
+      </p>
+      <p>
+        We do not operate backend logging servers, we do not inspect your broadcast payloads, and we do not collect telemetry on your internal application events.
+      </p>
     </div>
 
-    <!-- Main Content Card -->
-    <main class="policy-content">
+    <!-- Section 1 -->
+    <div class="privacy-card">
+      <h2>1. Information We Do NOT Collect</h2>
+      <p>Because EchoScope operates exclusively on the client side:</p>
+      <ul>
+        <li><strong>Zero Event Payloads:</strong> Broadcast messages, order IDs, user tokens, or real-time payloads flowing through WebSockets are rendered only on your local screen and never uploaded.</li>
+        <li><strong>Zero Credentials &amp; Secrets:</strong> Your Laravel APP_KEY, Pusher app credentials, Bearer tokens, and auth cookies are stored only in your local browser sandbox via <code>chrome.storage.local</code>.</li>
+        <li><strong>Zero Remote Telemetry:</strong> We do not include third-party tracking pixels, Google Analytics, or external behavioral trackers.</li>
+        <li><strong>Zero Advertising SDKs:</strong> EchoScope is 100% ad-free, open-source software under the MIT License.</li>
+      </ul>
+    </div>
 
-      <!-- Table of Contents -->
-      <nav class="toc">
-        <div class="toc-title">Table of Contents</div>
-        <ul class="toc-list">
-          <li><a href="#section-1"><span class="code-pill">01</span> Introduction &amp; Purpose</a></li>
-          <li><a href="#section-2"><span class="code-pill">02</span> Data We Never Collect</a></li>
-          <li><a href="#section-3"><span class="code-pill">03</span> Local Device Storage</a></li>
-          <li><a href="#section-4"><span class="code-pill">04</span> Permissions Justification</a></li>
-          <li><a href="#section-5"><span class="code-pill">05</span> Remote Code Compliance</a></li>
-          <li><a href="#section-6"><span class="code-pill">06</span> Third-Party Disclosure</a></li>
-          <li><a href="#section-7"><span class="code-pill">07</span> Data Retention &amp; Erasure</a></li>
-          <li><a href="#section-8"><span class="code-pill">08</span> User Rights (GDPR &amp; CCPA)</a></li>
-          <li><a href="#section-9"><span class="code-pill">09</span> Children's Privacy (COPPA)</a></li>
-          <li><a href="#section-10"><span class="code-pill">10</span> Contact &amp; Open Source Info</a></li>
-        </ul>
-      </nav>
+    <!-- Section 2 -->
+    <div class="privacy-card">
+      <h2>2. Browser Permissions &amp; Technical Justification</h2>
+      <p>EchoScope requests minimal permissions required to inspect WebSocket connections and store connection profiles:</p>
+      <table class="permission-table">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Technical Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>storage</code></td>
+            <td>Allows saving your local server connection profiles (host URL, app key, and channel subscriptions) locally in <code>chrome.storage.local</code> so you don't have to re-type them on reload.</td>
+          </tr>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>Used when popping out the inspector into a dedicated tab to maintain session state alongside your active developer workflow.</td>
+          </tr>
+          <tr>
+            <td><code>WebSocket Network</code></td>
+            <td>Direct RFC6455 WebSocket client connection initiated from your browser directly to your configured Reverb or Pusher host (e.g. <code>ws://127.0.0.1:8080</code>).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <!-- Section 1 -->
-      <section class="policy-section" id="section-1">
-        <h2><span class="sec-num">01.</span> Introduction &amp; Purpose</h2>
-        <p>This Privacy Policy explains the data privacy practices of <strong>EchoScope - Laravel Reverb &amp; WebSocket Inspector</strong> ("we", "our", or "the extension") across all supported Chromium browsers.</p>
-        <p>EchoScope is built for backend and full-stack software engineers debugging real-time broadcast events, Laravel Reverb, Pusher-compatible protocols, and WebSocket servers. The tool functions 100% client-side: all network handshakes, event streaming logs, and channel authentication requests occur solely between your browser and the specific endpoints you configure.</p>
-      </section>
+    <!-- Section 3 -->
+    <div class="privacy-card">
+      <h2>3. Private Channel Authentication Security</h2>
+      <p>
+        When you subscribe to a private channel (e.g. <code>private-orders.1</code>), EchoScope makes a direct POST request to your application's <code>/broadcasting/auth</code> endpoint.
+      </p>
+      <p>
+        This request uses your browser's existing session cookies or custom headers that you manually configure. It communicates directly and solely with your application's server. No intermediary proxy or third-party server is ever involved.
+      </p>
+    </div>
 
-      <!-- Section 2 -->
-      <section class="policy-section" id="section-2">
-        <h2><span class="sec-num">02.</span> Data We Never Collect</h2>
-        <p>We do not collect, monitor, store, or sell any user information. Specifically, EchoScope does <strong>NOT</strong> collect:</p>
-        <ul>
-          <li><strong>Broadcast Event Payloads:</strong> Incoming and outgoing WebSocket messages, event names, and JSON payloads remain strictly in your browser session memory and are never uploaded to any cloud server.</li>
-          <li><strong>Browsing Activity &amp; History:</strong> We do not log which websites you visit or intercept general web traffic.</li>
-          <li><strong>Credentials &amp; Secrets:</strong> Your application keys, secrets, and auth bearer tokens are kept strictly in your local device sandbox.</li>
-          <li><strong>Analytics &amp; Usage Telemetry:</strong> We do not embed Google Analytics, PostHog, Mixpanel, or crash-reporting telemetry beacons.</li>
-        </ul>
-      </section>
+    <!-- Section 4 -->
+    <div class="privacy-card">
+      <h2>4. Open Source Verification &amp; Auditing</h2>
+      <p>
+        EchoScope is transparent and open source under the <strong>MIT License</strong>. The entire source code is publicly inspectable and verifiable on GitHub at:
+      </p>
+      <p>
+        <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener" style="color: #c4b5fd; text-decoration: underline; font-family: var(--font-mono);">https://github.com/sajusun/echo-scope</a>
+      </p>
+    </div>
 
-      <!-- Section 3 -->
-      <section class="policy-section" id="section-3">
-        <h2><span class="sec-num">03.</span> Data Stored On Your Local Device</h2>
-        <p>EchoScope utilizes <span class="code-pill">chrome.storage.local</span> exclusively to persist your developer connection profiles so you do not have to retype them upon closing and reopening the extension.</p>
-        <p>Locally stored items include:</p>
-        <ul>
-          <li><strong>Connection Profiles:</strong> Host addresses (e.g. <span class="code-pill">127.0.0.1</span>, <span class="code-pill">reverb.localhost</span>), port numbers, app keys, and scheme selection (ws / wss).</li>
-          <li><strong>Channel Subscriptions:</strong> List of public, private, or presence channels you have chosen to subscribe to (e.g., <span class="code-pill">orders.123</span>).</li>
-          <li><strong>Auth Endpoints:</strong> URL of your Laravel broadcasting auth route (e.g. <span class="code-pill">/broadcasting/auth</span>) and optional custom headers.</li>
-          <li><strong>Local Event Log Buffer:</strong> Recent message history stored temporarily in local memory to allow filtering and payload inspection.</li>
-        </ul>
-        <div class="callout-box">
-          ðŸ’¡ <strong>Resetting Data:</strong> You can wipe all stored connection profiles and message logs with one click inside EchoScope settings or by clearing your browser's extension data.
-        </div>
-      </section>
+    <!-- Section 5 -->
+    <div class="privacy-card">
+      <h2>5. Store Developer Policy Compliance</h2>
+      <p>
+        EchoScope adheres strictly to the <strong>Microsoft Edge Add-ons Developer Agreement</strong> and Google Chrome Web Store Developer Program Policies. All code is bundled locally without remote script evaluation.
+      </p>
+    </div>
 
-      <!-- Section 4 -->
-      <section class="policy-section" id="section-4">
-        <h2><span class="sec-num">04.</span> Browser Permissions Justification</h2>
-        <p>EchoScope requests only the absolute minimum permissions needed to inspect WebSocket events and authenticate channels:</p>
-        
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Permission</th>
-                <th>Scope</th>
-                <th>Why It Is Strictly Required</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="code-pill">storage</span></td>
-                <td>Local Sandbox Storage</td>
-                <td>Required to save connection configurations (host, port, app key, custom headers, subscribed channels) on your machine.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">activeTab</span></td>
-                <td>Tab Management</td>
-                <td>Required when you click the popout inspector button to open the full-screen EchoScope console in a dedicated browser tab.</td>
-              </tr>
-              <tr>
-                <td><span class="code-pill">host_permissions</span> (<span class="code-pill">&lt;all_urls&gt;</span>)</td>
-                <td>WebSocket &amp; Auth Network Access</td>
-                <td>Required to establish WebSocket connections (<span class="code-pill">ws://*</span>, <span class="code-pill">wss://*</span>) and send HTTP POST authorization requests (<span class="code-pill">http://*</span>, <span class="code-pill">https://*</span>) to user-specified local developer servers (e.g., <span class="code-pill">ws://127.0.0.1:8080</span>, <span class="code-pill">http://localhost:8000/broadcasting/auth</span>) across any domain you test.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Section 5 -->
-      <section class="policy-section" id="section-5">
-        <h2><span class="sec-num">05.</span> Remote Code Compliance</h2>
-        <p>In accordance with Chrome Web Store and Microsoft Edge Manifest V3 security requirements:</p>
-        <ul>
-          <li>EchoScope contains <strong>zero remote scripts</strong>. No JavaScript, WebAssembly, or third-party stylesheets are fetched from external servers at runtime.</li>
-          <li>All protocol logic, WebSocket reconnect handlers, and JSON syntax highlighters are bundled and packaged locally inside the extension.</li>
-        </ul>
-      </section>
-
-      <!-- Section 6 -->
-      <section class="policy-section" id="section-6">
-        <h2><span class="sec-num">06.</span> Third-Party Disclosure</h2>
-        <p>We do not transfer, sell, or disclose user data to third parties, advertisers, or analytics brokers. Network calls occur solely between your client and your designated WebSocket and authorization servers.</p>
-      </section>
-
-      <!-- Section 7 -->
-      <section class="policy-section" id="section-7">
-        <h2><span class="sec-num">07.</span> Data Retention &amp; Erasure</h2>
-        <p>We host no external backend servers or user accounts. When you uninstall EchoScope from your browser (<span class="code-pill">chrome://extensions</span>), your browser immediately and permanently erases all locally saved connection profiles and event caches.</p>
-      </section>
-
-      <!-- Section 8 -->
-      <section class="policy-section" id="section-8">
-        <h2><span class="sec-num">08.</span> User Rights (GDPR &amp; CCPA)</h2>
-        <p>In compliance with GDPR and CCPA regulations, you have absolute control over your data. All configurations are stored locally on your device, and you may inspect, export, or delete them at any time.</p>
-      </section>
-
-      <!-- Section 9 -->
-      <section class="policy-section" id="section-9">
-        <h2><span class="sec-num">09.</span> Children's Privacy (COPPA)</h2>
-        <p>EchoScope is a specialized developer tool and does not collect personal information from individuals of any age, including children under 13.</p>
-      </section>
-
-      <!-- Section 10 -->
-      <section class="policy-section" id="section-10">
-        <h2><span class="sec-num">10.</span> Contact &amp; Open Source Information</h2>
-        <p>EchoScope is open-source software licensed under the MIT License. If you have questions or inquiries regarding this policy, please reach out via GitHub:</p>
-        <div class="contact-card">
-          <p><strong>Developer:</strong> Sakhawat Hossain</p>
-          <p><strong>Portfolio &amp; Website:</strong> <a href="https://sajusun.github.io" target="_blank" rel="noopener">https://sajusun.github.io</a></p>
-          <p><strong>GitHub Repository:</strong> <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener">github.com/sajusun/echo-scope</a></p>
-          <p><strong>Issue Tracker:</strong> <a href="https://github.com/sajusun/echo-scope/issues" target="_blank" rel="noopener">Submit an Issue on GitHub</a></p>
-        </div>
-      </section>
-
-    </main>
+    <!-- Section 6 -->
+    <div class="privacy-card">
+      <h2>6. Developer Support &amp; Questions</h2>
+      <p>
+        If you have questions regarding this Privacy Policy or wish to report an issue, please open an issue on the official <a href="https://github.com/sajusun/echo-scope/issues" target="_blank" rel="noopener" style="color: #c4b5fd; text-decoration: underline;">GitHub Issue Tracker</a> or contact the developer via our <a href="../index.html" style="color: #c4b5fd; text-decoration: underline;">portfolio hub</a>.
+      </p>
+    </div>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 EchoScope. All rights reserved. Open source under the MIT License.</p>
+      <p>&copy; 2026 EchoScope. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: #c4b5fd;">Sakhawat Hossain</a>. MIT License.</p>
     </footer>
-
   </div>
 
 </body>
 </html>
-
-

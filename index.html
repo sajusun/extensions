@@ -4,21 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browser Extensions Portfolio & Privacy Center — Sakhawat Hossain</title>
-  <meta name="description" content="Official showcase, landing pages, and privacy compliance disclosures for all browser extensions by Sakhawat Hossain. 100% Client-side privacy and productivity.">
+  <meta name="description" content="Official showcase, landing pages, and privacy compliance disclosures for browser extensions engineered by Sakhawat Hossain. 100% Client-side privacy and productivity.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #080b13;
-      --bg-surface: #101626;
-      --bg-subtle: #192238;
-      --border: #23304d;
+      --bg-base: #0f1219;
+      --bg-surface: #181d28;
+      --bg-elevated: #202738;
+      --border: #262f40;
       --border-hover: #3b82f6;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --text-subtle: #64748b;
       --primary: #3b82f6;
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --primary-hover: #2563eb;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -54,11 +56,11 @@
     .badge-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(59, 130, 246, 0.15);
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.12);
       border: 1px solid rgba(59, 130, 246, 0.3);
       color: #93c5fd;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -66,20 +68,19 @@
     }
 
     h1 {
-      font-size: 2.9rem;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 14px;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
     }
 
     p.subtitle {
       color: var(--text-muted);
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       max-width: 740px;
       margin: 0 auto;
+      line-height: 1.6;
     }
 
     .grid {
@@ -93,7 +94,7 @@
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 26px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -102,20 +103,27 @@
     }
 
     .card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+      border-color: #3b82f6;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
     }
 
     .card-top {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .card-header {
       display: flex;
-      align-items: center;
-      gap: 14px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 14px;
+    }
+
+    .card-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .card-icon {
@@ -130,7 +138,7 @@
     }
 
     .card-title {
-      font-size: 1.2rem;
+      font-size: 1.18rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.3;
@@ -147,50 +155,95 @@
     }
 
     .card-version {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
+      color: var(--text-subtle);
       font-family: var(--font-mono);
-      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    /* Icon-only action badge group */
+    .card-action-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .icon-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .icon-badge svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    .icon-badge:hover {
+      background: #28334a;
+      border-color: #475569;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .icon-badge.edge:hover {
+      color: #38bdf8;
+      border-color: #0284c7;
+      background: rgba(2, 132, 199, 0.18);
+    }
+
+    .icon-badge.github:hover {
+      color: #ffffff;
+      border-color: #94a3b8;
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .card-desc {
       color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
+      font-size: 0.94rem;
+      line-height: 1.55;
     }
 
     .card-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid var(--border);
-      padding-top: 18px;
-      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
+      margin-top: 12px;
     }
 
     .btn-view {
+      color: #38bdf8;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #60a5fa;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
+      transition: gap 0.2s, color 0.15s;
     }
 
     .btn-view:hover {
-      background: #3b82f6;
-      color: #fff;
+      color: #7dd3fc;
+      gap: 9px;
     }
 
     .privacy-link {
-      color: #94a3b8;
+      color: var(--text-subtle);
+      font-size: 0.82rem;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.8rem;
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -198,13 +251,13 @@
     }
 
     .privacy-link:hover {
-      color: #e2e8f0;
+      color: #cbd5e1;
       text-decoration: underline;
     }
 
     footer {
       text-align: center;
-      color: var(--text-muted);
+      color: var(--text-subtle);
       font-size: 0.9rem;
       border-top: 1px solid var(--border);
       padding-top: 36px;
@@ -212,7 +265,7 @@
     }
 
     footer a {
-      color: #60a5fa;
+      color: #38bdf8;
       text-decoration: none;
     }
 
@@ -226,42 +279,38 @@
   <div class="container">
     
     <header>
-      <div class="badge-pill">🚀 Browser Extensions Portfolio &amp; Privacy Hub</div>
+      <div class="badge-pill">
+        <span>🚀 3 Extensions Live on Microsoft Edge Add-ons &bull; 100% Client-Side Privacy</span>
+      </div>
       <h1>Developer Tools &amp; Productivity Suite</h1>
-      <p class="subtitle">Official product showcase and compliance policies for browser extensions engineered by Sakhawat Hossain. 100% Client-side architecture with zero telemetry surveillance.</p>
+      <p class="subtitle">Official product showcase and compliance policies for browser extensions engineered by Sakhawat Hossain. Zero telemetry surveillance with local-first performance.</p>
     </header>
 
     <div class="grid">
 
-      <!-- DevFill -->
+      <!-- EchoScope (Edge Live + GitHub Live) -->
       <div class="card">
         <div class="card-top">
           <div class="card-header">
-            <div class="card-icon" style="background: rgba(5, 150, 105, 0.2); border: 1px solid rgba(5, 150, 105, 0.4); color: #34d399;">✏️</div>
-            <div>
-              <div class="card-title"><a href="./devfill/index.html">DevFill</a></div>
-              <div class="card-version">v1.0.1 • Manifest V3</div>
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.35); color: #a78bfa;">📡</div>
+              <div>
+                <div class="card-title"><a href="./echoscope/index.html">EchoScope</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+            <div class="card-action-badges">
+              <!-- Edge Store Live Icon -->
+              <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank" rel="noopener" class="icon-badge edge" title="Install from Microsoft Edge Add-ons">
+                <svg viewBox="0 0 24 24"><path d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z"/></svg>
+              </a>
+              <!-- GitHub Live Icon -->
+              <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener" class="icon-badge github" title="View Source on GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
             </div>
           </div>
-          <p class="card-desc">Smart Dummy Form Filler for Web Developers &amp; QA. Fills forms in 1ms with React/Vue DOM events and keyboard shortcuts (Alt+Shift+F).</p>
-        </div>
-        <div class="card-footer">
-          <a href="./devfill/index.html" class="btn-view">Product Page &rarr;</a>
-          <a href="./devfill/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
-        </div>
-      </div>
-
-      <!-- EchoScope -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon" style="background: rgba(124, 58, 237, 0.2); border: 1px solid rgba(124, 58, 237, 0.4); color: #a78bfa;">📡</div>
-            <div>
-              <div class="card-title"><a href="./echoscope/index.html">EchoScope</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
-            </div>
-          </div>
-          <p class="card-desc">Real-time WebSocket &amp; Laravel Reverb Broadcast Inspector. Test private channels and inspect JSON payloads without frontend code.</p>
+          <p class="card-desc">Real-time WebSocket &amp; Laravel Reverb Broadcast Inspector. Test private channels and inspect JSON payloads without writing temporary frontend code.</p>
         </div>
         <div class="card-footer">
           <a href="./echoscope/index.html" class="btn-view">Product Page &rarr;</a>
@@ -269,35 +318,59 @@
         </div>
       </div>
 
-      <!-- EdgePDF SmartTools -->
+      <!-- DevFill (Edge Live + GitHub Live) -->
       <div class="card">
         <div class="card-top">
           <div class="card-header">
-            <div class="card-icon" style="background: rgba(225, 29, 72, 0.2); border: 1px solid rgba(225, 29, 72, 0.4); color: #fb7185;">📄</div>
-            <div>
-              <div class="card-title"><a href="./edgepdf/index.html">EdgePDF SmartTools</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399;">✏️</div>
+              <div>
+                <div class="card-title"><a href="./devfill/index.html">DevFill</a></div>
+                <div class="card-version">v1.0.1 • Manifest V3</div>
+              </div>
+            </div>
+            <div class="card-action-badges">
+              <!-- Edge Store Live Icon -->
+              <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener" class="icon-badge edge" title="Install from Microsoft Edge Add-ons">
+                <svg viewBox="0 0 24 24"><path d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z"/></svg>
+              </a>
+              <!-- GitHub Live Icon -->
+              <a href="https://github.com/sajusun/devfill" target="_blank" rel="noopener" class="icon-badge github" title="View Source on GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
             </div>
           </div>
-          <p class="card-desc">1-Click Table to Excel (.xlsx) converter, client-side OCR for scanned documents, and dark reader mode with zero server uploads.</p>
+          <p class="card-desc">Smart Dummy Form Filler for Web Developers &amp; QA. Fills inputs, selects, and checkboxes in 1ms with React/Vue DOM events and keyboard shortcuts (Alt+Shift+F).</p>
         </div>
         <div class="card-footer">
-          <a href="./edgepdf/index.html" class="btn-view">Product Page &rarr;</a>
-          <a href="./edgepdf/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
+          <a href="./devfill/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./devfill/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
       </div>
 
-      <!-- LaraLens -->
+      <!-- LaraLens (Edge Live + GitHub Live) -->
       <div class="card">
         <div class="card-top">
           <div class="card-header">
-            <div class="card-icon" style="background: rgba(255, 45, 32, 0.2); border: 1px solid rgba(255, 45, 32, 0.4); color: #ff8a80;">🔍</div>
-            <div>
-              <div class="card-title"><a href="./laralens/index.html">LaraLens</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171;">🔍</div>
+              <div>
+                <div class="card-title"><a href="./laralens/index.html">LaraLens</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+            <div class="card-action-badges">
+              <!-- Edge Store Live Icon -->
+              <a href="https://microsoftedge.microsoft.com/addons/detail/dakfgclgidmgibecefllmeffnindhipc" target="_blank" rel="noopener" class="icon-badge edge" title="Install from Microsoft Edge Add-ons">
+                <svg viewBox="0 0 24 24"><path d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z"/></svg>
+              </a>
+              <!-- GitHub Live Icon -->
+              <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener" class="icon-badge github" title="View Source on GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
             </div>
           </div>
-          <p class="card-desc">Ultimate Laravel &amp; Inertia.js DevTools. Inspect Inertia page props, session cookies, CSRF tokens, and Ziggy routes locally.</p>
+          <p class="card-desc">Ultimate Laravel &amp; Inertia.js DevTools. Inspect Inertia page props, session cookies, CSRF tokens, and Ziggy routes locally with zero telemetry.</p>
         </div>
         <div class="card-footer">
           <a href="./laralens/index.html" class="btn-view">Product Page &rarr;</a>
@@ -305,50 +378,16 @@
         </div>
       </div>
 
-      <!-- MapLeads Pro -->
+      <!-- PureEdge CleanTab (No icon badge yet) -->
       <div class="card">
         <div class="card-top">
           <div class="card-header">
-            <div class="card-icon" style="background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(37, 99, 235, 0.4); color: #60a5fa;">📍</div>
-            <div>
-              <div class="card-title"><a href="./mapleads/index.html">MapLeads Pro</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
-            </div>
-          </div>
-          <p class="card-desc">Google Maps Lead Scraper &amp; B2B Exporter. Scrapes search results into Excel &amp; CSV with anti-detection physics and goldmine filters.</p>
-        </div>
-        <div class="card-footer">
-          <a href="./mapleads/index.html" class="btn-view">Product Page &rarr;</a>
-          <a href="./mapleads/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
-        </div>
-      </div>
-
-      <!-- OfficeMate for Edge -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon" style="background: rgba(0, 120, 212, 0.2); border: 1px solid rgba(0, 120, 212, 0.4); color: #38bdf8;">💼</div>
-            <div>
-              <div class="card-title"><a href="./officemate/index.html">OfficeMate for Edge</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
-            </div>
-          </div>
-          <p class="card-desc">Productivity copilot for Microsoft 365: Outlook AI drafts, Teams meeting action items, and 1-click workspace tab stashing.</p>
-        </div>
-        <div class="card-footer">
-          <a href="./officemate/index.html" class="btn-view">Product Page &rarr;</a>
-          <a href="./officemate/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
-        </div>
-      </div>
-
-      <!-- PureEdge CleanTab -->
-      <div class="card">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-icon" style="background: rgba(13, 148, 136, 0.2); border: 1px solid rgba(13, 148, 136, 0.4); color: #2dd4bf;">🛡️</div>
-            <div>
-              <div class="card-title"><a href="./pureedge/index.html">PureEdge CleanTab</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(13, 148, 136, 0.15); border: 1px solid rgba(13, 148, 136, 0.35); color: #2dd4bf;">🛡️</div>
+              <div>
+                <div class="card-title"><a href="./pureedge/index.html">PureEdge CleanTab</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
             </div>
           </div>
           <p class="card-desc">Purge bloated MSN news feeds, enjoy a 4K minimalist dashboard with weather &amp; Pomodoro, and save 50% RAM with Turbo Tab Sleep.</p>
@@ -359,14 +398,62 @@
         </div>
       </div>
 
-      <!-- SnapSnippet -->
+      <!-- EdgePDF SmartTools (No icon badge yet) -->
       <div class="card">
         <div class="card-top">
           <div class="card-header">
-            <div class="card-icon" style="background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #a5b4fc;">⚡</div>
-            <div>
-              <div class="card-title"><a href="./snapsnippet/index.html">SnapSnippet</a></div>
-              <div class="card-version">v1.0.0 • Manifest V3</div>
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(225, 29, 72, 0.15); border: 1px solid rgba(225, 29, 72, 0.35); color: #fb7185;">📄</div>
+              <div>
+                <div class="card-title"><a href="./edgepdf/index.html">EdgePDF SmartTools</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc">1-Click Table to Excel (.xlsx) converter, client-side OCR for scanned receipts and documents, and dark reader mode with zero server uploads.</p>
+        </div>
+        <div class="card-footer">
+          <a href="./edgepdf/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./edgepdf/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- MapLeads Pro (No icon badge yet) -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.35); color: #60a5fa;">📍</div>
+              <div>
+                <div class="card-title"><a href="./mapleads/index.html">MapLeads Pro</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc">Google Maps Lead Scraper &amp; B2B Exporter. Scrapes business listings into Excel &amp; CSV with anti-detection human simulation and deep email crawler.</p>
+        </div>
+        <div class="card-footer">
+          <a href="./mapleads/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./mapleads/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- SnapSnippet (GitHub Live) -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); color: #a5b4fc;">⚡</div>
+              <div>
+                <div class="card-title"><a href="./snapsnippet/index.html">SnapSnippet</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+            <div class="card-action-badges">
+              <!-- GitHub Live Icon -->
+              <a href="https://github.com/sajusun/snapsnippet" target="_blank" rel="noopener" class="icon-badge github" title="View Source on GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
             </div>
           </div>
           <p class="card-desc">Raycast-style spotlight command bar &amp; developer clipboard for Artisan, Docker, Git, SQL, and Regex snippets (Ctrl+Shift+K).</p>
@@ -374,6 +461,26 @@
         <div class="card-footer">
           <a href="./snapsnippet/index.html" class="btn-view">Product Page &rarr;</a>
           <a href="./snapsnippet/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- OfficeMate for Edge (No icon badge yet) -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-header">
+            <div class="card-identity">
+              <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); border: 1px solid rgba(2, 132, 199, 0.35); color: #38bdf8;">💼</div>
+              <div>
+                <div class="card-title"><a href="./officemate/index.html">OfficeMate for Edge</a></div>
+                <div class="card-version">v1.0.0 • Manifest V3</div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc">Productivity copilot for Microsoft 365: Outlook AI drafts, Teams meeting action items, and 1-click workspace tab stashing.</p>
+        </div>
+        <div class="card-footer">
+          <a href="./officemate/index.html" class="btn-view">Product Page &rarr;</a>
+          <a href="./officemate/privacy/index.html" class="privacy-link">🛡️ Privacy Policy</a>
         </div>
       </div>
 
