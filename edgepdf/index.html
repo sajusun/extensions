@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EdgePDF SmartTools — 1-Click Table to Excel & OCR for Microsoft Edge</title>
-  <meta name="description" content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents, and local AI summarizer in Microsoft Edge. 100% private.">
+  <meta name="description"
+    content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents, and local AI summarizer in Microsoft Edge. 100% private.">
   <link rel="canonical" href="https://sajusun.github.io/extensions/edgepdf/">
   <link rel="icon" type="image/png" href="./icon.png">
 
@@ -13,14 +15,16 @@
   <meta property="og:url" content="https://sajusun.github.io/extensions/edgepdf/">
   <meta property="og:site_name" content="EdgePDF SmartTools">
   <meta property="og:title" content="EdgePDF SmartTools — 1-Click Table to Excel & OCR for Microsoft Edge">
-  <meta property="og:description" content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents. 100% private.">
+  <meta property="og:description"
+    content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents. 100% private.">
   <meta property="og:image" content="https://sajusun.github.io/extensions/assets/icons/edgepdf.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://sajusun.github.io/extensions/edgepdf/">
   <meta name="twitter:title" content="EdgePDF SmartTools — 1-Click Table to Excel & OCR for Microsoft Edge">
-  <meta name="twitter:description" content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents.">
+  <meta name="twitter:description"
+    content="1-Click PDF table to Microsoft Excel (.xlsx), client-side OCR for scanned receipts and documents.">
   <meta name="twitter:image" content="https://sajusun.github.io/extensions/assets/icons/edgepdf.png">
 
   <!-- Schema.org JSON-LD -->
@@ -104,7 +108,9 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #0e1117;
@@ -123,7 +129,11 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg);
@@ -331,9 +341,17 @@
       background: #334155;
     }
 
-    .window-dots span:nth-child(1) { background: #ef4444; }
-    .window-dots span:nth-child(2) { background: #f59e0b; }
-    .window-dots span:nth-child(3) { background: #10b981; }
+    .window-dots span:nth-child(1) {
+      background: #ef4444;
+    }
+
+    .window-dots span:nth-child(2) {
+      background: #f59e0b;
+    }
+
+    .window-dots span:nth-child(3) {
+      background: #10b981;
+    }
 
     .preview-url {
       background: var(--bg);
@@ -355,7 +373,9 @@
     }
 
     @media (max-width: 768px) {
-      .preview-body { grid-template-columns: 1fr; }
+      .preview-body {
+        grid-template-columns: 1fr;
+      }
     }
 
     .sample-doc {
@@ -609,6 +629,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Sticky Header Bar -->
@@ -623,7 +644,8 @@
         <a href="#hotkeys">Shortcuts</a>
         <a href="#pricing">Tiers</a>
         <a href="./privacy/index.html">Privacy Policy</a>
-        <a href="#edge-store-edgepdf" class="btn-cta">Get for Edge</a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/pkpfcabkcabokgfjodabihiajpjcahif" class="btn-cta">Get
+          for Edge</a>
       </nav>
     </div>
   </header>
@@ -639,14 +661,17 @@
         <span class="gradient-text">Into Clean Excel in 1 Click.</span>
       </h1>
       <p class="lead">
-        Convert tabular data from PDF documents directly to native Microsoft Excel (.xlsx), CSV, and TSV clipboard. Extract text from scanned receipts with client-side OCR. 100% private in local browser memory.
+        Convert tabular data from PDF documents directly to native Microsoft Excel (.xlsx), CSV, and TSV clipboard.
+        Extract text from scanned receipts with client-side OCR. 100% private in local browser memory.
       </p>
 
       <div class="hero-actions">
-        <a href="#edge-store-edgepdf" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/pkpfcabkcabokgfjodabihiajpjcahif" class="btn-cta"
+          style="padding: 12px 26px; font-size: 1.02rem;">
           Get for Microsoft Edge
         </a>
-        <a href="#gumroad-edgepdf" class="btn-secondary" style="padding: 12px 24px; font-size: 1.02rem;">
+        <a href="https://sajusun.gumroad.com/l/pureedge" class="btn-secondary"
+          style="padding: 12px 24px; font-size: 1.02rem;">
           Get EdgePDF Pro ↗
         </a>
       </div>
@@ -686,7 +711,8 @@
             </div>
           </div>
           <div class="sample-excel">
-            <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;">📊 Generated Microsoft Excel (.xlsx)</div>
+            <div style="color: #34d399; font-weight: 700; margin-bottom: 12px;">📊 Generated Microsoft Excel (.xlsx)
+            </div>
             <div style="color: #cbd5e1; line-height: 1.8;">
               A1: Description &nbsp;|&nbsp; B1: Amount (USD)<br>
               A2: Cloud Compute &nbsp;|&nbsp; B2: 12450.00<br>
@@ -712,37 +738,43 @@
         <div class="feature-card">
           <div class="feature-icon">📊</div>
           <h3>1-Click PDF Table to Excel</h3>
-          <p>Extracts structured data from financial statements, invoices, and research papers directly into clean Microsoft Excel (.xlsx) and CSV files.</p>
+          <p>Extracts structured data from financial statements, invoices, and research papers directly into clean
+            Microsoft Excel (.xlsx) and CSV files.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔍</div>
           <h3>Client-Side Area Snip OCR</h3>
-          <p>Press <span class="hotkey-pill">Alt + Shift + O</span> to drag a box over any scanned receipt, paper invoice, or non-selectable image to capture text instantly.</p>
+          <p>Press <span class="hotkey-pill">Alt + Shift + O</span> to drag a box over any scanned receipt, paper
+            invoice, or non-selectable image to capture text instantly.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
           <h3>Floating PDF Smart Toolbar</h3>
-          <p>An elegant, unobtrusive pill attached to the Edge PDF viewer that gives you instant access to export, copy, dark mode, and OCR tools without cluttering your view.</p>
+          <p>An elegant, unobtrusive pill attached to the Edge PDF viewer that gives you instant access to export, copy,
+            dark mode, and OCR tools without cluttering your view.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🌙</div>
           <h3>Intelligent PDF Dark Reader</h3>
-          <p>Invert blinding white PDF backgrounds into an eye-comfort night mode while preserving original colors of embedded charts, diagrams, and figures.</p>
+          <p>Invert blinding white PDF backgrounds into an eye-comfort night mode while preserving original colors of
+            embedded charts, diagrams, and figures.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🤖</div>
           <h3>AI Document Explainer</h3>
-          <p>Instant local heuristics for high-level bullet takeaways, with optional Bring-Your-Own-Key OpenAI and Google Gemini integration for legal summaries.</p>
+          <p>Instant local heuristics for high-level bullet takeaways, with optional Bring-Your-Own-Key OpenAI and
+            Google Gemini integration for legal summaries.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
           <h3>100% Client-Side Private</h3>
-          <p>All parsing, OCR, and table extractions run in local browser memory. Zero external server uploads. Your confidential documents stay on your machine.</p>
+          <p>All parsing, OCR, and table extractions run in local browser memory. Zero external server uploads. Your
+            confidential documents stay on your machine.</p>
         </div>
       </div>
     </section>
@@ -751,7 +783,8 @@
     <section id="hotkeys" class="hotkey-banner">
       <div>
         <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 4px;">Lightning-Fast PDF Hotkeys</h3>
-        <p style="color: var(--text-muted); font-size: 0.92rem;">Control your document workflow without touching the mouse.</p>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Control your document workflow without touching the
+          mouse.</p>
       </div>
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <div>
@@ -794,7 +827,8 @@
             <li class="dimmed">✗ Advanced batch table extract</li>
             <li class="dimmed">✗ Custom BYOK AI summarizer</li>
           </ul>
-          <a href="#edge-store-edgepdf" class="btn-secondary" style="width: 100%; text-align: center; justify-content: center;">
+          <a href="#edge-store-edgepdf" class="btn-secondary"
+            style="width: 100%; text-align: center; justify-content: center;">
             Install Free Edition
           </a>
         </div>
@@ -805,7 +839,7 @@
           <h3 style="color: #fb7185;">EdgePDF Pro</h3>
           <p class="pricing-desc">For accountants, financial analysts, and high-volume professionals.</p>
           <div class="price-value">
-            $19 <span>/ one-time lifetime</span>
+            $11.99 <span>/ one-time lifetime</span>
           </div>
           <ul class="feature-list">
             <li>✓ <strong>Unlimited</strong> daily table exports</li>
@@ -816,7 +850,8 @@
             <li>✓ Lifetime updates &amp; priority email support</li>
             <li>✓ 100% client-side privacy guarantee</li>
           </ul>
-          <a href="#gumroad-edgepdf" class="btn-cta" style="width: 100%; text-align: center; justify-content: center;">
+          <a href="https://sajusun.gumroad.com/l/pureedge" class="btn-cta"
+            style="width: 100%; text-align: center; justify-content: center;">
             Get EdgePDF Pro ↗
           </a>
         </div>
@@ -827,7 +862,8 @@
     <div class="privacy-banner">
       <div class="privacy-content">
         <h3>🛡️ Enterprise-Grade Document Privacy</h3>
-        <p>EdgePDF SmartTools parses PDF documents entirely inside your Edge browser memory using PDF.js and SheetJS. Your confidential contracts, financial figures, and invoices never leave your computer.</p>
+        <p>EdgePDF SmartTools parses PDF documents entirely inside your Edge browser memory using PDF.js and SheetJS.
+          Your confidential contracts, financial figures, and invoices never leave your computer.</p>
       </div>
       <div>
         <a href="./privacy/index.html" class="btn-secondary">
@@ -843,11 +879,12 @@
       <p>&copy; 2026 EdgePDF SmartTools. Built exclusively for Microsoft Edge.</p>
       <div class="footer-links">
         <a href="./privacy/index.html">Privacy Policy</a>
-        <a href="#gumroad-edgepdf">EdgePDF Pro</a>
+        <a href="https://sajusun.gumroad.com/l/pureedge">EdgePDF Pro</a>
         <a href="../index.html">All Extensions Hub</a>
       </div>
     </div>
   </footer>
 
 </body>
+
 </html>
