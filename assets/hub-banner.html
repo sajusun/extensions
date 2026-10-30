@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #090d16;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 70px;
+      border: 8px solid #1e293b;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Clean Subtle Grid Lines (Strictly No Glassmorphism) */
+    .bg-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      border: 2px solid #334155;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #38bdf8;
+    }
+
+    .suite-badge {
+      background: #111827;
+      border: 1px solid #2563eb;
+      color: #93c5fd;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 2;
+      margin: 10px 0;
+    }
+
+    .main-headline {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .headline-highlight {
+      color: #38bdf8;
+    }
+
+    .subtitle {
+      font-size: 21px;
+      color: #94a3b8;
+      line-height: 1.45;
+      max-width: 980px;
+      margin-bottom: 24px;
+    }
+
+    /* Solid Metrics Bar */
+    .metrics-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .metric-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .metric-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    .metric-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    /* Extensions Tag Strip */
+    .apps-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .app-pill {
+      background: #131b2e;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: monospace;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #1e293b;
+      padding-top: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-author {
+      font-size: 16px;
+      color: #64748b;
+    }
+
+    .footer-author strong {
+      color: #f8fafc;
+    }
+
+    .footer-url {
+      font-family: monospace;
+      font-size: 15px;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <!-- Header -->
+  <div class="header-row">
+    <div class="brand-group">
+      <img src="./icons/hub-brand.png" alt="Hub Brand" class="brand-icon">
+      <div>
+        <div class="brand-title">Extension Suite Portfolio</div>
+        <div style="font-size: 13px; color: #64748b; margin-top: 2px;">Official Directory &amp; Compliance Center</div>
+      </div>
+    </div>
+    <div class="suite-badge">
+      MICROSOFT EDGE &bull; CHROMIUM
+    </div>
+  </div>
+
+  <!-- Main Hero -->
+  <div class="main-content">
+    <h1 class="main-headline">
+      High-Performance <span class="headline-highlight">Browser Extensions</span>
+    </h1>
+    <p class="subtitle">
+      A curated collection of developer productivity tools, smart inspectors, and offline-first utilities. Built with strict client-side privacy.
+    </p>
+
+    <!-- Solid Metrics (No Glassmorphism) -->
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-dot"></div>
+        <div class="metric-label">8 Production Extensions</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-dot" style="background: #38bdf8;"></div>
+        <div class="metric-label">100% Client-Side Privacy</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-dot" style="background: #f59e0b;"></div>
+        <div class="metric-label">Manifest V3 Certified</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-dot" style="background: #a855f7;"></div>
+        <div class="metric-label">Zero Telemetry</div>
+      </div>
+    </div>
+
+    <!-- App Tags Strip -->
+    <div class="apps-strip">
+      <div class="app-pill">⚡ EchoScope</div>
+      <div class="app-pill">⚡ DevFill</div>
+      <div class="app-pill">⚡ LaraLens</div>
+      <div class="app-pill">⚡ PureEdge</div>
+      <div class="app-pill">⚡ EdgePDF</div>
+      <div class="app-pill">⚡ MapLeads Pro</div>
+      <div class="app-pill">⚡ SnapSnippet</div>
+      <div class="app-pill">⚡ OfficeMate</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-row">
+    <div class="footer-author">
+      Engineered by <strong>Sakhawat Hossain</strong>
+    </div>
+    <div class="footer-url">
+      sajusun.github.io/extensions
+    </div>
+  </div>
+</body>
+</html>

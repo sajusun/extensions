@@ -8,6 +8,10 @@
     <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/hub-banner.png</image:loc>
+      <image:title>Browser Extensions Suite and Directory</image:title>
+    </image:image>
   </url>
 
   <!-- EchoScope (Live on Edge & Open Source) -->
