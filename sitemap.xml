@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Extensions Portfolio Hub -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- EchoScope (Live on Edge & Open Source) -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/echoscope/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/echoscope.png</image:loc>
+      <image:title>EchoScope - Real-time WebSocket and Laravel Reverb Broadcast Inspector</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/echoscope/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- DevFill (Live on Edge & Open Source) -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/devfill/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/devfill.png</image:loc>
+      <image:title>DevFill - Smart Form Auto Filler for Developers and QA</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/devfill/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- LaraLens (Live on Edge & Open Source) -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/laralens/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/laralens.png</image:loc>
+      <image:title>LaraLens - Laravel and Inertia.js DevTools Extension</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/laralens/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- PureEdge CleanTab -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/pureedge/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/pureedge.png</image:loc>
+      <image:title>PureEdge CleanTab - Minimalist New Tab and MSN Feed Purger</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/pureedge/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- EdgePDF SmartTools -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/edgepdf/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/edgepdf.png</image:loc>
+      <image:title>EdgePDF SmartTools - 1-Click PDF Table to Excel and OCR</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/edgepdf/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- MapLeads Pro -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/mapleads/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/mapleads.png</image:loc>
+      <image:title>MapLeads Pro - Google Maps B2B Lead Scraper and Exporter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/mapleads/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- SnapSnippet -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/snapsnippet/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/snapsnippet.png</image:loc>
+      <image:title>SnapSnippet - Developer Command Spotlight and Clipboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/snapsnippet/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- OfficeMate for Edge -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/officemate/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/officemate.png</image:loc>
+      <image:title>OfficeMate for Edge - Microsoft 365 Copilot Productivity Suite</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/officemate/privacy/</loc>
+    <lastmod>2026-10-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
+

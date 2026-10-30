@@ -5,7 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector</title>
   <meta name="description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side developer utility.">
+  <link rel="canonical" href="https://sajusun.github.io/extensions/echoscope/">
   <link rel="icon" type="image/png" href="./icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sajusun.github.io/extensions/echoscope/">
+  <meta property="og:site_name" content="EchoScope">
+  <meta property="og:title" content="EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector">
+  <meta property="og:description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
+  <meta property="og:image" content="https://sajusun.github.io/extensions/assets/icons/echoscope.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sajusun.github.io/extensions/echoscope/">
+  <meta name="twitter:title" content="EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector">
+  <meta name="twitter:description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
+  <meta name="twitter:image" content="https://sajusun.github.io/extensions/assets/icons/echoscope.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://sajusun.github.io/#person",
+        "name": "Sakhawat Hossain",
+        "url": "https://sajusun.github.io",
+        "sameAs": ["https://github.com/sajusun"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sajusun.github.io/extensions/echoscope/#app",
+        "name": "EchoScope",
+        "operatingSystem": "Microsoft Edge, Google Chrome, Chromium",
+        "applicationCategory": "DeveloperApplication",
+        "url": "https://sajusun.github.io/extensions/echoscope/",
+        "image": "https://sajusun.github.io/extensions/assets/icons/echoscope.png",
+        "description": "Real-time WebSocket & Laravel Reverb broadcast inspector and connection simulator. Test events, authenticate private channels, and monitor live payloads without writing frontend code.",
+        "softwareVersion": "1.0.0",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "author": { "@id": "https://sajusun.github.io/#person" },
+        "publisher": { "@id": "https://sajusun.github.io/#person" },
+        "sameAs": [
+          "https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc",
+          "https://github.com/sajusun/echo-scope"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://sajusun.github.io/extensions/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "EchoScope",
+            "item": "https://sajusun.github.io/extensions/echoscope/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does EchoScope require installing npm packages in my application?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. EchoScope connects directly to your WebSocket daemon (Laravel Reverb, Pusher Channels, Soketi) as an independent subscriber straight from your browser. Zero npm dependencies or application code alterations required."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can EchoScope authenticate private and presence broadcasting channels?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. EchoScope features full authentication simulation supporting session cookies, Bearer tokens, and custom /broadcasting/auth endpoints with custom HTTP headers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my WebSocket payloads or connection secrets logged or transmitted?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. EchoScope operates 100% locally within your browser extension sandbox. No analytics, tracking, or cloud relay services are used."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
