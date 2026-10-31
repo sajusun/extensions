@@ -14,13 +14,14 @@
   <meta property="og:site_name" content="SnapSnippet">
   <meta property="og:title" content="Privacy Policy - SnapSnippet">
   <meta property="og:description" content="Official Privacy Policy for SnapSnippet. 100% offline-first, zero telemetry.">
-  <meta property="og:image" content="https://sajusun.github.io/extensions/assets/icons/snapsnippet.png">
+  <meta property="og:image" content="https://sajusun.github.io/extensions/snapsnippet/assets/gumroad-cover-1280x720.png">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://sajusun.github.io/extensions/snapsnippet/privacy/">
   <meta name="twitter:title" content="Privacy Policy - SnapSnippet">
   <meta name="twitter:description" content="Official Privacy Policy for SnapSnippet extension. 100% offline-first, zero telemetry.">
+  <meta name="twitter:image" content="https://sajusun.github.io/extensions/snapsnippet/assets/gumroad-cover-1280x720.png">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -76,25 +77,25 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #ffffff;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f8fafc;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
+      --bg-base: #060913;
+      --bg-surface: #0d152a;
+      --bg-subtle: #111a33;
+      --border-subtle: #1e293b;
+      --border-strong: #334155;
       --border-highlight: #8b5cf6;
-      --text-main: #0f172a;
-      --text-body: #334155;
-      --text-muted: #64748b;
-      --text-subtle: #94a3b8;
+      --text-main: #f8fafc;
+      --text-body: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
       --primary: #8b5cf6;
-      --primary-hover: #7c3aed;
-      --primary-light: #f5f3ff;
-      --primary-border: #ddd6fe;
-      --code-bg: #f1f5f9;
-      --code-text: #0f172a;
+      --primary-hover: #a78bfa;
+      --primary-light: #161938;
+      --primary-border: #2e2a5c;
+      --code-bg: #111a33;
+      --code-text: #a78bfa;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     }
@@ -117,11 +118,10 @@
 
     .header-bar {
       border-bottom: 1px solid var(--border-subtle);
-      background: #ffffff;
+      background: #060913;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
     }
 
     .header-inner {
@@ -139,16 +139,17 @@
       gap: 12px;
       text-decoration: none;
       color: var(--text-main);
-      font-weight: 700;
-      font-size: 1.125rem;
+      font-weight: 800;
+      font-size: 1.15rem;
       letter-spacing: -0.01em;
     }
 
     .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
       background: #8b5cf6;
+      border: 1px solid #a78bfa;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,7 +177,7 @@
       gap: 6px;
       background: var(--primary-light);
       border: 1px solid var(--primary-border);
-      color: var(--primary);
+      color: #a78bfa;
       padding: 5px 12px;
       border-radius: 9999px;
       font-size: 0.78rem;
@@ -197,12 +198,12 @@
     }
 
     .hero-banner h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-top: 14px;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .hero-banner p {
@@ -220,9 +221,9 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-mono);
-      background: var(--bg-subtle);
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 6px;
     }
 
@@ -234,17 +235,17 @@
     }
 
     .highlight-card {
-      background: #ffffff;
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 12px;
       padding: 22px 20px;
       transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .highlight-card:hover {
       border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
+      box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
       transform: translateY(-2px);
     }
 
@@ -254,7 +255,7 @@
       border-radius: 10px;
       background: var(--primary-light);
       border: 1px solid var(--primary-border);
-      color: var(--primary);
+      color: #a78bfa;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -263,24 +264,24 @@
     }
 
     .highlight-card h3 {
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 700;
       margin-bottom: 6px;
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .highlight-card p {
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--text-muted);
       line-height: 1.5;
     }
 
     .policy-content {
-      background: #ffffff;
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
       padding: 44px 48px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     }
 
     .toc {
@@ -296,7 +297,7 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       font-weight: 700;
-      color: var(--primary);
+      color: #a78bfa;
       margin-bottom: 14px;
     }
 
@@ -318,7 +319,7 @@
     }
 
     .toc-list a:hover {
-      color: var(--primary);
+      color: #ffffff;
       text-decoration: underline;
     }
 
@@ -334,7 +335,7 @@
     .policy-section h2 {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
@@ -345,7 +346,7 @@
     }
 
     .policy-section h2 .sec-num {
-      color: var(--primary);
+      color: #a78bfa;
       font-family: var(--font-mono);
       font-size: 0.95rem;
       font-weight: 600;
@@ -370,7 +371,7 @@
     }
 
     .policy-section strong {
-      color: var(--text-main);
+      color: #ffffff;
     }
 
     .table-container {
@@ -385,12 +386,12 @@
       border-collapse: collapse;
       text-align: left;
       font-size: 0.88rem;
-      background: #ffffff;
+      background: var(--bg-surface);
     }
 
     th {
       background: var(--bg-subtle);
-      color: var(--text-main);
+      color: #ffffff;
       padding: 12px 16px;
       font-weight: 600;
       border-bottom: 1px solid var(--border-subtle);
@@ -407,7 +408,7 @@
     }
 
     tr:hover td {
-      background: #fafafa;
+      background: #131b36;
     }
 
     .code-pill {
@@ -421,23 +422,23 @@
     }
 
     .callout-box {
-      background: var(--primary-light);
+      background: #141738;
       border-left: 4px solid var(--primary);
       border-radius: 6px;
       padding: 16px 20px;
       margin: 20px 0;
-      color: var(--text-main);
+      color: #e2e8f0;
       font-size: 0.92rem;
     }
 
     a {
-      color: var(--primary);
+      color: #a78bfa;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     a:hover {
-      color: var(--primary-hover);
+      color: #c4b5fd;
     }
 
     .contact-card {
@@ -446,6 +447,7 @@
       border-radius: 10px;
       padding: 20px 24px;
       margin-top: 14px;
+      color: var(--text-body);
     }
 
     .contact-card p {
@@ -497,7 +499,7 @@
         <span>SnapSnippet</span>
       </a>
       <div class="nav-links">
-        <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
+        <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.88rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
         <span class="badge-shield">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
           100% Offline-First Clipboard
@@ -510,7 +512,7 @@
     
     <!-- Hero Header -->
     <div class="hero-banner">
-      <div class="badge-shield" style="margin-bottom: 8px;">Developer Tool Privacy</div>
+      <div class="badge-shield" style="margin-bottom: 12px;">Developer Tool Privacy</div>
       <h1>Privacy Policy</h1>
       <p>SnapSnippet is a developer command clipboard and Raycast-style spotlight command bar. We respect developer autonomy: all command snippets, code templates, and search queries remain strictly in your browser's local sandbox.</p>
       <div class="meta-date">
@@ -680,7 +682,7 @@
       <!-- Section 10 -->
       <section class="policy-section" id="section-10">
         <h2><span class="sec-num">10.</span> Contact &amp; Developer Information</h2>
-        <p>If you have questions, inquiries, or feedback regarding this policy, please reach out via GitHub or developer channels:</p>
+        <p>If you have questions, inquiries, or feedback regarding this policy, please reach out via developer channels:</p>
         <div class="contact-card">
           <p><strong>Developer:</strong> Sakhawat Hossain</p>
           <p><strong>Portfolio &amp; Website:</strong> <a href="https://sajusun.github.io" target="_blank" rel="noopener">https://sajusun.github.io</a></p>
