@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PureEdge CleanTab — Purge MSN Clickbaits & Minimalist 4K NewTab for Microsoft Edge</title>
-  <meta name="description" content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep, and enjoy a minimalist 4K new tab with Pomodoro and world clocks.">
+  <meta name="description"
+    content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep, and enjoy a minimalist 4K new tab with Pomodoro and world clocks.">
   <link rel="canonical" href="https://sajusun.github.io/extensions/pureedge/">
   <link rel="icon" type="image/png" href="./icon.png">
 
@@ -12,15 +14,18 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sajusun.github.io/extensions/pureedge/">
   <meta property="og:site_name" content="PureEdge CleanTab">
-  <meta property="og:title" content="PureEdge CleanTab — Purge MSN Clickbaits & Minimalist 4K NewTab for Microsoft Edge">
-  <meta property="og:description" content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep, and enjoy a minimalist 4K new tab.">
+  <meta property="og:title"
+    content="PureEdge CleanTab — Purge MSN Clickbaits & Minimalist 4K NewTab for Microsoft Edge">
+  <meta property="og:description"
+    content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep, and enjoy a minimalist 4K new tab.">
   <meta property="og:image" content="https://sajusun.github.io/extensions/assets/icons/pureedge.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://sajusun.github.io/extensions/pureedge/">
   <meta name="twitter:title" content="PureEdge CleanTab — Minimalist 4K NewTab for Microsoft Edge">
-  <meta name="twitter:description" content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep.">
+  <meta name="twitter:description"
+    content="Purge bloated MSN news feeds, block nagging Edge popups, save 50% system RAM with Turbo Tab Sleep.">
   <meta name="twitter:image" content="https://sajusun.github.io/extensions/assets/icons/pureedge.png">
 
   <!-- Schema.org JSON-LD -->
@@ -104,7 +109,9 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #0a0e17;
@@ -125,7 +132,11 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg);
@@ -136,7 +147,10 @@
       overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     /* Container */
     .container {
@@ -216,7 +230,9 @@
       transition: color 0.15s ease;
     }
 
-    .nav-link:hover { color: #ffffff; }
+    .nav-link:hover {
+      color: #ffffff;
+    }
 
     .nav-actions {
       display: flex;
@@ -404,9 +420,17 @@
       border-radius: 50%;
     }
 
-    .dot-red { background: #ef4444; }
-    .dot-yellow { background: #f59e0b; }
-    .dot-green { background: #10b981; }
+    .dot-red {
+      background: #ef4444;
+    }
+
+    .dot-yellow {
+      background: #f59e0b;
+    }
+
+    .dot-green {
+      background: #10b981;
+    }
 
     .mockup-stats {
       display: flex;
@@ -677,7 +701,8 @@
       font-size: 0.9rem;
     }
 
-    .matrix-table th, .matrix-table td {
+    .matrix-table th,
+    .matrix-table td {
       padding: 14px 20px;
       border-bottom: 1px solid var(--border);
     }
@@ -695,12 +720,14 @@
       border-bottom: none;
     }
 
-    .matrix-table td:nth-child(2), .matrix-table td:nth-child(3) {
+    .matrix-table td:nth-child(2),
+    .matrix-table td:nth-child(3) {
       text-align: center;
       width: 180px;
     }
 
-    .matrix-table th:nth-child(2), .matrix-table th:nth-child(3) {
+    .matrix-table th:nth-child(2),
+    .matrix-table th:nth-child(3) {
       text-align: center;
       width: 180px;
     }
@@ -761,20 +788,33 @@
     }
 
     @media (max-width: 860px) {
-      .hero h1 { font-size: 2.4rem; }
-      .features-grid { grid-template-columns: 1fr; }
-      .pricing-cards-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Slim Enterprise Sticky Navbar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="./index.html" class="brand">
-        <img src="./icon.png" alt="PureEdge Official Icon" class="brand-icon-img" width="36" height="36" style="border-radius: 9px; object-fit: cover;">
+      <a href="./" class="brand">
+        <img src="./icon.png" alt="PureEdge Official Icon" class="brand-icon-img" width="36" height="36"
+          style="border-radius: 9px; object-fit: cover;">
         <span>PureEdge <span class="brand-sub">CleanTab</span></span>
       </a>
 
@@ -787,7 +827,8 @@
 
       <div class="nav-actions">
         <a href="#" class="btn-nav-free" title="Coming soon on Microsoft Edge Add-ons">Add to Edge</a>
-        <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-nav-pro">Get Pro ↗</a>
+        <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-nav-pro">Get Pro
+          ↗</a>
       </div>
     </div>
   </header>
@@ -799,7 +840,7 @@
       <div class="badge-pill">Built Exclusively for Microsoft Edge</div>
       <h1>Purge MSN Clickbaits &amp;<br><span>Minimalist 4K NewTab</span></h1>
       <p class="hero-lead">
-        Clean up Microsoft Edge from bloated news feeds, sponsored junk, and intrusive nag bars. 
+        Clean up Microsoft Edge from bloated news feeds, sponsored junk, and intrusive nag bars.
         Enjoy a distraction-free new tab with Pomodoro, world clocks, and Turbo Tab Sleep that saves up to 50% RAM.
       </p>
 
@@ -854,7 +895,8 @@
         <div class="feature-card">
           <div class="feature-icon-box">🛡️</div>
           <h3>MSN Clickbait Purger</h3>
-          <p>Instantly strips news cards, autoplay videos, and sponsored shopping widgets that clutter default Edge tabs.</p>
+          <p>Instantly strips news cards, autoplay videos, and sponsored shopping widgets that clutter default Edge
+            tabs.</p>
         </div>
 
         <div class="feature-card">
@@ -866,25 +908,29 @@
         <div class="feature-card">
           <div class="feature-icon-box">🖼️</div>
           <h3>Curated 4K Wallpapers</h3>
-          <p>Switch between ultra-minimalist dark mode, alpine landscapes, ocean waves, or set your own custom image URL.</p>
+          <p>Switch between ultra-minimalist dark mode, alpine landscapes, ocean waves, or set your own custom image
+            URL.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon-box">🌐</div>
           <h3>Multi-Zone World Clocks</h3>
-          <p>Track real-time hours across 400+ international locations to keep remote work and global calls synchronized.</p>
+          <p>Track real-time hours across 400+ international locations to keep remote work and global calls
+            synchronized.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon-box">🎧</div>
           <h3>Ambient Focus Soundscapes</h3>
-          <p>Integrated binaural audio streams including Rain on Leaves, Ocean Swell, Warm Lofi, and Deep Brown Noise.</p>
+          <p>Integrated binaural audio streams including Rain on Leaves, Ocean Swell, Warm Lofi, and Deep Brown Noise.
+          </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon-box">🕶️</div>
           <h3>Ghost / InPrivate Shield</h3>
-          <p>Route searches through DuckDuckGo with zero search tracking, zero cookie persistence, and 1-click tab purge.</p>
+          <p>Route searches through DuckDuckGo with zero search tracking, zero cookie persistence, and 1-click tab
+            purge.</p>
         </div>
       </div>
     </section>
@@ -902,7 +948,7 @@
           <div class="card-tier-title">PureEdge Free</div>
           <div class="card-tier-desc">Essential bloatware purging and clean new tab for daily productivity.</div>
           <div class="card-price">$0 <span class="price-period">forever</span></div>
-          
+
           <div class="card-divider"></div>
 
           <ul class="perk-list">
@@ -914,8 +960,10 @@
             <li class="perk-item"><span class="perk-check">✓</span> Pomodoro Timer (25m / 5m / 15m)</li>
             <li class="perk-item"><span class="perk-check">✓</span> Up to 2 Multi-Zone World Clocks</li>
             <li class="perk-item"><span class="perk-check">✓</span> 2 Minimalist Themes (AMOLED &amp; Nordic)</li>
-            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ambient Binaural Focus Sounds</span></li>
-            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ghost Zero-Trace Private Routing</span></li>
+            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ambient
+                Binaural Focus Sounds</span></li>
+            <li class="perk-item"><span class="perk-cross">✕</span> <span style="color: var(--text-muted);">Ghost
+                Zero-Trace Private Routing</span></li>
           </ul>
 
           <a href="#" class="btn-pricing-free" title="Coming soon on Microsoft Edge Add-ons">Add to Microsoft Edge</a>
@@ -927,17 +975,20 @@
           <div class="card-tier-title">PureEdge Pro 👑</div>
           <div class="card-tier-desc">Full suite of focus soundscapes, unlimited global clocks, and 4K wallpapers.</div>
           <div class="card-price">Lifetime <span class="price-period">one-time payment</span></div>
-          
+
           <div class="card-divider"></div>
 
           <ul class="perk-list">
             <li class="perk-item"><span class="perk-check">✓</span> <b>Everything in Free tier</b></li>
             <li class="perk-item"><span class="perk-check">✓</span> <b>Unlimited 400+ International Clocks</b></li>
-            <li class="perk-item"><span class="perk-check">✓</span> <b>All 4K Themes (Alpine, Forest, Sunset, Neon)</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>All 4K Themes (Alpine, Forest, Sunset, Neon)</b>
+            </li>
             <li class="perk-item"><span class="perk-check">✓</span> <b>Custom Wallpaper Image URLs</b></li>
-            <li class="perk-item"><span class="perk-check">✓</span> <b>Binaural Focus Audio (Rain, Ocean, Lofi, Brown)</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Binaural Focus Audio (Rain, Ocean, Lofi,
+                Brown)</b></li>
             <li class="perk-item"><span class="perk-check">✓</span> <b>Ghost / InPrivate Anti-Tracking Shield</b></li>
-            <li class="perk-item"><span class="perk-check">✓</span> <b>Priority Feature Updates &amp; Direct Support</b></li>
+            <li class="perk-item"><span class="perk-check">✓</span> <b>Priority Feature Updates &amp; Direct Support</b>
+            </li>
           </ul>
 
           <a href="https://sajusun.gumroad.com/l/pureedge" target="_blank" rel="noopener" class="btn-pricing-pro">
@@ -1006,7 +1057,8 @@
     <!-- Zero Telemetry Commitment -->
     <div class="privacy-banner">
       <h3>🛡️ 100% Zero-Telemetry Privacy Commitment</h3>
-      <p>PureEdge operates strictly inside your local browser storage. We never collect personal data, track your browsing history, or transmit analytics.</p>
+      <p>PureEdge operates strictly inside your local browser storage. We never collect personal data, track your
+        browsing history, or transmit analytics.</p>
       <a href="./privacy/index.html" class="btn-hero-secondary" style="display: inline-flex;">
         <span>Read Full Privacy Policy &rarr;</span>
       </a>
@@ -1017,7 +1069,8 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 PureEdge CleanTab. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: #2dd4bf;">Sakhawat Hossain</a>.</p>
+      <p>&copy; 2026 PureEdge CleanTab. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener"
+          style="color: #2dd4bf;">Sakhawat Hossain</a>.</p>
       <div class="footer-links">
         <a href="./privacy/index.html">Privacy Policy</a>
         <a href="#features">Features</a>
@@ -1028,4 +1081,5 @@
   </footer>
 
 </body>
+
 </html>

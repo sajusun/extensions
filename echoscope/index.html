@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector</title>
-  <meta name="description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side developer utility.">
+  <meta name="description"
+    content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side developer utility.">
   <link rel="canonical" href="https://sajusun.github.io/extensions/echoscope/">
   <link rel="icon" type="image/png" href="./icon.png">
 
@@ -13,14 +15,16 @@
   <meta property="og:url" content="https://sajusun.github.io/extensions/echoscope/">
   <meta property="og:site_name" content="EchoScope">
   <meta property="og:title" content="EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector">
-  <meta property="og:description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
+  <meta property="og:description"
+    content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
   <meta property="og:image" content="https://sajusun.github.io/extensions/assets/icons/echoscope.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://sajusun.github.io/extensions/echoscope/">
   <meta name="twitter:title" content="EchoScope — Real-Time WebSocket & Laravel Reverb Broadcast Inspector">
-  <meta name="twitter:description" content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
+  <meta name="twitter:description"
+    content="Test Laravel Reverb, Pusher channels, private event auth, and WebSocket payloads in real time without frontend code. 100% client-side privacy.">
   <meta name="twitter:image" content="https://sajusun.github.io/extensions/assets/icons/echoscope.png">
 
   <!-- Schema.org JSON-LD -->
@@ -108,7 +112,9 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #0d101c;
@@ -128,7 +134,11 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg);
@@ -351,9 +361,17 @@
       background: #334155;
     }
 
-    .window-dots span:nth-child(1) { background: #ef4444; }
-    .window-dots span:nth-child(2) { background: #f59e0b; }
-    .window-dots span:nth-child(3) { background: #10b981; }
+    .window-dots span:nth-child(1) {
+      background: #ef4444;
+    }
+
+    .window-dots span:nth-child(2) {
+      background: #f59e0b;
+    }
+
+    .window-dots span:nth-child(3) {
+      background: #10b981;
+    }
 
     .mockup-body {
       padding: 24px;
@@ -481,7 +499,9 @@
     }
 
     @media (max-width: 768px) {
-      .compare-grid { grid-template-columns: 1fr; }
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .compare-box {
@@ -558,12 +578,13 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Sticky Header Bar -->
   <header class="header-bar">
     <div class="header-inner">
-      <a href="./index.html" class="brand">
+      <a href="./" class="brand">
         <img src="./icon.png" alt="EchoScope Official Icon" class="brand-icon-img" width="36" height="36">
         <span>EchoScope</span>
       </a>
@@ -572,7 +593,8 @@
         <a href="#workflow">Workflow</a>
         <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener">GitHub</a>
         <a href="./privacy/index.html">Privacy Policy</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank" rel="noopener" class="btn-cta">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank"
+          rel="noopener" class="btn-cta">
           Install from Edge ↗
         </a>
       </nav>
@@ -591,14 +613,17 @@
         <span class="gradient-text">Without Throwaway Frontend Code.</span>
       </h1>
       <p class="lead">
-        Connect to local or remote WebSocket daemons, subscribe to public, private, and presence channels with automatic authentication, and inspect syntax-highlighted JSON event payloads in real time.
+        Connect to local or remote WebSocket daemons, subscribe to public, private, and presence channels with automatic
+        authentication, and inspect syntax-highlighted JSON event payloads in real time.
       </p>
 
       <div class="hero-actions">
-        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank" rel="noopener" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank"
+          rel="noopener" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
           Get for Microsoft Edge ↗
         </a>
-        <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener" class="btn-secondary" style="padding: 12px 24px; font-size: 1.02rem;">
+        <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener" class="btn-secondary"
+          style="padding: 12px 24px; font-size: 1.02rem;">
           View Source on GitHub ↗
         </a>
       </div>
@@ -621,8 +646,10 @@
             <span></span>
             <span></span>
           </div>
-          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: #a78bfa;">ws://127.0.0.1:8080 &bull; Connected (Reverb Protocol v7)</span>
-          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #34d399; font-weight: 700;">● Live Stream Active</span>
+          <span style="font-family: var(--font-mono); font-size: 0.82rem; color: #a78bfa;">ws://127.0.0.1:8080 &bull;
+            Connected (Reverb Protocol v7)</span>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #34d399; font-weight: 700;">● Live
+            Stream Active</span>
         </div>
         <div class="mockup-body">
           <div class="log-line">
@@ -656,7 +683,8 @@
     <section id="workflow" class="compare-section">
       <div style="text-align: center;">
         <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Stop the Temporary Blade Template Trap</h2>
-        <p style="color: var(--text-muted); font-size: 0.98rem;">How developers debug real-time features before and after EchoScope.</p>
+        <p style="color: var(--text-muted); font-size: 0.98rem;">How developers debug real-time features before and
+          after EchoScope.</p>
       </div>
 
       <div class="compare-grid">
@@ -693,37 +721,43 @@
         <div class="feature-card">
           <div class="feature-icon">⚡</div>
           <h3>Native Laravel Reverb Protocol</h3>
-          <p>Full support for Laravel Reverb's high-speed Pusher v7 WebSocket handshake, heartbeat pings, and socket ID tracking with zero boilerplate.</p>
+          <p>Full support for Laravel Reverb's high-speed Pusher v7 WebSocket handshake, heartbeat pings, and socket ID
+            tracking with zero boilerplate.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🔐</div>
           <h3>Private Channel Auth Testing</h3>
-          <p>Sends auth tokens and session cookies directly to your <code>/broadcasting/auth</code> endpoint to verify access rules and authorize subscriptions.</p>
+          <p>Sends auth tokens and session cookies directly to your <code>/broadcasting/auth</code> endpoint to verify
+            access rules and authorize subscriptions.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">📋</div>
           <h3>Live Payload Inspector</h3>
-          <p>Examine broadcast payloads with formatted syntax highlighting, live text search, and 1-click JSON copy for quick frontend handoff.</p>
+          <p>Examine broadcast payloads with formatted syntax highlighting, live text search, and 1-click JSON copy for
+            quick frontend handoff.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🖥️</div>
           <h3>Dedicated Popout Tab</h3>
-          <p>Pop the inspector out into a dedicated browser tab to monitor live background events side-by-side with your IDE code editor.</p>
+          <p>Pop the inspector out into a dedicated browser tab to monitor live background events side-by-side with your
+            IDE code editor.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🌐</div>
           <h3>Pusher &amp; Soketi Ready</h3>
-          <p>Drop-in compatibility with Pusher Channels, Soketi, and any custom RFC6455 WebSocket broadcasting daemon.</p>
+          <p>Drop-in compatibility with Pusher Channels, Soketi, and any custom RFC6455 WebSocket broadcasting daemon.
+          </p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
           <h3>100% Client-Side Privacy</h3>
-          <p>Zero telemetry. Event payloads, session cookies, and connection credentials never touch third-party servers.</p>
+          <p>Zero telemetry. Event payloads, session cookies, and connection credentials never touch third-party
+            servers.</p>
         </div>
       </div>
     </section>
@@ -732,7 +766,8 @@
     <div class="privacy-banner">
       <div class="privacy-content">
         <h3>🛡️ Security &amp; Data Privacy Guarantee</h3>
-        <p>EchoScope runs completely inside your browser sandbox. Your broadcasting secrets, bearer tokens, and internal event messages never leave your machine.</p>
+        <p>EchoScope runs completely inside your browser sandbox. Your broadcasting secrets, bearer tokens, and internal
+          event messages never leave your machine.</p>
       </div>
       <div>
         <a href="./privacy/index.html" class="btn-secondary">
@@ -745,15 +780,18 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 EchoScope. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>. Open source under the MIT License.</p>
+      <p>&copy; 2026 EchoScope. Engineered by <a href="https://sajusun.github.io" target="_blank"
+          rel="noopener">Sakhawat Hossain</a>. Open source under the MIT License.</p>
       <div class="footer-links">
         <a href="./privacy/index.html">Privacy Policy</a>
         <a href="https://github.com/sajusun/echo-scope" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank" rel="noopener">Edge Store</a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/inbkfaemibapldafneckpdeffgjjkehc" target="_blank"
+          rel="noopener">Edge Store</a>
         <a href="../index.html">All Extensions Hub</a>
       </div>
     </div>
   </footer>
 
 </body>
+
 </html>
