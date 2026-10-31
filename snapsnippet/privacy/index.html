@@ -84,15 +84,15 @@
       --bg-subtle: #f8fafc;
       --border-subtle: #e2e8f0;
       --border-strong: #cbd5e1;
-      --border-highlight: #6366f1;
+      --border-highlight: #8b5cf6;
       --text-main: #0f172a;
       --text-body: #334155;
       --text-muted: #64748b;
       --text-subtle: #94a3b8;
-      --primary: #6366f1;
-      --primary-hover: #4f46e5;
-      --primary-light: #eef2ff;
-      --primary-border: #c7d2fe;
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --primary-light: #f5f3ff;
+      --primary-border: #ddd6fe;
       --code-bg: #f1f5f9;
       --code-text: #0f172a;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -148,11 +148,10 @@
       width: 34px;
       height: 34px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background: #8b5cf6;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.25);
     }
 
     .brand-icon svg {
@@ -245,7 +244,7 @@
 
     .highlight-card:hover {
       border-color: var(--primary);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08);
       transform: translateY(-2px);
     }
 
@@ -497,7 +496,8 @@
         </div>
         <span>SnapSnippet</span>
       </a>
-      <div class="nav-links"><a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
+      <div class="nav-links">
+        <a href="../index.html" style="color:var(--text-muted); text-decoration:none; font-size:0.85rem; font-weight:600; margin-right:10px;">&larr; Product Home</a>
         <span class="badge-shield">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
           100% Offline-First Clipboard
@@ -515,7 +515,7 @@
       <p>SnapSnippet is a developer command clipboard and Raycast-style spotlight command bar. We respect developer autonomy: all command snippets, code templates, and search queries remain strictly in your browser's local sandbox.</p>
       <div class="meta-date">
         <span>Effective Date: October 28, 2026</span>
-        <span>â€¢</span>
+        <span>&bull;</span>
         <span>Version 1.0.0</span>
       </div>
     </div>
@@ -523,27 +523,27 @@
     <!-- Highlights 4-Grid -->
     <div class="highlights-grid">
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸš«</div>
+        <div class="highlight-icon">🚫</div>
         <h3>Zero Snippet Tracking</h3>
         <p>We do not monitor, log, or harvest the Artisan, Docker, Git, or SQL commands you copy or create.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ’¾</div>
+        <div class="highlight-icon">💾</div>
         <h3>100% Offline-First Storage</h3>
-        <p>Custom snippets, presets, tags, and favorites are stored strictly in chrome.storage.local on your device.</p>
+        <p>Custom snippets, presets, tags, and favorites are stored strictly in local browser storage on your device.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">âš¡</div>
+        <div class="highlight-icon">⚡</div>
         <h3>Isolated Spotlight Overlay</h3>
         <p>The Ctrl+Shift+K overlay opens directly in the active tab without accessing host page form inputs or passwords.</p>
       </div>
 
       <div class="highlight-card">
-        <div class="highlight-icon">ðŸ›¡ï¸</div>
-        <h3>Optional Self-Hosted Sync</h3>
-        <p>Cloud synchronization only connects to your own Laravel Sanctum backend if explicitly configured by you.</p>
+        <div class="highlight-icon">🛡️</div>
+        <h3>Zero-Server Cloud Sync</h3>
+        <p>Pro roaming synchronization runs exclusively through your signed-in browser account (chrome.storage.sync) with zero external servers.</p>
       </div>
     </div>
 
@@ -558,20 +558,20 @@
           <li><a href="#section-2"><span class="code-pill">02</span> Data We Never Collect</a></li>
           <li><a href="#section-3"><span class="code-pill">03</span> Local Device Storage</a></li>
           <li><a href="#section-4"><span class="code-pill">04</span> Permissions Justification</a></li>
-          <li><a href="#section-5"><span class="code-pill">05</span> Optional Cloud Synchronization</a></li>
+          <li><a href="#section-5"><span class="code-pill">05</span> Zero-Server Roaming Sync &amp; Gumroad API</a></li>
           <li><a href="#section-6"><span class="code-pill">06</span> Remote Code Compliance</a></li>
           <li><a href="#section-7"><span class="code-pill">07</span> Data Retention &amp; Erasure</a></li>
           <li><a href="#section-8"><span class="code-pill">08</span> User Rights (GDPR &amp; CCPA)</a></li>
           <li><a href="#section-9"><span class="code-pill">09</span> Children's Privacy (COPPA)</a></li>
-          <li><a href="#section-10"><span class="code-pill">10</span> Contact &amp; Open Source Info</a></li>
+          <li><a href="#section-10"><span class="code-pill">10</span> Contact &amp; Developer Info</a></li>
         </ul>
       </nav>
 
       <!-- Section 1 -->
       <section class="policy-section" id="section-1">
         <h2><span class="sec-num">01.</span> Introduction &amp; Philosophy</h2>
-        <p>This Privacy Policy explains how <strong>SnapSnippet - Developer Command Clipboard &amp; Spotlight</strong> ("we", "our", or "the extension") handles user information across all supported browsers, including Google Chrome, Microsoft Edge, Brave, and Chromium derivatives.</p>
-        <p>SnapSnippet was created by developers for developers. We understand that your workflow commands, database migrations, server commands, and API patterns are sensitive intellectual property. SnapSnippet is built as an offline-first tool that performs all fuzzy search indexing and clipboard actions locally inside your browser.</p>
+        <p>This Privacy Policy explains how <strong>SnapSnippet - Developer Command Clipboard &amp; Spotlight</strong> ("we", "our", or "the extension") handles user information across all supported browsers, including Microsoft Edge, Google Chrome, Brave, and Chromium derivatives.</p>
+        <p>SnapSnippet was created by developers for developers. We understand that your workflow commands, database migrations, server commands, and API patterns are sensitive intellectual property. SnapSnippet is built as an offline-first tool that performs all fuzzy search indexing and clipboard actions locally inside your browser sandbox.</p>
       </section>
 
       <!-- Section 2 -->
@@ -598,7 +598,7 @@
           <li><strong>UI Settings:</strong> Dark mode preferences and shortcut bindings.</li>
         </ul>
         <div class="callout-box">
-          ðŸ’¡ <strong>Resetting Data:</strong> You can export or clear your entire snippet database with one click in SnapSnippet Settings or by clearing your browser's extension data.
+          💡 <strong>Resetting Data:</strong> You can export or clear your entire snippet database with one click in SnapSnippet Settings or by clearing your browser's extension data.
         </div>
       </section>
 
@@ -619,8 +619,8 @@
             <tbody>
               <tr>
                 <td><span class="code-pill">storage</span></td>
-                <td>Local Sandbox Storage</td>
-                <td>Required to store your snippet database, category tags, favorites, and UI preferences locally on your machine.</td>
+                <td>Local &amp; Sync Storage</td>
+                <td>Required to store your snippet database, category tags, favorites, and Pro sync state across browser sessions.</td>
               </tr>
               <tr>
                 <td><span class="code-pill">activeTab</span></td>
@@ -630,7 +630,12 @@
               <tr>
                 <td><span class="code-pill">scripting</span></td>
                 <td>Content Script Injection</td>
-                <td>Required to inject and manage the Spotlight modal overlay (<span class="code-pill">spotlight.js</span>) in the DOM of the active tab so you can search and copy commands without switching windows.</td>
+                <td>Required to inject and manage the Spotlight modal overlay in the DOM of the active tab so you can search and copy commands without switching windows.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill">contextMenus</span></td>
+                <td>Context Menu Integration</td>
+                <td>Allows right-clicking highlighted text on any web page to quickly save it as a new custom snippet.</td>
               </tr>
             </tbody>
           </table>
@@ -639,8 +644,9 @@
 
       <!-- Section 5 -->
       <section class="policy-section" id="section-5">
-        <h2><span class="sec-num">05.</span> Optional Cloud Synchronization</h2>
-        <p>SnapSnippet includes an optional modular sync adapter designed for developers who wish to sync their snippets across machines via their own self-hosted Laravel Sanctum backend API. This feature is completely disabled by default. If you choose to enable cloud sync, the extension communicates strictly with the custom API endpoint URL you configure in settings. No sync data is ever routed through our servers.</p>
+        <h2><span class="sec-num">05.</span> Zero-Server Roaming Sync &amp; Gumroad API</h2>
+        <p><strong>1. Zero-Server Roaming Sync:</strong> SnapSnippet Pro features cross-device synchronization powered by Microsoft Edge and Google Chrome's native <span class="code-pill">chrome.storage.sync</span>. When you create or update snippets on your work desktop, your signed-in browser profile securely synchronizes them to your laptop. We operate no external databases or servers.</p>
+        <p><strong>2. Gumroad License Verification:</strong> When you purchase SnapSnippet Pro on Gumroad and activate your license key, the extension makes a single, secure direct HTTPS call to the official Gumroad API (<span class="code-pill">https://api.gumroad.com/v2/licenses/verify</span>) to validate your license. Once validated, your Pro status is cached locally on your device.</p>
       </section>
 
       <!-- Section 6 -->
@@ -656,7 +662,7 @@
       <!-- Section 7 -->
       <section class="policy-section" id="section-7">
         <h2><span class="sec-num">07.</span> Data Retention &amp; Erasure</h2>
-        <p>We do not store your snippets on external servers. Uninstalling SnapSnippet from your browser (<span class="code-pill">chrome://extensions</span>) immediately and permanently erases all locally saved snippets and preferences.</p>
+        <p>We do not store your snippets on external servers. Uninstalling SnapSnippet from your browser (<span class="code-pill">chrome://extensions</span> or <span class="code-pill">edge://extensions</span>) immediately and permanently erases all locally saved snippets and preferences.</p>
       </section>
 
       <!-- Section 8 -->
@@ -673,13 +679,13 @@
 
       <!-- Section 10 -->
       <section class="policy-section" id="section-10">
-        <h2><span class="sec-num">10.</span> Contact &amp; Open Source Information</h2>
-        <p>SnapSnippet is open-source software licensed under the MIT License. If you have questions or feedback regarding this policy, please reach out via GitHub:</p>
+        <h2><span class="sec-num">10.</span> Contact &amp; Developer Information</h2>
+        <p>If you have questions, inquiries, or feedback regarding this policy, please reach out via GitHub or developer channels:</p>
         <div class="contact-card">
           <p><strong>Developer:</strong> Sakhawat Hossain</p>
           <p><strong>Portfolio &amp; Website:</strong> <a href="https://sajusun.github.io" target="_blank" rel="noopener">https://sajusun.github.io</a></p>
-          <p><strong>GitHub Repository:</strong> <a href="https://github.com/sajusun/snapsnippet" target="_blank" rel="noopener">github.com/sajusun/snapsnippet</a></p>
-          <p><strong>Issue Tracker:</strong> <a href="https://github.com/sajusun/snapsnippet/issues" target="_blank" rel="noopener">Submit an Issue on GitHub</a></p>
+          <p><strong>Extensions Hub:</strong> <a href="https://sajusun.github.io/extensions/" target="_blank" rel="noopener">sajusun.github.io/extensions</a></p>
+          <p><strong>SnapSnippet Pro:</strong> <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener">Gumroad Storefront</a></p>
         </div>
       </section>
 
@@ -687,12 +693,10 @@
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 SnapSnippet. All rights reserved. Open source under the MIT License.</p>
+      <p>&copy; 2026 SnapSnippet. All rights reserved. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener">Sakhawat Hossain</a>.</p>
     </footer>
 
   </div>
 
 </body>
 </html>
-
-
