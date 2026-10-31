@@ -158,5 +158,23 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- SnapDownload HD -->
+  <url>
+    <loc>https://sajusun.github.io/extensions/snapdownload/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sajusun.github.io/extensions/assets/icons/snapdownload.png</image:loc>
+      <image:title>SnapDownload HD - Bulk Image Downloader and 4K Master Asset Resolver</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/snapdownload/privacy/</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
 </urlset>
 
