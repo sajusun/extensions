@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapDisplay — Zero-Install Android 60 FPS Mirror & Wireless Second Screen</title>
+  <meta name="description"
+    content="Zero-install 60 FPS Android screen mirroring, touch control over USB, and P2P virtual display second monitor over local WiFi for Microsoft Edge and Chrome. 100% client-side privacy.">
+  <link rel="canonical" href="https://sajusun.github.io/extensions/snapdisplay/">
+  <link rel="icon" type="image/png" href="./icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sajusun.github.io/extensions/snapdisplay/">
+  <meta property="og:site_name" content="SnapDisplay">
+  <meta property="og:title" content="SnapDisplay — Zero-Install Android 60 FPS Mirror & Wireless Second Screen">
+  <meta property="og:description"
+    content="Mirror your Android phone at 60 FPS with full mouse/touch control, or use your iPad/tablet as a wireless second monitor. Zero desktop bloatware.">
+  <meta property="og:image" content="https://sajusun.github.io/extensions/snapdisplay/cover.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://sajusun.github.io/extensions/snapdisplay/">
+  <meta name="twitter:title" content="SnapDisplay — Zero-Install Android Screen Mirror">
+  <meta name="twitter:description"
+    content="Hardware-accelerated 60 FPS Android mirroring and WiFi virtual display directly in Chrome & Edge.">
+  <meta name="twitter:image" content="https://sajusun.github.io/extensions/snapdisplay/cover.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://sajusun.github.io/#person",
+        "name": "Sakhawat Hossain",
+        "url": "https://sajusun.github.io",
+        "sameAs": ["https://github.com/sajusun"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sajusun.github.io/extensions/snapdisplay/#app",
+        "name": "SnapDisplay",
+        "operatingSystem": "Microsoft Edge, Google Chrome, Brave, Chromium",
+        "applicationCategory": "UtilitiesApplication",
+        "url": "https://sajusun.github.io/extensions/snapdisplay/",
+        "image": "https://sajusun.github.io/extensions/assets/icons/snapdisplay.png",
+        "description": "Zero-install Android screen mirroring, touch control over USB, and P2P virtual display second monitor over local WiFi.",
+        "softwareVersion": "1.0.0",
+        "offers": {
+          "@type": "Offer",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        },
+        "author": { "@id": "https://sajusun.github.io/#person" },
+        "publisher": { "@id": "https://sajusun.github.io/#person" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can I use SnapDisplay Pro on multiple computers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Each SnapDisplay Pro lifetime license includes commercial activation on up to 3 personal devices (workstation, laptop, and home PC)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to install heavy desktop software like Vysor or AirDroid?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. SnapDisplay runs 100% inside your browser using WebUSB, WebCodecs GPU decoding, and WebRTC P2P streaming. Zero 200MB background applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my screen streams or phone interactions sent to the cloud?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All USB communication and WiFi virtual display streams remain strictly local between your computer and mobile device."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-main: #070b16;
+      --bg-header: #0b1124;
+      --bg-card: #0f172a;
+      --bg-card-hover: #1e293b;
+      --border-color: #1e293b;
+      --border-focus: #38bdf8;
+
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --gold: #f59e0b;
+
+      --text-main: #f8fafc;
+      --text-sub: #cbd5e1;
+      --text-muted: #94a3b8;
+
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP ANNOUNCEMENT BANNER */
+    .top-announcement {
+      background: linear-gradient(90deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .top-announcement b {
+      color: #fff;
+    }
+
+    /* NAVBAR */
+    .header-nav {
+      background: rgba(11, 17, 36, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title span {
+      color: var(--cyan);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .btn-pro-nav {
+      background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+      transition: all 0.2s;
+    }
+
+    .btn-pro-nav:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.45);
+    }
+
+    /* HERO SECTION */
+    .hero-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 80px 24px 60px 24px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 22px;
+      color: #fff;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-sub);
+      max-width: 820px;
+      margin: 0 auto 36px auto;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, #0284c7 0%, #6366f1 100%);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.08rem;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.35);
+      transition: all 0.2s;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(2, 132, 199, 0.5);
+    }
+
+    .btn-hero-secondary {
+      background: rgba(30, 41, 59, 0.8);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s;
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--cyan);
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .trust-row span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* VALUE BANNER PILL */
+    .license-highlight-box {
+      max-width: 900px;
+      margin: 30px auto 0 auto;
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.15) 0%, rgba(99, 102, 241, 0.2) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .license-highlight-box span.badge {
+      background: #f59e0b;
+      color: #0f172a;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    /* SECTION GENERAL */
+    .section-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* FEATURES GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: all 0.25s;
+    }
+
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-focus);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS / STEPS */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 28px;
+      position: relative;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    /* PRICING TABLE */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .comp-table th,
+    .comp-table td {
+      padding: 18px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    .comp-table th {
+      background: #111827;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .comp-table th:last-child {
+      color: var(--cyan);
+    }
+
+    .comp-table td.cell-highlight {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .comp-table td.check-yes {
+      color: var(--emerald);
+      font-weight: 600;
+    }
+
+    .comp-table td.check-no {
+      color: var(--text-muted);
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 26px;
+    }
+
+    .faq-item h4 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .faq-item p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-sub);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="top-announcement">
+    🚀 <b>Lifetime Deal:</b> Unlock Hardware 60 FPS Mirroring &amp; Unlimited WiFi Virtual Display for just <b>$9.99</b> (One-time, Zero Subscriptions)!
+  </div>
+
+  <!-- HEADER -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="./index.html" class="brand-link">
+        <img src="./icon.png" alt="SnapDisplay Logo" class="brand-logo">
+        <div class="brand-title">Snap<span>Display</span></div>
+      </a>
+      <div class="nav-actions">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">Quick Guide</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="https://sajusun.gumroad.com/l/snapdisplay-pro" target="_blank" rel="noopener" class="btn-pro-nav">
+          👑 Get Pro ($9.99)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-wrap">
+    <div class="badge-pill">
+      ⚡ ZERO NATIVE INSTALLATION • 100% BROWSER ENGINE
+    </div>
+
+    <h1 class="hero-title">
+      Hardware 60 FPS Android Mirror &amp;<br>
+      <span class="gradient-text">Wireless P2P Second Display</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Stop downloading 300MB invasive desktop apps like Vysor or AirDroid. SnapDisplay runs pure Scrcpy video decoding and P2P virtual display right inside Google Chrome and Microsoft Edge using native WebUSB and WebCodecs GPU acceleration.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="https://sajusun.gumroad.com/l/snapdisplay-pro" target="_blank" rel="noopener" class="btn-hero-primary">
+        👑 Unlock Lifetime Pro License ($9.99) ↗
+      </a>
+      <a href="#how-it-works" class="btn-hero-secondary">
+        📖 View Quick Start Guide
+      </a>
+    </div>
+
+    <div class="trust-row">
+      <span>⚡ &lt; 20ms Latency</span>
+      <span>🔒 100% Client-Side Privacy</span>
+      <span>📶 Zero-Server Local WiFi P2P</span>
+      <span>💻 Chrome &amp; Microsoft Edge</span>
+    </div>
+
+    <!-- VALUE TRUST PILL -->
+    <div class="license-highlight-box">
+      <span class="badge">Value Guarantee</span>
+      <span>🎁 1 License Key Activates Up To <b>3 Personal Devices</b> (Work PC, Home Desktop &amp; Laptop)</span>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="section-wrap">
+    <div class="section-header">
+      <div class="section-tag">High-Performance Architecture</div>
+      <h2 class="section-title">Engineered for Developers &amp; Creators</h2>
+      <p class="section-subtitle">
+        Direct hardware-level communication with Android devices without requiring Google ADB native drivers or cloud infrastructure.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">60 FPS WebCodecs GPU Decoding</h3>
+        <p class="feature-desc">Streams raw H.264 NAL units over WebUSB and decodes directly via DirectX 11 / Metal GPU with near-zero CPU usage and imperceptible &lt;20ms latency.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🖱️</div>
+        <h3 class="feature-title">Instant Scrcpy Binary Control</h3>
+        <p class="feature-desc">Click, swipe, drag, and scroll with your PC mouse. Translates gestures into raw binary packets directly injected into Android's native InputManager thread.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📶</div>
+        <h3 class="feature-title">WiFi P2P Virtual Display (QR Pairing)</h3>
+        <p class="feature-desc">Transform your iPad, Android tablet, or smartphone into a low-latency portable second monitor over local 5GHz WiFi using local WebRTC P2P pairing.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📺</div>
+        <h3 class="feature-title">Always-On-Top Floating PiP Window</h3>
+        <p class="feature-desc">Pop out your phone screen into a floating Picture-in-Picture window. Monitor live mobile testing, notifications, or videos while coding in VS Code.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3 class="feature-title">1-Click Drag-and-Drop APK Installer</h3>
+        <p class="feature-desc">Drag any .APK from your computer and drop it directly onto the phone canvas. Installs instantly without opening terminal command lines.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">100% Client-Side &amp; Private</h3>
+        <p class="feature-desc">Zero telemetry. Zero cloud servers. All video streams and ADB commands remain strictly local between your PC and phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="section-wrap" style="background: rgba(15, 23, 42, 0.4); border-radius: 24px; border: 1px solid var(--border-color);">
+    <div class="section-header">
+      <div class="section-tag">Quick Start</div>
+      <h2 class="section-title">Get Started in 3 Simple Steps</h2>
+      <p class="section-subtitle">Zero complicated setup. Plug in your phone and start mirroring.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 class="feature-title">Enable USB Debugging</h3>
+        <p class="feature-desc">On your Android phone, go to <b>Settings ➔ Developer Options</b> and turn ON <b>USB Debugging</b>.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 class="feature-title">Connect Phone via USB</h3>
+        <p class="feature-desc">Plug your phone into your computer with a standard USB cable, then click <b>Connect USB Device</b> in SnapDisplay.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 class="feature-title">Tap Allow &amp; Mirror!</h3>
+        <p class="feature-desc">Tap <b>Always Allow</b> on your phone prompt. Within 2 seconds, your phone screen appears live at 60 FPS!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING / COMPARISON -->
+  <section id="pricing" class="section-wrap">
+    <div class="section-header">
+      <div class="section-tag">Transparent Value</div>
+      <h2 class="section-title">Free vs Pro Feature Comparison</h2>
+      <p class="section-subtitle">
+        Everything essential for daily usage is free. Upgrade once for $9.99 and enjoy lifetime power across all your personal devices.
+      </p>
+    </div>
+
+    <div class="table-container">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Capabilities</th>
+            <th>SnapDisplay Free</th>
+            <th>SnapDisplay Pro ($9.99 Lifetime)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cell-highlight">Device Activations</td>
+            <td>1 Browser Profile</td>
+            <td class="check-yes"><strong style="color: #38bdf8;">✓ Up to 3 Personal Devices</strong> (Work PC, Laptop, Home Desktop)</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">Streaming Resolution</td>
+            <td>720p 30 FPS</td>
+            <td class="check-yes">✓ 1080p &amp; 2K 60 FPS (Hardware Accelerated)</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">Full Touch &amp; Mouse Control</td>
+            <td class="check-yes">✓ Included</td>
+            <td class="check-yes">✓ Included (&lt;1ms Binary Injection)</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">PC Keyboard &amp; Clipboard Sync</td>
+            <td>Basic typing</td>
+            <td class="check-yes">✓ Full Clipboard Sync &amp; PC Shortcuts</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">Wireless P2P Second Display</td>
+            <td>10-minute trial session</td>
+            <td class="check-yes">✓ Unlimited Continuous Virtual Display</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">Picture-in-Picture (PiP) Floating</td>
+            <td class="check-no">Standard view only</td>
+            <td class="check-yes">✓ Floating Always-On-Top Window</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">APK Drag-and-Drop Installer</td>
+            <td class="check-no">Manual install</td>
+            <td class="check-yes">✓ 1-Click Instant App Installer</td>
+          </tr>
+          <tr>
+            <td class="cell-highlight">Subscription Fees</td>
+            <td>$0 Forever</td>
+            <td class="check-yes"><strong>$9.99 One-Time (Zero Monthly Fees)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <div style="display:inline-block; margin-bottom: 16px; padding: 6px 16px; border-radius: 20px; font-size: 0.88rem; font-weight: 700; background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.35);">
+        🎁 1 License Key Activates Up To 3 Devices (Work PC, Home Desktop &amp; Laptop)
+      </div>
+      <div>
+        <a href="https://sajusun.gumroad.com/l/snapdisplay-pro" target="_blank" rel="noopener" class="btn-hero-primary" style="font-size: 1.1rem; padding: 16px 36px;">
+          👑 Unlock Lifetime Pro License ($9.99) on Gumroad ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="section-wrap" style="padding-top: 0;">
+    <div class="section-header">
+      <div class="section-tag">Got Questions?</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>Can I use my Pro key on multiple computers?</h4>
+        <p>Yes! Every SnapDisplay Pro license includes commercial activation for up to <strong>3 personal devices</strong> (such as your office workstation, personal laptop, and home PC). Simply paste your Gumroad key into the extension settings on each device to unlock Pro features.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Do I need to install desktop software like Vysor?</h4>
+        <p>No! SnapDisplay executes 100% inside your browser using the modern WebUSB API and WebCodecs video pipeline. You never need to install 200MB background applications or invasive virtual display drivers.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Is my video stream or phone data private?</h4>
+        <p>100% private. All USB communication and WiFi virtual display sessions operate entirely local between your PC and mobile device. Zero video frames or inputs ever touch remote servers.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>How do I use my iPad as a wireless second screen?</h4>
+        <p>Click <b>📶 Wireless Display (WiFi)</b> inside SnapDisplay. Select the screen or browser window you wish to extend. A local pairing QR code will appear. Scan it with your iPad or tablet camera to instantly create a high-speed wireless second monitor over 5GHz WiFi!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 SnapDisplay. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: var(--cyan);">Sakhawat Hossain</a>.</p>
+      <div class="footer-links">
+        <a href="./privacy/index.html">Privacy Policy</a>
+        <a href="https://sajusun.gumroad.com/l/snapdisplay-pro" target="_blank" rel="noopener">SnapDisplay Pro</a>
+        <a href="../index.html">All Extensions Hub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
+
