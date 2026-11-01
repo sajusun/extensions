@@ -46,7 +46,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(3, 7, 18, 0.92);
+      background: rgba(3, 7, 18, 0.94);
       backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
@@ -90,17 +90,18 @@
     }
     .controls-bar {
       position: absolute;
-      bottom: 20px;
+      bottom: 24px;
       display: flex;
       gap: 12px;
       z-index: 20;
       opacity: 0;
       transition: opacity 0.3s ease;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(12px);
       padding: 8px 16px;
       border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     }
     #video-wrapper:hover .controls-bar,
     .controls-bar.show {
@@ -110,7 +111,7 @@
       background: rgba(255, 255, 255, 0.1);
       color: white;
       border: none;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -144,16 +145,16 @@
 
     <!-- Overlay Loader & Instructions -->
     <div id="overlay" class="overlay">
-      <div class="spinner"></div>
-      <h2>Connecting to PC Display...</h2>
-      <p id="status-desc">Negotiating high-speed 60 FPS P2P WebRTC link with your computer.</p>
+      <div id="spinner" class="spinner"></div>
+      <h2 id="overlay-title">Connecting to PC Display...</h2>
+      <p id="status-desc">Negotiating high-speed 60 FPS P2P local link with your computer.</p>
       <div id="room-display" class="room-badge">Room: Initializing...</div>
     </div>
 
     <!-- Floating Quick Controls -->
     <div id="controls-bar" class="controls-bar">
       <button id="btn-fullscreen" class="btn-ctrl">⛶ Fullscreen</button>
-      <button id="btn-unmute" class="btn-ctrl">🔊 Unmute</button>
+      <button id="btn-unmute" class="btn-ctrl">🔊 Audio</button>
     </div>
   </div>
 
@@ -162,6 +163,8 @@
     const roomId = urlParams.get('room') || window.location.hash.replace('#', '');
     const video = document.getElementById('cast-video');
     const overlay = document.getElementById('overlay');
+    const spinner = document.getElementById('spinner');
+    const overlayTitle = document.getElementById('overlay-title');
     const statusDesc = document.getElementById('status-desc');
     const roomDisplay = document.getElementById('room-display');
     const btnFullscreen = document.getElementById('btn-fullscreen');
@@ -169,8 +172,10 @@
     const controlsBar = document.getElementById('controls-bar');
 
     if (!roomId) {
-      statusDesc.textContent = 'No session room provided. Please scan the QR code from SnapDisplay on your PC.';
-      document.querySelector('.spinner').style.display = 'none';
+      overlayTitle.textContent = 'SnapDisplay Viewer';
+      statusDesc.textContent = 'No session room provided. Please scan the QR code from SnapDisplay on your PC or connect via USB.';
+      spinner.style.display = 'none';
+      roomDisplay.style.display = 'none';
     } else {
       roomDisplay.textContent = `Room: ${roomId}`;
       initPeer(roomId);
@@ -201,20 +206,33 @@
             overlay.classList.add('hidden');
             showControlsTemporarily();
           }).catch(err => {
-            console.warn('Auto-play blocked, click to play:', err);
-            statusDesc.textContent = 'Tap anywhere on the screen to view display!';
-            document.querySelector('.spinner').style.display = 'none';
+            console.warn('Auto-play blocked, tap to play:', err);
+            statusDesc.textContent = 'Tap anywhere on the screen to start stream!';
+            spinner.style.display = 'none';
             overlay.onclick = () => {
               video.play();
               overlay.classList.add('hidden');
             };
           });
         });
+
+        call.on('close', () => {
+          overlay.classList.remove('hidden');
+          spinner.style.display = 'none';
+          overlayTitle.textContent = 'Cast Ended';
+          statusDesc.textContent = 'PC Screen Cast ended. You can reconnect anytime from SnapDisplay.';
+        });
       });
 
       peer.on('error', (err) => {
         console.error('Peer error:', err);
-        statusDesc.textContent = `Connection error: ${err.message || 'Host not found. Check if the PC screen sharing dialog is active.'}`;
+        spinner.style.display = 'none';
+        if (err.type === 'peer-unavailable') {
+          overlayTitle.textContent = 'Host Not Available';
+          statusDesc.textContent = 'This screen share room is not active. Please click "Wireless Display" in SnapDisplay on your PC to start a fresh session.';
+        } else {
+          statusDesc.textContent = `Connection error: ${err.message || 'Check local network.'}`;
+        }
       });
     }
 
@@ -225,7 +243,7 @@
       clearTimeout(hideTimer);
       hideTimer = setTimeout(() => {
         controlsBar.classList.remove('show');
-      }, 3500);
+      }, 4000);
     }
 
     document.getElementById('video-wrapper').addEventListener('click', () => {
@@ -250,4 +268,3 @@
 
 </body>
 </html>
-
