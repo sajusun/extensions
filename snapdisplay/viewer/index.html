@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SnapDisplay Viewer - Second Monitor & Wireless Display</title>
+  <meta name="theme-color" content="#030712">
+  <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      background-color: #030712;
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #video-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(3, 7, 18, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      z-index: 10;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #1e293b;
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      max-width: 380px;
+      line-height: 1.5;
+    }
+    .controls-bar {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 20;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    #video-wrapper:hover .controls-bar,
+    .controls-bar.show {
+      opacity: 1;
+    }
+    .btn-ctrl {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-ctrl:active {
+      transform: scale(0.95);
+      background: rgba(56, 189, 248, 0.3);
+    }
+    .room-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 12px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="video-wrapper">
+    <video id="cast-video" autoplay playsinline muted></video>
+
+    <!-- Overlay Loader & Instructions -->
+    <div id="overlay" class="overlay">
+      <div class="spinner"></div>
+      <h2>Connecting to PC Display...</h2>
+      <p id="status-desc">Negotiating high-speed 60 FPS P2P WebRTC link with your computer.</p>
+      <div id="room-display" class="room-badge">Room: Initializing...</div>
+    </div>
+
+    <!-- Floating Quick Controls -->
+    <div id="controls-bar" class="controls-bar">
+      <button id="btn-fullscreen" class="btn-ctrl">⛶ Fullscreen</button>
+      <button id="btn-unmute" class="btn-ctrl">🔊 Unmute</button>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomId = urlParams.get('room') || window.location.hash.replace('#', '');
+    const video = document.getElementById('cast-video');
+    const overlay = document.getElementById('overlay');
+    const statusDesc = document.getElementById('status-desc');
+    const roomDisplay = document.getElementById('room-display');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+    const btnUnmute = document.getElementById('btn-unmute');
+    const controlsBar = document.getElementById('controls-bar');
+
+    if (!roomId) {
+      statusDesc.textContent = 'No session room provided. Please scan the QR code from SnapDisplay on your PC.';
+      document.querySelector('.spinner').style.display = 'none';
+    } else {
+      roomDisplay.textContent = `Room: ${roomId}`;
+      initPeer(roomId);
+    }
+
+    function initPeer(targetRoom) {
+      const clientPeerId = 'client-' + Math.random().toString(36).substring(2, 8);
+      const peer = new Peer(clientPeerId, {
+        debug: 1
+      });
+
+      peer.on('open', (id) => {
+        statusDesc.textContent = 'Connecting directly to host screen stream...';
+        // Connect data connection to notify host
+        const conn = peer.connect(targetRoom);
+        conn.on('open', () => {
+          conn.send('ready');
+        });
+      });
+
+      peer.on('call', (call) => {
+        statusDesc.textContent = 'Streaming live display...';
+        call.answer();
+
+        call.on('stream', (remoteStream) => {
+          video.srcObject = remoteStream;
+          video.play().then(() => {
+            overlay.classList.add('hidden');
+            showControlsTemporarily();
+          }).catch(err => {
+            console.warn('Auto-play blocked, click to play:', err);
+            statusDesc.textContent = 'Tap anywhere on the screen to view display!';
+            document.querySelector('.spinner').style.display = 'none';
+            overlay.onclick = () => {
+              video.play();
+              overlay.classList.add('hidden');
+            };
+          });
+        });
+      });
+
+      peer.on('error', (err) => {
+        console.error('Peer error:', err);
+        statusDesc.textContent = `Connection error: ${err.message || 'Host not found. Check if the PC screen sharing dialog is active.'}`;
+      });
+    }
+
+    // Touch to toggle fullscreen and reveal controls
+    let hideTimer;
+    function showControlsTemporarily() {
+      controlsBar.classList.add('show');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        controlsBar.classList.remove('show');
+      }, 3500);
+    }
+
+    document.getElementById('video-wrapper').addEventListener('click', () => {
+      showControlsTemporarily();
+    });
+
+    btnFullscreen.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    btnUnmute.addEventListener('click', (e) => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      btnUnmute.textContent = video.muted ? '🔇 Muted' : '🔊 Audio On';
+    });
+  </script>
+
+</body>
+</html>
+
