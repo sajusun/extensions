@@ -272,14 +272,27 @@
         });
       });
 
+      let retryCount = 0;
       peer.on('error', (err) => {
         console.error('Peer error:', err);
+        if (err.type === 'peer-unavailable' && retryCount < 6) {
+          retryCount++;
+          spinner.style.display = 'block';
+          statusDesc.textContent = `Connecting to PC Host (Attempt ${retryCount}/6)... Please keep this open.`;
+          setTimeout(() => {
+            try {
+              const conn = peer.connect(targetRoom);
+              conn.on('open', () => conn.send('ready'));
+            } catch(e) {}
+          }, 1500);
+          return;
+        }
         spinner.style.display = 'none';
         if (err.type === 'peer-unavailable') {
-          overlayTitle.textContent = 'Host Not Available';
-          statusDesc.textContent = 'This screen share room is not active. Please click "Virtual Second Monitor" in SnapDisplay on your PC to start a fresh session.';
+          overlayTitle.textContent = 'Connecting...';
+          statusDesc.textContent = 'Waiting for PC screen stream to establish. Ensure SnapDisplay is sharing Screen 2.';
         } else {
-          statusDesc.textContent = `Connection error: ${err.message || 'Check local network.'}`;
+          statusDesc.textContent = `Connection notice: ${err.message || 'Connecting...'}`;
         }
       });
     }
