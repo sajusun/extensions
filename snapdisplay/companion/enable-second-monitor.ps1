@@ -155,7 +155,7 @@ $pnpOut = pnputil /add-driver $infPath /install 2>&1 | Out-String
 Write-Host "   Package registered." -ForegroundColor Gray
 
 # Check if Root\MttVDD device node already exists
-$existingDev = Get-PnpDevice -HardwareID "Root\MttVDD" -ErrorAction SilentlyContinue
+$existingDev = Get-PnpDevice -ErrorAction SilentlyContinue | Where-Object { $_.InstanceId -like "*MttVDD*" -or $_.FriendlyName -like "*Virtual Display*" } | Select-Object -First 1
 if ($existingDev) {
     Write-Host "   Device node Root\MttVDD already present. Refreshing device..." -ForegroundColor Gray
     if ($existingDev.Status -ne "OK") {
@@ -173,7 +173,7 @@ Start-Sleep -Seconds 3
 # 6. Verify Device Status
 Write-Host ""
 Write-Host "[5/5] Checking display status..." -ForegroundColor Cyan
-$dev = Get-PnpDevice -HardwareID "Root\MttVDD" -ErrorAction SilentlyContinue
+$dev = Get-PnpDevice -ErrorAction SilentlyContinue | Where-Object { $_.InstanceId -like "*MttVDD*" -or $_.FriendlyName -like "*Virtual Display*" } | Select-Object -First 1
 
 if ($dev -and ($dev.Status -eq "OK" -or $dev.Status -eq "Started")) {
     Write-Host ""
