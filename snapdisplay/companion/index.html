@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapDisplay Companion — True Windows Virtual Second Monitor</title>
+  <meta name="description" content="Turn your phone or tablet into an extended Windows desktop monitor. Powered by Microsoft IddCx Virtual Display Driver Architecture." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #090d16;
+      --bg-surface: #0f172a;
+      --bg-card: #1e293b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.3);
+      --primary: #38bdf8;
+      --primary-hover: #0284c7;
+      --accent-green: #22c55e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 30px 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .brand-badge {
+      font-size: 11px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--border-accent);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.5);
+      transition: all 0.2s ease;
+    }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.7);
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 15px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .download-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 40px 0;
+    }
+    .trust-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 16px;
+    }
+    .trust-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .steps-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 30px;
+      margin: 40px 0;
+    }
+    .steps-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-item {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--primary);
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .code-inline {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
+
+    .app-preview-card {
+      background: #020617;
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .app-preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      color: #f8fafc;
+      font-weight: 700;
+    }
+
+    .faq-section {
+      margin: 40px 0;
+    }
+    .faq-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .faq-item {
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+    .faq-item h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .faq-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="../" class="brand">
+        <span>🖥️ SnapDisplay</span>
+        <span class="brand-badge">Companion v1.2.0</span>
+      </a>
+      <a href="https://github.com/sajusun/extensions" target="_blank" rel="noopener" class="btn-ghost" style="padding: 8px 16px; font-size: 13px;">
+        ⭐ GitHub Repository
+      </a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-badge">
+        <span>🛡️ Microsoft IddCx Virtual Display Architecture</span>
+      </div>
+      <h1>True Extended Desktop for Windows</h1>
+      <p class="hero-sub">
+        Transform your Android phone or tablet into an actual 60 FPS Windows second monitor. Drag distinct browser windows, VS Code, and media over to your mobile screen without mirroring your main display.
+      </p>
+
+      <div class="cta-group">
+        <a href="snapdisplay-second-monitor.zip" class="btn-download" download>
+          <span>📦</span>
+          <span>Download SnapDisplay Companion (.zip)</span>
+        </a>
+        <a href="#how-it-works" class="btn-ghost">
+          <span>📖 How It Works</span>
+        </a>
+      </div>
+      <p class="download-meta">
+        Contains <code>SnapDisplay-Companion.exe</code> &amp; Driver • Windows 10/11 64-bit • Clean VirusTotal 0/70
+      </p>
+    </section>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <h3>🛡️ 100% Offline &amp; Private</h3>
+        <p>No account required, no telemetry, and zero cloud streaming. All video remains strictly between your PC and phone over your USB cable or local Wi-Fi.</p>
+      </div>
+      <div class="trust-card">
+        <h3>⚡ Microsoft IddCx Engine</h3>
+        <p>Uses Windows' official Indirect Display Driver (IddCx) platform. Windows treats your phone as a genuine physical monitor with independent resolution and refresh rate.</p>
+      </div>
+      <div class="trust-card">
+        <h3>✅ Native Modern GUI</h3>
+        <p>Includes a clean Windows desktop utility (<code>SnapDisplay-Companion.exe</code>). 1-click activate, 1-click turn off, with real-time multi-display detection.</p>
+      </div>
+    </div>
+
+    <section class="steps-section" id="how-it-works">
+      <h2 class="steps-title">
+        <span>🚀</span>
+        <span>Quick 3-Step Setup Guide</span>
+      </h2>
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Download &amp; Extract the Package</h4>
+          <p>
+            Download <a href="snapdisplay-second-monitor.zip" style="color:var(--primary); font-weight:600;">snapdisplay-second-monitor.zip</a> and extract the folder anywhere on your computer (e.g. Downloads or Desktop).
+          </p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Run SnapDisplay-Companion.exe</h4>
+          <p>
+            Double-click <span class="code-inline">SnapDisplay-Companion.exe</span> (or right-click &rarr; Run as Administrator). Click <strong>"⚡ Activate Virtual Display"</strong>. Windows will stage the driver and instantly initialize <span class="code-inline">Screen 2</span>.
+          </p>
+          <div class="app-preview-card">
+            <div class="app-preview-header">
+              <span>🖥️ SnapDisplay Companion GUI</span>
+              <span style="color:#22c55e;">● Multiple Displays Active (2 Displays Detected)</span>
+            </div>
+            <div>Status: Windows Extended Desktop is ready!</div>
+            <div style="margin-top:6px; color:#38bdf8;">[⚡ Activate Virtual Display] &nbsp; [❌ Turn Off Virtual Display]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Stream Screen 2 in SnapDisplay Extension</h4>
+          <p>
+            In your Chrome/Edge browser, open SnapDisplay &rarr; click <strong>"Stream Extended Display (Screen 2) to Phone"</strong> &rarr; select <strong>Screen 2</strong> from the browser picker. Your phone is now your secondary monitor!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <h4>Do I need this companion if I already have a physical second monitor connected to my PC?</h4>
+        <p>No! If Windows already detects 2 physical displays, you do not need this companion app at all. SnapDisplay's smart detection will automatically detect your displays and let you stream Screen 2 immediately.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I turn off the virtual display when I'm done?</h4>
+        <p>Simply open <span class="code-inline">SnapDisplay-Companion.exe</span> and click <strong>"❌ Turn Off Virtual Display"</strong>. Windows will return to your single primary screen instantly.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Why did you choose IddCx instead of mirroring?</h4>
+        <p>Screen mirroring only duplicates your main screen. IddCx creates a real separate workspace so you can watch a video or monitor chat on your phone while working full-screen on your PC monitor.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 SnapDisplay. Built for creators, developers, and mobile multitaskers.</p>
+      <p style="margin-top:6px;">
+        <a href="../">SnapDisplay Home</a> &bull;
+        <a href="../privacy/">Privacy Policy</a> &bull;
+        <a href="https://sajusun.gumroad.com/l/snapdisplay">Upgrade to Pro</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
