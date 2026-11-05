@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>SnapDisplay Viewer - Virtual Second Monitor</title>
   <meta name="theme-color" content="#030712">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22SnapDisplay%20Monitor%22%2C%22display%22%3A%22fullscreen%22%2C%22orientation%22%3A%22landscape%22%7D">
   <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
   <style>
     * {
@@ -18,6 +22,7 @@
       width: 100%;
       height: 100%;
       background-color: #030712;
+      cursor: none;
       color: #f3f4f6;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       overflow: hidden;
@@ -247,6 +252,7 @@
           video.play().then(() => {
             overlay.classList.add('hidden');
             showControlsTemporarily();
+            try { if (!document.fullscreenElement && document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen().catch(() => {}); } } catch(e) {}
             setTimeout(() => {
               modePill.classList.add('fade-out');
             }, 4500);
@@ -309,6 +315,7 @@
 
     document.getElementById('video-wrapper').addEventListener('click', () => {
       showControlsTemporarily();
+      try { if (!document.fullscreenElement && document.documentElement.requestFullscreen) { document.documentElement.requestFullscreen().catch(() => {}); } } catch(e) {}
     });
 
     btnFullscreen.addEventListener('click', (e) => {
