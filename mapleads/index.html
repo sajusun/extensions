@@ -43,14 +43,16 @@
         "@type": "SoftwareApplication",
         "@id": "https://sajusun.github.io/extensions/mapleads/#app",
         "name": "MapLeads Pro",
-        "operatingSystem": "Microsoft Edge, Google Chrome, Chromium",
+        "operatingSystem": "Mozilla Firefox, Microsoft Edge, Google Chrome, Chromium",
         "applicationCategory": "BusinessApplication",
         "url": "https://sajusun.github.io/extensions/mapleads/",
         "image": "https://sajusun.github.io/extensions/assets/icons/mapleads.png",
         "description": "Google Maps B2B lead extractor and contact finder. Scrapes business leads into Excel (.xlsx) & CSV without API fees. 100% client-side privacy.",
         "softwareVersion": "1.0.0",
-        "downloadUrl": "https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio",
-        "installUrl": "https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio",
+        "downloadUrl": [
+          "https://addons.mozilla.org/en-US/firefox/addon/mapleads-pro-lead-scraper/",
+          "https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio"
+        ],
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -134,6 +136,7 @@
       --accent-cyan: #38bdf8;
       --accent-emerald: #10b981;
       --accent-amber: #f59e0b;
+      --firefox-orange: #ff7139;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -262,32 +265,41 @@
       text-align: center;
     }
 
-    .badge-pill {
+    .badge-group {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(37, 99, 235, 0.14);
-      border: 1px solid rgba(37, 99, 235, 0.35);
-      color: #60a5fa;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 6px 14px;
       border-radius: 9999px;
       font-size: 0.84rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      text-decoration: none;
+      transition: transform 0.15s ease;
     }
 
-    .badge-secondary-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #94a3b8;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      margin-left: 8px;
+    .badge-link:hover {
+      transform: translateY(-1px);
+    }
+
+    .badge-firefox {
+      background: rgba(255, 113, 57, 0.12);
+      border: 1px solid rgba(255, 113, 57, 0.35);
+      color: #ff8e5e;
+    }
+
+    .badge-edge {
+      background: rgba(37, 99, 235, 0.14);
+      border: 1px solid rgba(37, 99, 235, 0.35);
+      color: #60a5fa;
     }
 
     .hero h1 {
@@ -319,7 +331,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       margin-bottom: 24px;
     }
@@ -334,7 +346,7 @@
       flex-wrap: wrap;
     }
 
-    /* Interactive Preview Box */
+    /* Preview UI Box */
     .preview-card {
       margin: 50px auto 0;
       background: var(--card-bg);
@@ -570,6 +582,13 @@
       color: #64748b;
     }
 
+    .starter-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
     /* Privacy Banner */
     .privacy-banner {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(23, 37, 84, 0.6) 100%);
@@ -596,12 +615,10 @@
       max-width: 600px;
     }
 
-    /* Footer */
+    /* Clean Footer */
     footer {
       border-top: 1px solid var(--card-border);
-      padding: 40px 0;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      padding: 36px 0;
       margin-top: 40px;
     }
 
@@ -613,19 +630,36 @@
       gap: 20px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
-    .footer-links a {
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
       color: var(--text-muted);
       text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
       transition: color 0.15s ease;
     }
 
-    .footer-links a:hover {
+    .footer-nav a:hover {
       color: var(--text-main);
+    }
+
+    .footer-nav a.highlight-pro {
+      color: #60a5fa;
+    }
+
+    .footer-nav a.highlight-pro:hover {
+      color: #93c5fd;
     }
   </style>
 </head>
@@ -643,7 +677,8 @@
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
         <a href="./privacy/">Privacy Policy</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank" rel="noopener" class="btn-cta">Get for Edge ↗</a>
+        <a href="https://sajusun.gumroad.com/l/mapleads-pro" target="_blank" rel="noopener" class="btn-cta">Get Pro
+          ↗</a>
       </nav>
     </div>
   </header>
@@ -651,10 +686,17 @@
   <div class="container">
     <!-- Hero Section -->
     <section class="hero">
-      <div class="badge-pill">
-        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;"><span>✅ Microsoft Edge Add-ons (Official &amp; Live)</span></a>
-        <span class="badge-secondary-pill">Chrome Web Store (Coming Soon)</span>
+      <div class="badge-group">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/mapleads-pro-lead-scraper/" target="_blank"
+          rel="noopener" class="badge-link badge-firefox">
+          🦊 Firefox Add-ons (Official &amp; Live)
+        </a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank"
+          rel="noopener" class="badge-link badge-edge">
+          ✅ Microsoft Edge Add-ons (Live)
+        </a>
       </div>
+
       <h1>
         Turn Google Maps Results <br>
         <span class="gradient-text">Into Verified B2B Leads in 1 Click.</span>
@@ -665,11 +707,17 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank" rel="noopener" class="btn-cta" style="padding: 12px 26px; font-size: 1.02rem;">
-          Get for Microsoft Edge
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/mapleads-pro-lead-scraper/" target="_blank"
+          rel="noopener" class="btn-cta" style="padding: 12px 22px; font-size: 0.98rem; background: #ea580c;">
+          Add to Firefox ↗
         </a>
-        <a href="#gumroad-mapleads" class="btn-secondary" style="padding: 12px 24px; font-size: 1.02rem;">
-          Get MapLeads Pro ↗
+        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank"
+          rel="noopener" class="btn-cta" style="padding: 12px 22px; font-size: 0.98rem;">
+          Add to Microsoft Edge ↗
+        </a>
+        <a href="https://sajusun.gumroad.com/l/mapleads-pro" target="_blank" rel="noopener" class="btn-secondary"
+          style="padding: 12px 22px; font-size: 0.98rem;">
+          Get Lifetime Pro
         </a>
       </div>
 
@@ -743,14 +791,14 @@
           <div class="feature-icon">📊</div>
           <h3>Native Excel (.xlsx) &amp; CSV Export</h3>
           <p>Export hundreds of clean business records with phone numbers, websites, full addresses, and rating metrics
-            ready for HubSpot or Notion.</p>
+            ready for CRM import.</p>
         </div>
 
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
           <h3>Anti-Block Human Simulation</h3>
-          <p>Randomized scroll delays and jitter trajectory prevent Google Maps rate limits, allowing smooth and safe
-            prospecting sessions.</p>
+          <p>Randomized scroll delays and jitter trajectory prevent rate limits, allowing smooth and safe prospecting
+            sessions.</p>
         </div>
 
         <div class="feature-card">
@@ -802,10 +850,18 @@
             <li class="dimmed">✗ Deep website email scraper</li>
             <li class="dimmed">✗ Custom speed presets</li>
           </ul>
-          <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank" rel="noopener" class="btn-secondary"
-            style="width: 100%; text-align: center; justify-content: center;">
-            Install Free Edition
-          </a>
+          <div class="starter-actions">
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/mapleads-pro-lead-scraper/" target="_blank"
+              rel="noopener" class="btn-secondary"
+              style="justify-content: center; font-size: 0.86rem; padding: 10px 8px;">
+              Firefox Add-on
+            </a>
+            <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank"
+              rel="noopener" class="btn-secondary"
+              style="justify-content: center; font-size: 0.86rem; padding: 10px 8px;">
+              Edge Add-on
+            </a>
+          </div>
         </div>
 
         <!-- Pro Tier -->
@@ -826,7 +882,7 @@
             <li>✓ Lifetime updates &amp; priority email support</li>
             <li>✓ 100% client-side privacy guarantee</li>
           </ul>
-          <a href="https://sajusun.gumroad.com/l/mapleads-pro" class="btn-cta"
+          <a href="https://sajusun.gumroad.com/l/mapleads-pro" target="_blank" rel="noopener" class="btn-cta"
             style="width: 100%; text-align: center; justify-content: center;">
             Get MapLeads Pro ↗
           </a>
@@ -834,7 +890,6 @@
       </div>
     </section>
 
-    
     <!-- FAQ Section -->
     <section id="faq" style="margin-top: 70px; margin-bottom: 50px;">
       <div class="section-title">
@@ -842,20 +897,31 @@
         <p>Everything you need to know about MapLeads Pro licensing, exports, and anti-ban safeguards.</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 36px;">
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
-          <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">💻 Can I use my MapLeads license on multiple computers?</h4>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">Yes! Each MapLeads Pro lifetime license includes activation on up to <strong>3 personal devices</strong> (such as your office desktop, personal laptop, and remote workstation). One key powers your whole personal workflow.</p>
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 36px;">
+        <div
+          style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
+          <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">💻 Can I use my MapLeads license on multiple
+            computers?</h4>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">Yes! Each MapLeads Pro lifetime
+            license includes activation on up to <strong>3 personal devices</strong> (such as your office desktop,
+            personal laptop, and remote workstation). One key powers your whole personal workflow.</p>
         </div>
 
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
+        <div
+          style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
           <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">💳 Are there recurring monthly fees?</h4>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">No! Unlike SaaS scrapers that charge $49 to $99 every single month, MapLeads Pro is a one-time purchase of $14.99 with lifetime updates and zero monthly subscriptions.</p>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">No! Unlike SaaS scrapers that
+            charge $49 to $99 every single month, MapLeads Pro is a one-time purchase of $14.99 with lifetime updates
+            and zero monthly subscriptions.</p>
         </div>
 
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
+        <div
+          style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 24px;">
           <h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">🛡️ Is my lead list private?</h4>
-          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">100% confidential. MapLeads runs entirely inside your browser memory. Your client lists and extracted phone/email data are never uploaded to any remote server.</p>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">100% confidential. MapLeads runs
+            entirely inside your browser memory. Your client lists and extracted phone/email data are never uploaded to
+            any remote server.</p>
         </div>
       </div>
     </section>
@@ -875,13 +941,20 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Clean Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 MapLeads Pro. Available on <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank" rel="noopener" style="color: #60a5fa; text-decoration: underline;">Microsoft Edge Add-ons</a> &bull; Chrome (Coming Soon).</p>
-      <div class="footer-links">
+      <div class="footer-copy">
+        &copy; 2026 MapLeads Pro
+      </div>
+      <div class="footer-nav">
+        <a href="https://sajusun.gumroad.com/l/mapleads-pro" target="_blank" rel="noopener" class="highlight-pro">Get
+          Pro</a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/hdbbjgeafcegmdemcjbgppeeicdjeoio" target="_blank"
+          rel="noopener">Edge Add-ons</a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/mapleads-pro-lead-scraper/" target="_blank"
+          rel="noopener">Firefox Add-ons</a>
         <a href="./privacy/">Privacy Policy</a>
-        <a href="https://sajusun.gumroad.com/l/mapleads-pro" target="_blank" rel="noopener">Get Pro</a>
         <a href="../">All Extensions Hub</a>
       </div>
     </div>
