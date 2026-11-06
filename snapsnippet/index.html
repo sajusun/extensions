@@ -45,13 +45,14 @@
         "@type": "SoftwareApplication",
         "@id": "https://sajusun.github.io/extensions/snapsnippet/#app",
         "name": "SnapSnippet",
-        "operatingSystem": "Microsoft Edge, Google Chrome, Chromium",
+        "operatingSystem": "Mozilla Firefox, Microsoft Edge, Google Chrome, Chromium",
         "applicationCategory": "DeveloperApplication",
         "url": "https://sajusun.github.io/extensions/snapsnippet/",
         "image": "https://sajusun.github.io/extensions/snapsnippet/assets/store-icon-300x300.png",
         "description": "Raycast-style spotlight command bar and developer clipboard with 100+ curated presets for Laravel Artisan, Docker, Git, SQL, and Regex. Features zero-server cross-device cloud sync.",
         "softwareVersion": "1.0.0",
         "sameAs": [
+          "https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/",
           "https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp",
           "https://github.com/sajusun/snapsnippet"
         ],
@@ -98,7 +99,7 @@
             "name": "How does cross-device cloud sync work in SnapSnippet Pro?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "SnapSnippet Pro uses the native chrome.storage.sync roaming infrastructure provided by Microsoft Edge and Google Chrome. When you save or edit snippets on your work desktop, your signed-in browser profile automatically and securely synchronizes them to your laptop with zero external servers."
+              "text": "SnapSnippet Pro uses the native chrome.storage.sync and browser.storage.sync roaming infrastructure provided by Mozilla Firefox, Microsoft Edge, and Chrome. When you save or edit snippets on your work desktop, your signed-in browser profile automatically synchronizes them to your laptop with zero external servers."
             }
           },
           {
@@ -157,6 +158,10 @@
       --cyan: #06b6d4;
       --gold: #f59e0b;
       --green: #10b981;
+      --firefox: #ff7139;
+      --firefox-hover: #e05b26;
+      --edge: #0078d4;
+      --edge-hover: #0060b2;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-subtle: #64748b;
@@ -179,7 +184,7 @@
       overflow-x: hidden;
     }
 
-    /* Solid Clean Header - No Glassmorphism */
+    /* Header Bar */
     .header-bar {
       position: sticky;
       top: 0;
@@ -278,6 +283,15 @@
       text-align: center;
     }
 
+    .hero-badge-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -285,16 +299,22 @@
       background: #0d152a;
       border: 1px solid #1e293b;
       color: #cbd5e1;
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .hero-badge:hover {
+      border-color: #334155;
+      transform: translateY(-1px);
     }
 
     .hero-badge .dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--green);
     }
@@ -339,10 +359,10 @@
       gap: 10px;
       background: #8b5cf6;
       color: #ffffff;
-      padding: 13px 26px;
+      padding: 13px 24px;
       border-radius: 9px;
       font-weight: 700;
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       text-decoration: none;
       border: 1px solid #a78bfa;
       transition: all 0.15s ease;
@@ -350,6 +370,26 @@
 
     .btn-primary-pro:hover {
       background: #7c3aed;
+      transform: translateY(-1px);
+    }
+
+    .btn-store-firefox {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ea580c;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+      transition: all 0.15s ease;
+    }
+
+    .btn-store-firefox:hover {
+      background: #c2410c;
       transform: translateY(-1px);
     }
 
@@ -371,65 +411,31 @@
     .btn-store-edge:hover {
       background: #0060b2;
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(0, 120, 212, 0.45);
     }
 
-    .btn-store-free-table {
-      display: block;
+    .btn-free-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-free-tag {
       text-align: center;
-      padding: 10px 16px;
-      font-size: 0.92rem;
+      padding: 10px 12px;
+      font-size: 0.88rem;
       font-weight: 600;
       background: #1e293b;
-      color: #38bdf8;
+      color: #cbd5e1;
       border-radius: 8px;
       text-decoration: none;
       border: 1px solid #334155;
       transition: all 0.15s ease;
     }
 
-    .btn-store-free-table:hover {
-      background: #2563eb;
+    .btn-free-tag:hover {
+      border-color: #8b5cf6;
       color: #ffffff;
-      border-color: #2563eb;
-    }
-
-    .btn-store-upcoming {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #0d152a;
-      color: #cbd5e1;
-      padding: 12px 20px;
-      border-radius: 9px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      border: 1px solid #1e293b;
-      cursor: default;
-    }
-
-    .store-tag {
-      background: #1e293b;
-      color: #94a3b8;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 5px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .store-tag.edge {
-      background: #1e3a5f;
-      color: #38bdf8;
-      border: 1px solid #0284c7;
-    }
-
-    .store-tag.chrome {
-      background: #3b2816;
-      color: #fbbf24;
-      border: 1px solid #d97706;
+      background: #172033;
     }
 
     /* Marquee Banner Showcase */
@@ -448,7 +454,7 @@
       display: block;
     }
 
-    /* Live Spotlight Visual Demo */
+    /* Spotlight Demo */
     .spotlight-box {
       max-width: 780px;
       margin: 0 auto 70px;
@@ -630,7 +636,7 @@
       line-height: 1.6;
     }
 
-    /* Gallery Carousel / Grid of Real Screenshots */
+    /* Screenshots */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -671,7 +677,7 @@
       line-height: 1.5;
     }
 
-    /* Free vs Pro Comparison Matrix */
+    /* Comparison Matrix */
     .pricing-matrix {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -739,7 +745,7 @@
       color: var(--text-muted);
     }
 
-    /* Cloud Sync Architecture Box */
+    /* Sync Architecture */
     .sync-card {
       background: #0d152a;
       border: 1px solid #1e293b;
@@ -846,23 +852,52 @@
       margin: 0 auto 28px;
     }
 
-    /* Footer */
+    /* Clean Polish Footer */
     footer {
       border-top: 1px solid var(--card-border);
-      padding: 40px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.88rem;
+      padding: 36px 0;
       background: #060913;
     }
 
-    footer a {
-      color: #a78bfa;
-      text-decoration: none;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #f8fafc;
+    }
+
+    .footer-nav a.highlight-pro {
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .footer-nav a.highlight-pro:hover {
+      color: #c4b5fd;
     }
 
     @media (max-width: 820px) {
@@ -879,9 +914,9 @@
         gap: 14px;
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -917,9 +952,17 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        <span>Version 1.0.0 &bull; Offline-First &bull; 100+ Dev Presets</span>
+      <div class="hero-badge-group">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/" target="_blank" rel="noopener"
+          class="hero-badge">
+          <span class="dot"></span>
+          <span>🦊 Firefox Add-ons (Official Live)</span>
+        </a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank"
+          rel="noopener" class="hero-badge">
+          <span class="dot"></span>
+          <span>Microsoft Edge Add-ons (Live)</span>
+        </a>
       </div>
 
       <h1>The Command Palette for Developers<br>Who <span class="accent-purple">Move Fast</span> &amp; <span
@@ -929,22 +972,27 @@
         Summon the spotlight command bar with <code>Ctrl + Shift + K</code> and paste in 1 second.</p>
 
       <div class="hero-actions">
-        <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener" class="btn-primary-pro">
-          <span>⚡ Buy Lifetime License — $4.99</span>
-        </a>
-
-        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank" rel="noopener" class="btn-store-edge" title="Install SnapSnippet from Microsoft Edge Add-ons Store">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/" target="_blank" rel="noopener"
+          class="btn-store-firefox" title="Add to Firefox">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z" />
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.43.23.84.41 1.22 1.05 2.15 3.01 3.57 5.38 3.57 1.48 0 2.82-.55 3.84-1.46-.22 2.65-1.39 4.96-2.84 6.39z" />
           </svg>
-          <span>Get for Microsoft Edge</span>
-          <span class="store-tag edge" style="background:#0284c7; color:#fff; border:none;">Live</span>
+          <span>Add to Firefox</span>
         </a>
 
-        <div class="btn-store-upcoming" title="Chrome Web Store submission upcoming">
-          <span>Chrome Web Store</span>
-          <span class="store-tag chrome">Upcoming</span>
-        </div>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank"
+          rel="noopener" class="btn-store-edge" title="Install SnapSnippet from Microsoft Edge Add-ons Store">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z" />
+          </svg>
+          <span>Add to Microsoft Edge</span>
+        </a>
+
+        <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener" class="btn-primary-pro">
+          <span>⚡ Get Lifetime Pro — $4.99</span>
+        </a>
       </div>
 
       <!-- Marquee Hero Banner -->
@@ -996,8 +1044,9 @@
         <div class="card">
           <div class="card-icon">⚡</div>
           <h3>Global Spotlight (Ctrl+Shift+K)</h3>
-          <p>Summon the floating command overlay on any active webpage. Works on GitHub, GitLab, StackOverflow,
-            documentation sites, and local dev tabs.</p>
+          <p>Summon the floating command overlay on any active webpage. Works on Firefox, Edge, GitHub, GitLab,
+            StackOverflow,
+            and local dev tabs.</p>
         </div>
 
         <div class="card">
@@ -1017,7 +1066,7 @@
         <div class="card">
           <div class="card-icon">☁️</div>
           <h3>Zero-Server Cloud Sync (Pro)</h3>
-          <p>Sync snippets automatically between your work desktop, home laptop, and dual-boot OS via browser roaming
+          <p>Sync snippets automatically between your workstation, home laptop, and dual-boot OS via browser roaming
             sync without third-party servers.</p>
         </div>
 
@@ -1138,7 +1187,8 @@
             <tr>
               <td><strong>Device Activation Limit</strong></td>
               <td>Single Device</td>
-              <td class="col-pro"><span class="check-yes" style="color:#10b981; font-weight:700;">✓ Up to 3 Personal Devices (Work PC, Laptop & Home Desktop)</span></td>
+              <td class="col-pro"><span class="check-yes" style="color:#10b981; font-weight:700;">✓ Up to 3 Personal
+                  Devices</span></td>
             </tr>
             <tr>
               <td><strong>Future Feature Updates</strong></td>
@@ -1148,9 +1198,16 @@
             <tr>
               <td></td>
               <td>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank" rel="noopener" class="btn-store-free-table">
-                  Get Free on Edge &rarr;
-                </a>
+                <div class="btn-free-grid">
+                  <a href="https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/" target="_blank"
+                    rel="noopener" class="btn-free-tag">
+                    Firefox
+                  </a>
+                  <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp"
+                    target="_blank" rel="noopener" class="btn-free-tag">
+                    Edge
+                  </a>
+                </div>
               </td>
               <td class="col-pro" style="padding: 16px 20px;">
                 <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener"
@@ -1174,7 +1231,8 @@
         <h3>How Zero-Server Sync Works</h3>
         <p>Most developer tools require you to create an account, store your snippets on their company servers, and pay
           monthly subscriptions. SnapSnippet Pro takes a completely different path.</p>
-        <p>Using Microsoft Edge and Google Chrome's native <code>chrome.storage.sync</code> infrastructure, your
+        <p>Using Firefox, Edge, and Chrome's native <code>browser.storage.sync</code> and
+          <code>chrome.storage.sync</code> infrastructure, your
           snippets roam across your signed-in browser profiles automatically. We run zero servers and store zero copies
           of your data.</p>
       </div>
@@ -1186,7 +1244,8 @@
         </div>
         <div class="step">
           <span class="step-num">2</span>
-          <div><strong>Browser Profile Sync:</strong> Edge/Chrome securely mirrors data to your signed-in profile.</div>
+          <div><strong>Browser Profile Sync:</strong> Browser securely mirrors data to your signed-in account profile.
+          </div>
         </div>
         <div class="step">
           <span class="step-num">3</span>
@@ -1209,8 +1268,8 @@
 
       <div class="faq-item">
         <h4>Which browsers are supported?</h4>
-        <p>SnapSnippet runs on Microsoft Edge, Google Chrome, Brave, Opera, Vivaldi, Arc, and any other Chromium-based
-          web browser.</p>
+        <p>SnapSnippet is officially available on Mozilla Firefox and Microsoft Edge Add-ons, and runs on Google Chrome,
+          Brave, Opera, Vivaldi, Arc, and any other Chromium-based web browser.</p>
       </div>
 
       <div class="faq-item">
@@ -1222,8 +1281,11 @@
 
       <div class="faq-item">
         <h4>Can I use my Pro license on multiple computers?</h4>
-        <p>Yes! Every SnapSnippet Pro purchase grants you activation for up to <strong>3 personal devices</strong> (for example: your work workstation, home desktop, and laptop). With built-in roaming sync, your snippets stay updated across all your machines.</p>
+        <p>Yes! Every SnapSnippet Pro purchase grants you activation for up to <strong>3 personal devices</strong> (for
+          example: your work workstation, home desktop, and laptop). With built-in roaming sync, your snippets stay
+          updated across all your machines.</p>
       </div>
+
       <div class="faq-item">
         <h4>Is the $4.99 fee a subscription?</h4>
         <p>No! SnapSnippet Pro is a one-time lifetime payment of $4.99 USD. You will never be billed again, and all
@@ -1233,8 +1295,8 @@
       <div class="faq-item">
         <h4>Can I customize the global shortcut key?</h4>
         <p>Yes. By default it is <code>Ctrl + Shift + K</code> (or <code>Cmd + Shift + K</code> on macOS). You can
-          customize it at any time by visiting <code>edge://extensions/shortcuts</code> or
-          <code>chrome://extensions/shortcuts</code>.</p>
+          customize it at any time by visiting <code>about:addons</code> (in Firefox) or
+          <code>edge://extensions/shortcuts</code>.</p>
       </div>
     </section>
 
@@ -1244,15 +1306,16 @@
       <p>Join developers who use SnapSnippet to instantly trigger Artisan commands, Docker flows, and Git actions
         without context switching.</p>
       <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
-        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank" rel="noopener" class="btn-store-edge"
-          style="padding:14px 28px; font-size:1.05rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21.94 13.11c-.13-.48-.6-.82-1.1-.76-2.58.33-4.46-1.1-4.88-2.9-.43-1.84.5-3.8 2.21-4.66.5-.25.7-.82.47-1.33C17.06 1.48 14.33.6 11.53.94 5.92 1.63 1.5 6.38 1.05 12.02c-.52 6.55 4.38 12.01 10.83 12.01 5.3 0 9.87-3.66 11.08-8.83.13-.56-.22-1.12-.77-1.22-.08-.01-.17-.01-.25.13zM12 21.94c-4.88 0-8.91-3.6-9.45-8.42-.6-5.32 3.32-9.94 8.64-10.22 1.49-.08 2.96.22 4.31.86-1.89 1.15-2.99 3.36-2.67 5.61.35 2.5 2.1 4.54 4.58 5.25-.13.38-.29.75-.48 1.1-1.11 2.06-3.16 3.48-5.54 3.79-.46.06-.92.09-1.39.09v-.06z" />
-          </svg>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/" target="_blank" rel="noopener"
+          class="btn-store-firefox" style="padding:14px 26px; font-size:1.02rem;">
+          Get for Firefox
+        </a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank"
+          rel="noopener" class="btn-store-edge" style="padding:14px 26px; font-size:1.02rem;">
           Get for Microsoft Edge
         </a>
         <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener" class="btn-primary-pro"
-          style="padding:14px 28px; font-size:1.05rem;">
+          style="padding:14px 26px; font-size:1.02rem;">
           Get Lifetime Pro for $4.99 &rarr;
         </a>
       </div>
@@ -1260,13 +1323,20 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- Clean Minimal Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 SnapSnippet. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: #a78bfa; text-decoration:none;">Sakhawat Hossain</a>.</p>
-      <div class="footer-links">
+      <div class="footer-copy">
+        &copy; 2026 SnapSnippet
+      </div>
+      <div class="footer-nav">
+        <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener" class="highlight-pro">Get
+          Pro</a>
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nmepbomdmgmogapfaonhlicoiipdmcgp" target="_blank"
+          rel="noopener">Edge Add-ons</a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/snapsnippet-spotlight/" target="_blank"
+          rel="noopener">Firefox Add-ons</a>
         <a href="./privacy/">Privacy Policy</a>
-        <a href="https://sajusun.gumroad.com/l/snapsnippet-pro" target="_blank" rel="noopener">Get Pro</a>
         <a href="../">All Extensions Hub</a>
       </div>
     </div>
