@@ -43,7 +43,7 @@
         "@type": "SoftwareApplication",
         "@id": "https://sajusun.github.io/extensions/devfill/#app",
         "name": "DevFill",
-        "operatingSystem": "Microsoft Edge, Google Chrome, Chromium",
+        "operatingSystem": "Mozilla Firefox, Microsoft Edge, Google Chrome, Chromium",
         "applicationCategory": "DeveloperApplication",
         "url": "https://sajusun.github.io/extensions/devfill/",
         "image": "https://sajusun.github.io/extensions/assets/icons/devfill.png",
@@ -57,6 +57,7 @@
         "author": { "@id": "https://sajusun.github.io/#person" },
         "publisher": { "@id": "https://sajusun.github.io/#person" },
         "sameAs": [
+          "https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/",
           "https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp",
           "https://github.com/sajusun/devfill"
         ]
@@ -232,6 +233,48 @@
     .btn-github:hover {
       background: rgba(255, 255, 255, 0.09);
       border-color: var(--border-hover);
+    }
+
+    .btn-firefox-store {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ff7139, #ff3b30);
+      color: #ffffff !important;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 14px rgba(255, 113, 57, 0.35);
+    }
+
+    .btn-firefox-store:hover {
+      background: #ff5500;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(255, 85, 0, 0.45);
+    }
+
+    .btn-hero-firefox {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ff7139, #ff3b30);
+      color: #ffffff !important;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 8px 20px rgba(255, 113, 57, 0.4);
+    }
+
+    .btn-hero-firefox:hover {
+      background: #ff5500;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255, 85, 0, 0.55);
     }
 
     .btn-edge-store {
@@ -727,6 +770,10 @@
           </svg>
           <span>Star on GitHub</span>
         </a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/" target="_blank"
+          rel="noopener" class="btn-firefox-store">
+          <span>🦊 Add to Firefox</span>
+        </a>
         <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank"
           rel="noopener" class="btn-edge-store">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -746,14 +793,21 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="badge-pill">
-        <span class="badge-dot"></span>
-        <span>100% Free &bull; Open Source (MIT) &bull; Manifest V3 Offline</span>
+        <span>🦊 Live on Firefox Add-ons</span>
+        <span>&bull;</span>
+        <span>🟢 Live on Microsoft Edge</span>
+        <span>&bull;</span>
+        <span style="color: #94a3b8;">Chrome Web Store (Upcoming)</span>
       </div>
       <h1>Smart Dummy Form Filler for<br><span>Web Developers &amp; QA Engineers</span></h1>
       <p>Fill entire registration forms, checkouts, and nested web inputs in 1 millisecond. Dispatches native synthetic
         events with zero network transmission.</p>
 
       <div class="hero-actions">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/" target="_blank"
+          rel="noopener" class="btn-hero-firefox">
+          <span>🦊 Add to Firefox ↗</span>
+        </a>
         <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank"
           rel="noopener" class="btn-hero-primary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -936,6 +990,10 @@
       <p>DevFill contains zero ads, zero telemetry, and zero pro paywalls. Everything is open source under the MIT
         License and auditable on GitHub.</p>
       <div class="open-source-actions">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/" target="_blank"
+          rel="noopener" class="btn-hero-firefox">
+          <span>🦊 Install from Firefox Add-ons</span>
+        </a>
         <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank"
           rel="noopener" class="btn-hero-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -968,6 +1026,7 @@
       <div class="footer-links">
         <a href="./privacy/">Privacy Policy</a>
         <a href="https://github.com/sajusun/devfill" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/" target="_blank" rel="noopener" style="color:#ff7139; font-weight:600;">Firefox Add-ons</a>
         <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener">Edge Add-ons</a>
         <a href="../">All Extensions Hub</a>
       </div>
