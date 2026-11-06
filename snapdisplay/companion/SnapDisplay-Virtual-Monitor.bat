@@ -1,37 +1,116 @@
 @echo off
 setlocal EnableDelayedExpansion
-title SnapDisplay - Virtual Second Monitor Activator
+title SnapDisplay - Virtual Second Monitor Controller
 
+:: ====================================================================
+:: 1. Self-Elevate to Administrator (Single Clean Windows UAC Prompt)
+:: ====================================================================
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    powershell -NoProfile -WindowStyle Hidden -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    exit /b
+)
+
+:: Ensure working directory is set
+set "TARGET_DIR=C:\Virtual-Display-Driver"
+set "BASE_URL=https://sajusun.github.io/extensions/snapdisplay/companion/driver"
+set "SCRIPT_DIR=%~dp0"
+
+:: ====================================================================
+:: 2. Check If Virtual Display Device Node is Already Active
+:: ====================================================================
+set "IS_ACTIVE=0"
+pnputil /enum-devices /instanceid "Root\MttVDD" 2>&1 | findstr /i "Root\MttVDD" >nul 2>&1
+if %errorlevel% equ 0 (
+    set "IS_ACTIVE=1"
+)
+
+if "%IS_ACTIVE%"=="1" goto :ACTIVE_MENU
+goto :DO_ACTIVATE
+
+:: ====================================================================
+:: 3. Interactive Menu When Already Active (Deactivate / Toggle)
+:: ====================================================================
+:ACTIVE_MENU
+cls
+echo ======================================================================
+echo           SnapDisplay - Virtual Second Monitor Controller
+echo ======================================================================
+echo.
+echo   STATUS: [ ONLINE ] Windows Virtual Second Monitor is currently ACTIVE.
+echo.
+echo   Choose an option:
+echo.
+echo     [1] Turn OFF / Deactivate Virtual Display (Restore Single Screen)
+echo     [2] Open Windows Display Settings
+echo     [3] Re-activate / Refresh Virtual Display
+echo     [4] Exit
+echo.
+echo ======================================================================
+set "CHOICE="
+set /p "CHOICE=Enter choice (1-4) [Press Enter for 1 to Turn OFF]: "
+if "%CHOICE%"=="" set "CHOICE=1"
+if "%CHOICE%"=="1" goto :DO_DEACTIVATE
+if "%CHOICE%"=="2" goto :DO_SETTINGS
+if "%CHOICE%"=="3" goto :DO_ACTIVATE
+exit /b
+
+:: ====================================================================
+:: 4. Deactivate Virtual Display
+:: ====================================================================
+:DO_DEACTIVATE
+echo.
+echo [1/2] Removing Virtual Display Device node (Root\MttVDD)...
+if exist "%TARGET_DIR%\nefconc.exe" (
+    "%TARGET_DIR%\nefconc.exe" --remove-device-node --hardware-id Root\MttVDD --class-guid {4D36E968-E325-11CE-BFC1-08002BE10318} >nul 2>&1
+)
+pnputil /remove-device "Root\MttVDD" >nul 2>&1
+
+echo [2/2] Restoring Windows display topology...
+timeout /t 1 /nobreak >nul 2>&1
+
+echo.
+echo ======================================================================
+echo       [SUCCESS] Virtual Second Monitor has been turned OFF!
+echo ======================================================================
+echo.
+echo Windows has returned to your primary single screen.
+echo Whenever you want to re-enable Display 2, just run this file again!
+echo.
+echo Press any key to close this window...
+pause >nul
+exit /b
+
+:: ====================================================================
+:: 5. Open Windows Display Settings
+:: ====================================================================
+:DO_SETTINGS
+start ms-settings:display
+exit /b
+
+:: ====================================================================
+:: 6. Activate Virtual Display
+:: ====================================================================
+:DO_ACTIVATE
+cls
 echo ======================================================================
 echo           SnapDisplay - Virtual Second Monitor Activator
 echo ======================================================================
 echo.
 
-:: 1. Check Administrator Privileges and Self-Elevate cleanly
-net session >nul 2>&1
-if %errorlevel% neq 0 (
-    echo [INFO] Requesting Administrator permissions...
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
-    exit /b
-)
-
-:: 2. Target Directory
-set "TARGET_DIR=C:\Virtual-Display-Driver"
 if not exist "%TARGET_DIR%" (
     mkdir "%TARGET_DIR%" >nul 2>&1
 )
 
 echo [1/4] Checking driver components...
-set "BASE_URL=https://sajusun.github.io/extensions/snapdisplay/companion/driver"
 
-:: If running next to local driver folder, copy from local; otherwise download from official GitHub CDN
-set "SCRIPT_DIR=%~dp0"
+:: Copy local driver files if present; otherwise download
 if exist "%SCRIPT_DIR%driver\nefconc.exe" (
     copy /y "%SCRIPT_DIR%driver\*.*" "%TARGET_DIR%\" >nul 2>&1
 )
 
 if not exist "%TARGET_DIR%\nefconc.exe" (
-    echo [INFO] Downloading driver package from official SnapDisplay CDN...
+    echo       Downloading driver package from SnapDisplay CDN...
     powershell -NoProfile -Command "Invoke-WebRequest -Uri '%BASE_URL%/nefconc.exe' -OutFile '%TARGET_DIR%\nefconc.exe' -UseBasicParsing"
     powershell -NoProfile -Command "Invoke-WebRequest -Uri '%BASE_URL%/MttVDD.dll' -OutFile '%TARGET_DIR%\MttVDD.dll' -UseBasicParsing"
     powershell -NoProfile -Command "Invoke-WebRequest -Uri '%BASE_URL%/MttVDD.inf' -OutFile '%TARGET_DIR%\MttVDD.inf' -UseBasicParsing"
@@ -81,10 +160,15 @@ start ms-settings:display
 echo.
 echo ----------------------------------------------------------------------
 echo What to do next:
-echo 1. Check Windows Display Settings (you should see Display 1 and 2).
+echo 1. In Windows Display Settings, you should see [ 1 ]  [ 2 ].
 echo 2. Return to SnapDisplay in your browser and click:
 echo    "Stream Extended Display (Screen 2) to Phone"
+echo.
+echo 💡 HOW TO TURN OFF LATER:
+echo    - Run this same file anytime to Turn OFF / Deactivate Display 2.
+echo    - OR press [T] right now to Turn OFF immediately.
 echo ----------------------------------------------------------------------
 echo.
-echo Press any key to close this window...
-pause >nul
+choice /c TE /n /m "Press [T] to Turn OFF now, or [E] (or wait 10s) to keep running and exit: " /t 10 /d E
+if errorlevel 2 exit /b
+if errorlevel 1 goto :DO_DEACTIVATE
