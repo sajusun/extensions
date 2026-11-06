@@ -17,7 +17,8 @@
   <meta property="og:title" content="SnapDownload HD — Ultimate 4K HD Image Downloader & Bulk ZIP Grabber">
   <meta property="og:description"
     content="Extract master 4K/HD original images, download in bulk as .ZIP archives, and convert formats directly in your browser. 100% private.">
-  <meta property="og:image" content="https://sajusun.github.io/extensions/snapdownload/assets/promo-marquee-1400x560.png">
+  <meta property="og:image"
+    content="https://sajusun.github.io/extensions/snapdownload/assets/promo-marquee-1400x560.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +26,8 @@
   <meta name="twitter:title" content="SnapDownload HD — Ultimate 4K HD Image Downloader">
   <meta name="twitter:description"
     content="Extract master 4K/HD original images, download in bulk as .ZIP archives, and convert formats directly in your browser.">
-  <meta name="twitter:image" content="https://sajusun.github.io/extensions/snapdownload/assets/promo-marquee-1400x560.png">
+  <meta name="twitter:image"
+    content="https://sajusun.github.io/extensions/snapdownload/assets/promo-marquee-1400x560.png">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -43,12 +45,13 @@
         "@type": "SoftwareApplication",
         "@id": "https://sajusun.github.io/extensions/snapdownload/#app",
         "name": "SnapDownload HD",
-        "operatingSystem": "Microsoft Edge, Google Chrome, Brave, Chromium",
+        "operatingSystem": "Mozilla Firefox, Microsoft Edge, Google Chrome, Brave, Chromium",
         "applicationCategory": "UtilitiesApplication",
         "url": "https://sajusun.github.io/extensions/snapdownload/",
         "image": "https://sajusun.github.io/extensions/assets/icons/snapdownload.png",
-        "description": "High-performance bulk image downloader for Chromium browsers. Auto-resolves 4K/HD master assets from e-commerce and social networks, bundles into 1-click ZIP archives, and converts WebP/AVIF formats locally.",
+        "description": "High-performance bulk image downloader for web browsers. Auto-resolves 4K/HD master assets from e-commerce and social networks, bundles into 1-click ZIP archives, and converts WebP/AVIF formats locally.",
         "softwareVersion": "1.0.0",
+        "downloadUrl": "https://addons.mozilla.org/en-US/firefox/addon/snapdownload-hd/",
         "offers": {
           "@type": "Offer",
           "price": "4.99",
@@ -126,6 +129,8 @@
 
       --primary: #0284c7;
       --primary-hover: #0369a1;
+      --firefox: #ea580c;
+      --firefox-hover: #c2410c;
       --accent-cyan: #38bdf8;
       --accent-amber: #f59e0b;
       --accent-green: #10b981;
@@ -240,9 +245,16 @@
       padding: 6px 14px;
       border-radius: 9999px;
       margin-bottom: 24px;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--accent-cyan);
       font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .hero-badge-wrap:hover {
+      border-color: #334155;
+      transform: translateY(-1px);
     }
 
     .hero-title {
@@ -260,7 +272,7 @@
 
     .hero-subtitle {
       max-width: 780px;
-      margin: 0 auto 36px;
+      margin: 0 auto 34px;
       font-size: 1.15rem;
       color: var(--text-muted);
       line-height: 1.6;
@@ -272,86 +284,66 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 12px;
+      margin-bottom: 40px;
     }
 
-    .btn-action-primary {
+    .btn-action-firefox {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--primary);
+      gap: 8px;
+      background: var(--firefox);
       color: #fff;
-      padding: 13px 24px;
+      padding: 10px 18px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 0.92rem;
       font-weight: 600;
       text-decoration: none;
-      border: 1px solid transparent;
-      transition: background 0.2s ease;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+      transition: all 0.2s ease;
     }
 
-    .btn-action-primary:hover {
-      background: var(--primary-hover);
-    }
-
-    .btn-action-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg-card);
-      color: var(--text-main);
-      padding: 13px 24px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid var(--border-color);
-      transition: border-color 0.2s ease;
-    }
-
-    .btn-action-secondary:hover {
-      border-color: var(--accent-cyan);
+    .btn-action-firefox:hover {
+      background: var(--firefox-hover);
+      transform: translateY(-1px);
     }
 
     .btn-action-gumroad {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       background: var(--accent-amber);
       color: #000;
-      padding: 13px 24px;
+      padding: 10px 18px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 0.92rem;
       font-weight: 700;
       text-decoration: none;
-      transition: opacity 0.2s ease;
+      transition: all 0.2s ease;
     }
 
     .btn-action-gumroad:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-1px);
     }
 
-    /* UPCOMING STATUS BADGE */
-    .status-upcoming-badge {
+    .btn-action-secondary {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: #fbbf24;
-      font-size: 0.72rem;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-left: 6px;
+      gap: 8px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
     }
 
-    .store-notice {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      margin-bottom: 48px;
+    .btn-action-secondary:hover {
+      border-color: var(--accent-cyan);
     }
 
     /* HERO BANNER IMAGE */
@@ -654,31 +646,50 @@
       margin: 0 auto 28px;
     }
 
-    /* FOOTER */
+    /* CLEAN MINIMAL FOOTER */
     footer {
       border-top: 1px solid var(--border-color);
       background: var(--bg-header);
-      padding: 40px 24px;
-      text-align: center;
+      padding: 34px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
       font-size: 0.9rem;
       color: var(--text-dim);
     }
 
-    footer a {
+    .footer-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
     }
 
-    footer a:hover {
-      color: var(--accent-cyan);
+    .footer-nav a:hover {
+      color: var(--text-main);
     }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 12px;
+    .footer-nav a.highlight-pro {
+      color: var(--accent-amber);
+      font-weight: 600;
     }
 
     @media (max-width: 768px) {
@@ -692,13 +703,19 @@
 
       .hero-actions {
         flex-direction: column;
+        width: 100%;
       }
 
-      .btn-action-primary,
-      .btn-action-secondary,
-      .btn-action-gumroad {
+      .btn-action-firefox,
+      .btn-action-gumroad,
+      .btn-action-secondary {
         width: 100%;
         justify-content: center;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -717,7 +734,7 @@
         <a href="#features" class="nav-link">Features</a>
         <a href="#comparison" class="nav-link">Pricing</a>
         <a href="./privacy/" class="nav-link">Privacy</a>
-        <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" class="nav-btn-pro">
+        <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener" class="nav-btn-pro">
           👑 Get Pro ($4.99)
         </a>
       </nav>
@@ -726,10 +743,11 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge-wrap">
-      <span>⚡</span>
-      <span>100% Client-Side Private • Zero Cloud Uploads</span>
-    </div>
+    <a href="https://addons.mozilla.org/en-US/firefox/addon/snapdownload-hd/" target="_blank" rel="noopener"
+      class="hero-badge-wrap">
+      <span>🦊</span>
+      <span>Official Firefox Add-ons (Live) • 100% Client-Side Private</span>
+    </a>
 
     <h1 class="hero-title">
       Bulk Image Downloader &<br>
@@ -737,42 +755,38 @@
     </h1>
 
     <p class="hero-subtitle">
-      Stop saving blurry 200px thumbnails. SnapDownload HD automatically reconstructs master original resolutions from e-commerce & social platforms, compiles clean 1-click .ZIP archives, and converts WebP/AVIF formats on the fly.
+      Stop saving blurry 200px thumbnails. SnapDownload HD automatically reconstructs master original resolutions from
+      e-commerce & social platforms, compiles clean 1-click .ZIP archives, and converts WebP/AVIF formats on the fly.
     </p>
 
     <!-- ACTION BUTTONS -->
     <div class="hero-actions">
-      <!-- Edge Add-ons (Upcoming) -->
-      <a href="#store-status" class="btn-action-primary" title="Microsoft Edge Add-ons Certification Pending">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M0 11.233c.035 4.908 3.013 9.07 7.394 10.82 4.41 1.761 9.48.808 12.87-2.327l-3.23-2.734c-2.456 1.83-5.748 2.05-8.41.674-2.66-1.375-4.225-4.086-4.074-7.078l-4.55-.355zm23.957-.75C23.518 4.7 18.257.065 11.97 0 6.643-.055 1.878 3.328.28 8.358l4.902 1.482C6.14 6.77 9.08 4.6 12.38 4.67c4.15.088 7.55 3.35 7.78 7.5.02.39-.01.78-.07 1.16l4.24 1.34c.24-1.35.33-2.75.33-4.187z"/>
+      <!-- Firefox Live Install -->
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/snapdownload-hd/" target="_blank" rel="noopener"
+        class="btn-action-firefox" title="Add to Firefox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79.09.43.23.84.41 1.22 1.05 2.15 3.01 3.57 5.38 3.57 1.48 0 2.82-.55 3.84-1.46-.22 2.65-1.39 4.96-2.84 6.39z" />
         </svg>
-        <span>Add to Microsoft Edge</span>
-        <span class="status-upcoming-badge">Upcoming</span>
-      </a>
-
-      <!-- Chrome Web Store (Upcoming) -->
-      <a href="#store-status" class="btn-action-secondary" title="Chrome Web Store Certification Pending">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A6 6 0 0 1 12 6h9.544A11.94 11.94 0 0 0 12 0zm-8.86 6.554A11.96 11.96 0 0 0 0 12c0 5.482 3.676 10.106 8.683 11.536l3.954-6.848a6 6 0 0 1-5.795-3.342L3.14 6.554zM12 18a6 6 0 0 1-4.243-1.757L3.803 23.09A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12 0-.688-.06-1.362-.172-2.018H12v6z"/>
-        </svg>
-        <span>Chrome Web Store</span>
-        <span class="status-upcoming-badge">Upcoming</span>
+        <span>Add to Firefox</span>
       </a>
 
       <!-- Gumroad Pro Lifetime -->
-      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" class="btn-action-gumroad">
-        <span>👑 Buy Lifetime Pro ($4.99)</span>
+      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener"
+        class="btn-action-gumroad">
+        <span>👑 Get Lifetime Pro ($4.99)</span>
+      </a>
+
+      <!-- Feature Jump Link -->
+      <a href="#features" class="btn-action-secondary">
+        <span>Explore Features &darr;</span>
       </a>
     </div>
 
-    <p id="store-status" class="store-notice">
-      ℹ️ <em>Store submissions are currently undergoing official partner certification. Official store install links will be enabled immediately upon approval. Lifetime licenses purchased on Gumroad will remain 100% compatible.</em>
-    </p>
-
     <!-- BANNER PREVIEW -->
     <div class="hero-banner-wrap">
-      <img src="./assets/promo-marquee-1400x560.png" alt="SnapDownload HD Marquee Showcase Banner" class="hero-banner-img">
+      <img src="./assets/promo-marquee-1400x560.png" alt="SnapDownload HD Marquee Showcase Banner"
+        class="hero-banner-img">
     </div>
   </section>
 
@@ -802,7 +816,8 @@
       <div class="section-tag">Powerful Tool Suite</div>
       <h2 class="section-title">Engineered for Designers, Merchants & Creators</h2>
       <p class="section-subtitle">
-        Everything you need to extract and organize visual assets from any web page without low-quality artifacts or messy folders.
+        Everything you need to extract and organize visual assets from any web page without low-quality artifacts or
+        messy folders.
       </p>
     </div>
 
@@ -811,7 +826,8 @@
         <div class="feature-icon">🔍</div>
         <h3 class="feature-title">4K/HD Original Master Resolver</h3>
         <p class="feature-desc">
-          Automatically replaces downscaled thumbnails from Amazon, Twitter/X, Pinterest, AliExpress, Reddit, and Shopify with the original master-quality uncompressed image file.
+          Automatically replaces downscaled thumbnails from Amazon, Twitter/X, Pinterest, AliExpress, Reddit, and
+          Shopify with the original master-quality uncompressed image file.
         </p>
       </div>
 
@@ -819,7 +835,8 @@
         <div class="feature-icon">📦</div>
         <h3 class="feature-title">1-Click .ZIP Bulk Archiver</h3>
         <p class="feature-desc">
-          Download dozens or hundreds of images in a single neatly compressed .ZIP file. Prevents messy downloads folders and browser download prompt spam.
+          Download dozens or hundreds of images in a single neatly compressed .ZIP file. Prevents messy downloads
+          folders and browser download prompt spam.
         </p>
       </div>
 
@@ -827,7 +844,8 @@
         <div class="feature-icon">🔄</div>
         <h3 class="feature-title">WebP & AVIF Format Converter</h3>
         <p class="feature-desc">
-          Tired of downloading uneditable .webp or .avif files? SnapDownload HD converts them directly into universally compatible .PNG or .JPG files on the fly.
+          Tired of downloading uneditable .webp or .avif files? SnapDownload HD converts them directly into universally
+          compatible .PNG or .JPG files on the fly.
         </p>
       </div>
 
@@ -835,7 +853,8 @@
         <div class="feature-icon">⚡</div>
         <h3 class="feature-title">Auto-Scroll Deep Harvester</h3>
         <p class="feature-desc">
-          Effortlessly capture infinite-scrolling pages and dynamic galleries with real-time user controls (Start / Stop) so you only harvest what you actually need.
+          Effortlessly capture infinite-scrolling pages and dynamic galleries with real-time user controls (Start /
+          Stop) so you only harvest what you actually need.
         </p>
       </div>
 
@@ -843,7 +862,8 @@
         <div class="feature-icon">🛡️</div>
         <h3 class="feature-title">Anti-Save & Right-Click Bypass</h3>
         <p class="feature-desc">
-          Bypasses right-click blocking scripts, CSS pointer-events locks, and transparent click-stealing overlays to unlock protected graphics.
+          Bypasses right-click blocking scripts, CSS pointer-events locks, and transparent click-stealing overlays to
+          unlock protected graphics.
         </p>
       </div>
 
@@ -851,7 +871,8 @@
         <div class="feature-icon">🎯</div>
         <h3 class="feature-title">Smart Dimension & Type Filters</h3>
         <p class="feature-desc">
-          Filter out tiny icons and tracking pixels instantly. Filter by minimum width/height, aspect ratio (Landscape, Portrait, Square), or search terms.
+          Filter out tiny icons and tracking pixels instantly. Filter by minimum width/height, aspect ratio (Landscape,
+          Portrait, Square), or search terms.
         </p>
       </div>
     </div>
@@ -902,19 +923,22 @@
       <div class="step-card">
         <div class="step-num">1</div>
         <h4>Open Active Tab</h4>
-        <p>Navigate to any web page, social feed, or product listing and click the SnapDownload HD icon in your browser toolbar.</p>
+        <p>Navigate to any web page, social feed, or product listing and click the SnapDownload HD icon in your browser
+          toolbar.</p>
       </div>
 
       <div class="step-card">
         <div class="step-num">2</div>
         <h4>Filter & Select</h4>
-        <p>Set minimum dimensions (e.g. Min W: 500px), filter by format (JPG/PNG), or click "Auto-Scroll" to load more images.</p>
+        <p>Set minimum dimensions (e.g. Min W: 500px), filter by format (JPG/PNG), or click "Auto-Scroll" to load more
+          images.</p>
       </div>
 
       <div class="step-card">
         <div class="step-num">3</div>
         <h4>Download or .ZIP</h4>
-        <p>Click "Download Selected" for individual files or "Download as .ZIP" to save all assets into an organized archive.</p>
+        <p>Click "Download Selected" for individual files or "Download as .ZIP" to save all assets into an organized
+          archive.</p>
       </div>
     </div>
   </section>
@@ -925,7 +949,8 @@
       <div class="section-tag">Transparent Value</div>
       <h2 class="section-title">Free vs Pro Feature Breakdown</h2>
       <p class="section-subtitle">
-        Everything you need for light usage is free. Upgrade once for $4.99 and enjoy lifetime unlimited power with zero subscriptions.
+        Everything you need for light usage is free. Upgrade once for $4.99 and enjoy lifetime unlimited power with zero
+        subscriptions.
       </p>
     </div>
 
@@ -970,6 +995,11 @@
             <td class="check-yes">✓ 1-click overlay & contextmenu unblocker</td>
           </tr>
           <tr>
+            <td class="cell-highlight">Device Activations</td>
+            <td>1 Device</td>
+            <td class="check-yes">✓ Up to 3 Personal Devices</td>
+          </tr>
+          <tr>
             <td class="cell-highlight">Subscription Fees</td>
             <td>$0 Forever</td>
             <td class="check-yes"><strong>$4.99 One-Time (Zero Monthly Fees)</strong></td>
@@ -979,7 +1009,8 @@
     </div>
 
     <div style="text-align: center; margin-top: 32px;">
-      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" class="btn-action-gumroad" style="font-size: 1.1rem; padding: 15px 32px;">
+      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener" class="btn-action-gumroad"
+        style="font-size: 1.05rem; padding: 13px 28px;">
         👑 Unlock Lifetime Pro License ($4.99) on Gumroad ↗
       </a>
     </div>
@@ -995,22 +1026,29 @@
     <div class="faq-list">
       <div class="faq-item">
         <h4>Are my images or browsing history tracked?</h4>
-        <p>No. SnapDownload HD operates with a 100% local client-side architecture. Image inspection, filtering, format conversion, and ZIP packaging all happen in your local browser memory. Zero images or browsing telemetry are sent to our servers.</p>
+        <p>No. SnapDownload HD operates with a 100% local client-side architecture. Image inspection, filtering, format
+          conversion, and ZIP packaging all happen in your local browser memory. Zero images or browsing telemetry are
+          sent to our servers.</p>
       </div>
 
       <div class="faq-item">
-        <h4>How does the Pro License work?</h4>
-        <p>When you purchase SnapDownload HD Pro on Gumroad ($4.99 one-time payment), you instantly receive a 16-character license key. Enter it inside the extension popup under "Get Pro" to unlock all Pro capabilities permanently on your devices.</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>When will the Microsoft Edge and Chrome Store links be live?</h4>
-        <p>The extension package has been compiled and is currently undergoing certification in the Microsoft Edge Partner Center and Chrome Web Store review pipelines. Links on this page will update automatically once approval is finalized.</p>
+        <h4>How do I activate the Pro License?</h4>
+        <p>When you purchase SnapDownload HD Pro on Gumroad ($4.99 one-time payment), you instantly receive your
+          personal license key. Enter it inside the extension popup under "Get Pro" to unlock all Pro capabilities
+          permanently on up to 3 personal devices.</p>
       </div>
 
       <div class="faq-item">
         <h4>Can I convert stubborn WebP images to PNG?</h4>
-        <p>Yes! With Pro activated, select "Convert to PNG" or "Convert to JPG" in the format dropdown before downloading. SnapDownload HD converts them instantly using browser canvas rendering without requiring external software.</p>
+        <p>Yes! With Pro activated, select "Convert to PNG" or "Convert to JPG" in the format dropdown before
+          downloading. SnapDownload HD converts them instantly using browser canvas rendering without requiring external
+          software.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Which browsers are currently supported?</h4>
+        <p>SnapDownload HD is officially live on Mozilla Firefox Add-ons and works seamlessly across Firefox desktop
+          distributions.</p>
       </div>
     </div>
   </section>
@@ -1018,29 +1056,40 @@
   <!-- FINAL CTA -->
   <section class="cta-banner">
     <h3>Ready to Supercharge Your Image Workflow?</h3>
-    <p>Join designers, photographers, e-commerce sellers, and researchers who save hours every week with SnapDownload HD.</p>
+    <p>Join designers, photographers, e-commerce sellers, and researchers who save hours every week with SnapDownload
+      HD.</p>
     <div class="hero-actions" style="margin-bottom: 0;">
-      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" class="btn-action-gumroad">
-        👑 Get Pro Lifetime License ($4.99)
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/snapdownload-hd/" target="_blank" rel="noopener"
+        class="btn-action-firefox">
+        Add to Firefox
+      </a>
+      <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener"
+        class="btn-action-gumroad">
+        👑 Get Pro Lifetime ($4.99)
       </a>
       <a href="./privacy/" class="btn-action-secondary">
-        Read Privacy Policy
+        Privacy Policy
       </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- CLEAN MINIMAL FOOTER -->
   <footer>
-    <div class="container footer-inner">
-      <p>&copy; 2026 SnapDownload HD. Developed with pride by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration:none;">Sakhawat Hossain</a>.</p>
-      <div class="footer-links">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        &copy; 2026 SnapDownload HD
+      </div>
+      <div class="footer-nav">
+        <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener"
+          class="highlight-pro">Get Pro</a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/snapdownload-hd/" target="_blank" rel="noopener">Firefox
+          Add-ons</a>
         <a href="./privacy/">Privacy Policy</a>
-        <a href="https://sajusun.gumroad.com/l/snapdownload-pro" target="_blank" rel="noopener">Get Pro</a>
         <a href="../">All Extensions Hub</a>
       </div>
     </div>
   </footer>
 
 </body>
-</html>
 
+</html>
