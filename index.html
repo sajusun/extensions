@@ -335,6 +335,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
+      flex: 1;
     }
 
     .card-icon-img {
@@ -440,17 +442,19 @@
     }
 
     .store-upcoming-pill {
-      font-size: 0.72rem;
-      padding: 3px 9px;
+      font-size: 0.7rem;
+      padding: 3px 8px;
       border-radius: 999px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
       background: rgba(245, 158, 11, 0.12);
       color: #fbbf24;
       border: 1px solid rgba(245, 158, 11, 0.3);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .card-desc {
@@ -482,6 +486,21 @@
     .btn-view:hover {
       color: #7dd3fc;
       gap: 9px;
+    }
+
+    .btn-coming-soon {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.2px;
+      user-select: none;
     }
 
     .privacy-link {
@@ -679,27 +698,21 @@
               <img src="./assets/icons/pureedge.png" alt="PureEdge Official Icon" class="card-icon-img" width="44"
                 height="44">
               <div>
-                <div class="card-title"><a href="./pureedge/">PureEdge CleanTab</a></div>
+                <div class="card-title">PureEdge CleanTab</div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
               </div>
             </div>
-            <div class="card-action-badges">
-              <span class="store-upcoming-pill" title="Review in progress for Edge, Firefox & Chrome">
-                <span>⏳</span>
-                <span>Edge • Firefox • Chrome</span>
-              </span>
-            </div>
+            <div class="card-action-badges"></div>
           </div>
           <p class="card-desc">Purge bloated MSN news feeds, enjoy a 4K minimalist dashboard with weather &amp;
             Pomodoro, and save 50% RAM with Turbo Tab Sleep.</p>
         </div>
         <div class="card-footer">
-          <a href="./pureedge/" class="btn-view">Product Page &rarr;</a>
-          <a href="./pureedge/privacy/" class="privacy-link">🛡️ Privacy Policy</a>
+          <span class="btn-coming-soon">⏳ Coming Soon</span>
         </div>
       </div>
 
-            <!-- SnapDisplay -->
+      <!-- SnapDisplay (Store Upcoming) -->
       <div class="card" data-category="util">
         <div class="card-top">
           <div class="card-header">
@@ -707,26 +720,20 @@
               <img src="./assets/icons/snapdisplay.png" alt="SnapDisplay Official Icon" class="card-icon-img" width="44"
                 height="44">
               <div>
-                <div class="card-title"><a href="./snapdisplay/">SnapDisplay</a></div>
+                <div class="card-title">SnapDisplay</div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
               </div>
             </div>
-            <div class="card-action-badges">
-              <span class="store-upcoming-pill" title="Review in progress for Edge, Firefox & Chrome">
-                <span>⏳</span>
-                <span>Edge • Firefox • Chrome</span>
-              </span>
-            </div>
+            <div class="card-action-badges"></div>
           </div>
           <p class="card-desc">Zero-install 60 FPS Android screen mirroring, touch control over USB, and P2P virtual display second monitor over local WiFi.</p>
         </div>
         <div class="card-footer">
-          <a href="./snapdisplay/" class="btn-view">Product Page &rarr;</a>
-          <a href="./snapdisplay/privacy/" class="privacy-link">🛡️ Privacy Policy</a>
+          <span class="btn-coming-soon">⏳ Coming Soon</span>
         </div>
       </div>
 
-      <!-- SnapDownload HD -->
+      <!-- SnapDownload HD (Store Upcoming) -->
       <div class="card" data-category="util">
         <div class="card-top">
           <div class="card-header">
@@ -734,22 +741,16 @@
               <img src="./assets/icons/snapdownload.png" alt="SnapDownload HD Official Icon" class="card-icon-img" width="44"
                 height="44">
               <div>
-                <div class="card-title"><a href="./snapdownload/">SnapDownload HD</a></div>
+                <div class="card-title">SnapDownload HD</div>
                 <div class="card-version">v1.0.0 • Manifest V3</div>
               </div>
             </div>
-            <div class="card-action-badges">
-              <span class="store-upcoming-pill" title="Review in progress for Edge, Firefox & Chrome">
-                <span>⏳</span>
-                <span>Edge • Firefox • Chrome</span>
-              </span>
-            </div>
+            <div class="card-action-badges"></div>
           </div>
           <p class="card-desc">Bulk image downloader & 4K HD master resolution auto-resolver. 1-click .ZIP archiver, instant WebP to PNG/JPG converter, and auto-scroll harvester.</p>
         </div>
         <div class="card-footer">
-          <a href="./snapdownload/" class="btn-view">Product Page &rarr;</a>
-          <a href="./snapdownload/privacy/" class="privacy-link">🛡️ Privacy Policy</a>
+          <span class="btn-coming-soon">⏳ Coming Soon</span>
         </div>
       </div>
 
