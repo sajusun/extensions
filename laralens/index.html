@@ -775,33 +775,63 @@
       flex-wrap: wrap;
     }
 
-    /* Footer */
+    /* Clean Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding: 44px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.88rem;
+      padding: 36px 0;
+      margin-top: 48px;
     }
 
-    .footer-links {
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 12px;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
-    .footer-links a {
+    .footer-nav a {
       color: var(--text-secondary);
       text-decoration: none;
-      transition: color 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
     }
 
-    .footer-links a:hover {
+    .footer-nav a:hover {
       color: var(--text-main);
-      text-decoration: underline;
+    }
+
+    .footer-nav a.highlight-store {
+      color: #38bdf8;
+    }
+
+    .footer-nav a.highlight-store:hover {
+      color: #7dd3fc;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+      .footer-nav {
+        justify-content: center;
+        gap: 16px;
+      }
     }
   </style>
 </head>
@@ -865,8 +895,6 @@
           </svg> Live on Firefox Add-ons</span>
         <span>&bull;</span>
         <span>🟢 Live on Microsoft Edge</span>
-        <span>&bull;</span>
-        <span style="color:#94a3b8;">Chrome Web Store (Upcoming)</span>
       </div>
       <h1>The Ultimate Laravel &amp;<br><span>Inertia.js DevTools</span></h1>
       <p>Inspect Inertia.js page props, CSRF security tokens, session cookies, and Ziggy routes on any running Laravel
@@ -891,16 +919,6 @@
           </svg>
           <span>Add to Microsoft Edge — Free</span>
         </a>
-        <div class="badge-upcoming" title="Chrome Web Store submission in progress">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="4"></circle>
-            <line x1="21.17" y1="8" x2="12" y2="8"></line>
-            <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-            <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-          </svg>
-          <span>Chrome Web Store (Coming Soon)</span>
-        </div>
         <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener" class="btn-hero-github">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -1100,18 +1118,20 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- Clean Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 LaraLens. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener"
-          style="color:#ff2d20; text-decoration:none;">Sakhawat Hossain</a>. Open source under the MIT License.</p>
-      <div class="footer-links">
-        <a href="./privacy/">Privacy Policy</a>
-        <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-copy">
+        &copy; 2026 LaraLens &bull; Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener"
+          style="color:#ff2d20; text-decoration:none; font-weight:600;">Sakhawat Hossain</a>
+      </div>
+      <div class="footer-nav">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/dakfgclgidmgibecefllmeffnindhipc" target="_blank"
+          rel="noopener" class="highlight-store">Edge Add-ons</a>
         <a href="https://addons.mozilla.org/en-US/firefox/addon/laralens-devtools/" target="_blank" rel="noopener"
           style="color:#ff7139; font-weight:600;">Firefox Add-ons</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/dakfgclgidmgibecefllmeffnindhipc" target="_blank"
-          rel="noopener">Edge Add-ons</a>
+        <a href="https://github.com/sajusun/laralens" target="_blank" rel="noopener">GitHub</a>
+        <a href="./privacy/">Privacy Policy</a>
         <a href="../">All Extensions Hub</a>
       </div>
     </div>

@@ -179,7 +179,7 @@
   <!-- SnapDisplay -->
   <url>
     <loc>https://sajusun.github.io/extensions/snapdisplay/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -188,8 +188,20 @@
     </image:image>
   </url>
   <url>
+    <loc>https://sajusun.github.io/extensions/snapdisplay/companion/</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sajusun.github.io/extensions/snapdisplay/viewer/</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sajusun.github.io/extensions/snapdisplay/privacy/</loc>
-    <lastmod>2026-11-01</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
