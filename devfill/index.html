@@ -745,33 +745,63 @@
       flex-wrap: wrap;
     }
 
-    /* Footer */
+    /* Clean Footer */
     footer {
       border-top: 1px solid var(--border);
-      padding: 44px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.88rem;
+      padding: 36px 0;
+      margin-top: 48px;
     }
 
-    .footer-links {
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 12px;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
-    .footer-links a {
+    .footer-nav a {
       color: var(--text-secondary);
       text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
       transition: color 0.15s ease;
     }
 
-    .footer-links a:hover {
+    .footer-nav a:hover {
       color: var(--text-main);
-      text-decoration: underline;
+    }
+
+    .footer-nav a.highlight-store {
+      color: #38bdf8;
+    }
+
+    .footer-nav a.highlight-store:hover {
+      color: #7dd3fc;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+      .footer-nav {
+        justify-content: center;
+        gap: 16px;
+      }
     }
   </style>
 </head>
@@ -827,8 +857,6 @@
         <span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8.824 7.287c.008 0 .004 0 0 0zm-2.8-1.4c.006 0 .003 0 0 0zm16.754 2.161c-.505-1.215-1.53-2.528-2.333-2.943.654 1.283 1.033 2.57 1.177 3.53l.002.02c-1.314-3.278-3.544-4.6-5.366-7.477-.091-.147-.184-.292-.273-.446a3.545 3.545 0 01-.13-.24 2.118 2.118 0 01-.172-.46.03.03 0 00-.027-.03.038.038 0 00-.021 0l-.006.001a.037.037 0 00-.01.005L15.624 0c-2.585 1.515-3.657 4.168-3.932 5.856a6.197 6.197 0 00-2.305.587.297.297 0 00-.147.37c.057.162.24.24.396.17a5.622 5.622 0 012.008-.523l.067-.005a5.847 5.847 0 011.957.222l.095.03a5.816 5.816 0 01.616.228c.08.036.16.073.238.112l.107.055a5.835 5.835 0 01.368.211 5.953 5.953 0 012.034 2.104c-.62-.437-1.733-.868-2.803-.681 4.183 2.09 3.06 9.292-2.737 9.02a5.164 5.164 0 01-1.513-.292 4.42 4.42 0 01-.538-.232c-1.42-.735-2.593-2.121-2.74-3.806 0 0 .537-2 3.845-2 .357 0 1.38-.998 1.398-1.287-.005-.095-2.029-.9-2.817-1.677-.422-.416-.622-.616-.8-.767a3.47 3.47 0 00-.301-.227 5.388 5.388 0 01-.032-2.842c-1.195.544-2.124 1.403-2.8 2.163h-.006c-.46-.584-.428-2.51-.402-2.913-.006-.025-.343.176-.389.206-.406.29-.787.616-1.136.974-.397.403-.76.839-1.085 1.303a9.816 9.816 0 00-1.562 3.52c-.003.013-.11.487-.19 1.073-.013.09-.026.181-.037.272a7.8 7.8 0 00-.069.667l-.002.034-.023.387-.001.06C.386 18.795 5.593 24 12.016 24c5.752 0 10.527-4.176 11.463-9.661.02-.149.035-.298.052-.448.232-1.994-.025-4.09-.753-5.844z"/></svg> Live on Firefox Add-ons</span>
         <span>&bull;</span>
         <span>🟢 Live on Microsoft Edge</span>
-        <span>&bull;</span>
-        <span style="color: #94a3b8;">Chrome Web Store (Upcoming)</span>
       </div>
       <h1>Smart Dummy Form Filler for<br><span>Web Developers &amp; QA Engineers</span></h1>
       <p>Fill entire registration forms, checkouts, and nested web inputs in 1 millisecond. Dispatches native synthetic
@@ -849,16 +877,6 @@
           </svg>
           <span>Add to Microsoft Edge — Free</span>
         </a>
-        <div class="badge-upcoming" title="Chrome Web Store submission in progress">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <circle cx="12" cy="12" r="4"></circle>
-            <line x1="21.17" y1="8" x2="12" y2="8"></line>
-            <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-            <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-          </svg>
-          <span>Chrome Web Store (Coming Soon)</span>
-        </div>
         <a href="https://github.com/sajusun/devfill" target="_blank" rel="noopener"
           class="btn-hero-github">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -1052,15 +1070,17 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- Clean Footer -->
   <footer>
     <div class="container footer-inner">
-      <p>&copy; 2026 DevFill. Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color:#10b981; text-decoration:none;">Sakhawat Hossain</a>. Open source under the MIT License.</p>
-      <div class="footer-links">
-        <a href="./privacy/">Privacy Policy</a>
-        <a href="https://github.com/sajusun/devfill" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-copy">
+        &copy; 2026 DevFill &bull; Engineered by <a href="https://sajusun.github.io" target="_blank" rel="noopener" style="color:#10b981; text-decoration:none; font-weight:600;">Sakhawat Hossain</a>
+      </div>
+      <div class="footer-nav">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener" class="highlight-store">Edge Add-ons</a>
         <a href="https://addons.mozilla.org/en-US/firefox/addon/devfill-smart-form-filler/" target="_blank" rel="noopener" style="color:#ff7139; font-weight:600;">Firefox Add-ons</a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/nbemampnklgjngbilbpihongbbejhalp" target="_blank" rel="noopener">Edge Add-ons</a>
+        <a href="https://github.com/sajusun/devfill" target="_blank" rel="noopener">GitHub</a>
+        <a href="./privacy/">Privacy Policy</a>
         <a href="../">All Extensions Hub</a>
       </div>
     </div>
